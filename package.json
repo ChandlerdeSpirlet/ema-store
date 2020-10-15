@@ -1,0 +1,23 @@
+{
+  "name": "ema-store",
+  "version": "1.0.0",
+  "description": "Online EMA Store",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChandlerdeSpirlet/ema-store.git"
+  },
+  "author": "Chandler de Spirlet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChandlerdeSpirlet/ema-store/issues"
+  },
+  "homepage": "https://github.com/ChandlerdeSpirlet/ema-store#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "stripe": "^8.113.0"
+  }
+}

@@ -115,7 +115,7 @@ app.post('/process_cart', function(req, res) {
     res.redirect('/checkout.html/' + order_desc + '/' + temp_price);
 });
 
-app.get('/checkout.html(:item_desc)/(:price)', function(req, res){
+app.get('/checkout.html/(:item_desc)/(:price)', function(req, res){
     res.render('checkout.html', {
         description: item_desc,
         price: price

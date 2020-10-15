@@ -112,14 +112,14 @@ app.get('/checkout.html', function(req, res){
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
     order_desc = item_description;
     nunjucks.render('checkout.html', {
-        description: item_description,
+        description: 'hi',
         price: final
     })
 });
 
 app.post('/create-session', async (req, res) => {
     var local_price = order_price;
-    var local_desc = order_desc;
+    var local_desc = String(order_desc);
     delete global[order_price];
     delete global[order_desc];
     console.log('order desc is ' + local_desc);
@@ -139,7 +139,7 @@ app.post('/create-session', async (req, res) => {
                 unit_amount: local_price,
             },
             quantity: 1,
-            description: 'local_desc'
+            description: local_desc
             },
         ],
         mode: 'payment',

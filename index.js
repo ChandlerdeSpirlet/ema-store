@@ -89,20 +89,20 @@ app.post('/process_cart', function(req, res) {
         }
     }
     order_id = item.order_name.substring(0, 3) + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
-    console.log('order_desc[1] is ' + order_desc[1] + ' of type ' + typeof order_desc[1]);
+    console.log('order_desc[1] is ' + String(order_desc[1]).replace("_", " ") + ' of type ' + typeof order_desc[1]);
     switch (order_size){
         case 1:
             //Build description of order 1x black order_size[2].replace("_" ," ")
             var item_description = String(order_desc[0]) + ' x ' + String(order_desc[1]).replace("_" ," ") + ' ' + order_desc[2];
             break;
         case 2:
-            var item_description = String(order_desc[0]) + ' x ' + order_desc[1].replace("_" ," ") + ' ' + order_desc[2] + "\r\n" + String(order_desc[3]) + ' x ' + order_desc[4].replace("_" ," ") + ' ' + order_desc[5];
+            var item_description = String(order_desc[0]) + ' x ' + String(order_desc[1]).replace("_" ," ") + ' ' + order_desc[2] + "\r\n" + String(order_desc[3]) + ' x ' + String(order_desc[4]).replace("_" ," ") + ' ' + order_desc[5];
             break;
         case 3:
-            var item_description = String(order_desc[0]) + ' x ' + order_desc[1].replace("_" ," ") + ' ' + order_desc[2] + '\n' + String(order_desc[3]) + ' x ' + order_desc[4].replace("_" ," ") + ' ' + order_desc[5] + '\n' + String(order_desc[6]) + ' x ' + order_desc[7].replace("_" ," ") + ' ' + order_desc[8];
+            var item_description = String(order_desc[0]) + ' x ' + String(order_desc[1]).replace("_" ," ") + ' ' + order_desc[2] + '\n' + String(order_desc[3]) + ' x ' + String(order_desc[4]).replace("_" ," ") + ' ' + order_desc[5] + '\n' + String(order_desc[6]) + ' x ' + String(order_desc[7]).replace("_" ," ") + ' ' + order_desc[8];
             break;
         case 4:
-            var item_description = String(order_desc[0]) + ' x ' + order_desc[1].replace("_" ," ") + ' ' + order_desc[2] + '\n' + String(order_desc[3]) + ' x ' + order_desc[4].replace("_" ," ") + ' ' + order_desc[5] + '\n' + String(order_desc[6]) + ' x ' + order_desc[7].replace("_" ," ") + ' ' + order_desc[8] + '\n' + String(order_desc[9]) + ' x ' + order_desc[10].replace("_" ," ") + ' ' + order_desc[11];
+            var item_description = String(order_desc[0]) + ' x ' + String(order_desc[1]).replace("_" ," ") + ' ' + order_desc[2] + '\n' + String(order_desc[3]) + ' x ' + String(order_desc[4]).replace("_" ," ") + ' ' + order_desc[5] + '\n' + String(order_desc[6]) + ' x ' + String(order_desc[7]).replace("_" ," ") + ' ' + order_desc[8] + '\n' + String(order_desc[9]) + ' x ' + String(order_desc[10]).replace("_" ," ") + ' ' + order_desc[11];
             break;
         default:
             var item_description = 'Could not get order quantity and description.';
@@ -117,8 +117,8 @@ app.post('/process_cart', function(req, res) {
 
 app.get('/checkout.html/(:item_desc)/(:price)', function(req, res){
     res.render('checkout.html', {
-        description: item_desc,
-        price: price
+        description: req.params.item_desc,
+        price: req.params.price
     })
 });
 

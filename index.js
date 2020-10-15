@@ -142,10 +142,10 @@ app.post('/create-session', async (req, res) => {
             },
             quantity: 1,
             description: local_desc,
-            metadata: {"order_id": order_id}
             },
         ],
         mode: 'payment',
+        metadata: {'order_id': order_id},
         success_url: `${YOUR_DOMAIN}/success.html`,
         cancel_url: `${YOUR_DOMAIN}/cancel.html`,
         });

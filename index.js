@@ -110,7 +110,7 @@ app.post('/process_cart', function(req, res) {
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
     order_desc = item_description;
     temp_price = final;
-    res.render('checkout.html', {
+    nunjucks.render('checkout.html', {
         description: order_desc,
         price: temp_price
     })

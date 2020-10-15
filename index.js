@@ -89,12 +89,11 @@ app.post('/process_cart', function(req, res) {
         }
     }
     order_id = item.order_name.substring(0, 3) + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
-    console.log('order_desc[1] is ' + order_desc[1]);
-    console.log('order size is ' + order_size + ' of type ' + typeof order_size);
+    console.log('order_desc[1] is ' + order_desc[1] + ' of type ' + typeof order_desc[1]);
     switch (order_size){
         case 1:
             //Build description of order 1x black order_size[2].replace("_" ," ")
-            var item_description = String(order_desc[0]) + ' x ' + order_desc[1].replace("_" ," ") + ' ' + order_desc[2];
+            var item_description = String(order_desc[0]) + ' x ' + String(order_desc[1]).replace("_" ," ") + ' ' + order_desc[2];
             break;
         case 2:
             var item_description = String(order_desc[0]) + ' x ' + order_desc[1].replace("_" ," ") + ' ' + order_desc[2] + "\r\n" + String(order_desc[3]) + ' x ' + order_desc[4].replace("_" ," ") + ' ' + order_desc[5];
@@ -109,8 +108,6 @@ app.post('/process_cart', function(req, res) {
             var item_description = 'Could not get order quantity and description.';
             break;
     }
-    console.log('order_desc is ' + order_desc);
-    console.log('item_desc is ' + item_description);
     var temp = String(order_price);
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
     order_desc = item_description;

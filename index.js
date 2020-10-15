@@ -7,12 +7,15 @@ const dotenv = require('dotenv')
 const app = express();
 app.use(express.static('.'));
 app.use(exp_val());
+const router = express.Router();
 app.use(bodyParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
 nunjucks.configure('views', {noCache: true});
+
+app.use('/', router);
 
 const YOUR_DOMAIN = 'https://ema-store.herokuapp.com';
 global.order_size = 0;

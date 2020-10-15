@@ -96,7 +96,7 @@ app.post('/process_cart', function(req, res) {
             var item_description = String(order_desc[0]) + ' x ' + order_desc[1] + ' ' + order_desc[2];
             break;
         case 2:
-            var item_description = String(order_desc[0]) + ' x ' + order_desc[1] + ' ' + order_desc[2] + '\n' + String(order_desc[3]) + ' x ' + order_desc[4] + ' ' + order_desc[5];
+            var item_description = String(order_desc[0]) + ' x ' + order_desc[1] + ' ' + order_desc[2] + "\r\n" + String(order_desc[3]) + ' x ' + order_desc[4] + ' ' + order_desc[5];
             break;
         case 3:
             var item_description = String(order_desc[0]) + ' x ' + order_desc[1] + ' ' + order_desc[2] + '\n' + String(order_desc[3]) + ' x ' + order_desc[4] + ' ' + order_desc[5] + '\n' + String(order_desc[6]) + ' x ' + order_desc[7] + ' ' + order_desc[8];
@@ -113,13 +113,13 @@ app.post('/process_cart', function(req, res) {
     var temp = String(order_price);
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
     order_desc = item_description;
-    res.render('/checkout.html', {
+    res.render('checkout.html', {
         description: item_description,
         price: final
     })
 });
 
-app.get('/checkout', function(req, res){
+app.get('/checkout.html', function(req, res){
     res.render('checkout.html', {
         description: '',
         price: ''

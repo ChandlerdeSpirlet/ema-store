@@ -20,6 +20,10 @@ global.order_desc = [];
 global.order_price = 0;
 global.order_id = '';
 
+app.get('/', function(req, res){
+    res.redirect('https://ema-store.herokuapp.com/shopping_cart');
+})
+
 app.post('/process_cart', function(req, res) {
     var item = {
         order_name: req.sanitize('order_name').trim(),
@@ -102,18 +106,22 @@ app.post('/process_cart', function(req, res) {
             var item_description = 'Could not get order quantity and description.';
             break;
     }
+    console.log('order_desc is ' + order_desc);
     delete global[order_size];
     console.log('item_desc is ' + item_description);
     var temp = String(order_price);
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
     order_desc = item_description;
-    res.redirect('/checkout.html');
+    res.render('checkout.html', {
+        description: item_description,
+        price: final
+    })
 });
 
-app.get('/checkout.html', function(req, res){
+app.get('checkout.html', function(req, res){
     res.render('checkout.html', {
-        description: 'hi',
-        price: final
+        description: '',
+        price: ''
     })
 });
 

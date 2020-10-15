@@ -21,7 +21,7 @@ global.order_price = 0;
 global.order_id = '';
 
 app.get('/', function(req, res){
-    res.redirect('https://ema-store.herokuapp.com/shopping_cart');
+    res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
 });
 
 app.post('/process_cart', function(req, res) {

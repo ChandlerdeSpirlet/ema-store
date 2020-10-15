@@ -88,19 +88,20 @@ app.post('/process_cart', function(req, res) {
         }
     }
     order_id = item.order_name.substring(0, 3) + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
-    console.log('order_desc[0] is ' + order_desc[0]);
+    console.log('order_desc[1] is ' + order_desc[1]);
+    console.log('order size is ' + order_size + ' of type ' + typeof order_size);
     switch (order_size){
-        case '1':
+        case 1:
             //Build description of order 1x black order_size[2].replace("_" ," ")
             var item_description = String(order_desc[0]) + ' x ' + order_desc[1] + ' ' + order_desc[2];
             break;
-        case '2':
+        case 2:
             var item_description = String(order_desc[0]) + ' x ' + order_desc[1] + ' ' + order_desc[2] + '\n' + String(order_desc[3]) + ' x ' + order_desc[4] + ' ' + order_desc[5];
             break;
-        case '3':
+        case 3:
             var item_description = String(order_desc[0]) + ' x ' + order_desc[1] + ' ' + order_desc[2] + '\n' + String(order_desc[3]) + ' x ' + order_desc[4] + ' ' + order_desc[5] + '\n' + String(order_desc[6]) + ' x ' + order_desc[7] + ' ' + order_desc[8];
             break;
-        case '4':
+        case 4:
             var item_description = String(order_desc[0]) + ' x ' + order_desc[1] + ' ' + order_desc[2] + '\n' + String(order_desc[3]) + ' x ' + order_desc[4] + ' ' + order_desc[5] + '\n' + String(order_desc[6]) + ' x ' + order_desc[7] + ' ' + order_desc[8] + '\n' + String(order_desc[9]) + ' x ' + order_desc[10] + ' ' + order_desc[11];
             break;
         default:
@@ -112,7 +113,7 @@ app.post('/process_cart', function(req, res) {
     var temp = String(order_price);
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
     order_desc = item_description;
-    res.render('checkout.html', {
+    res.render('/checkout.html', {
         description: item_description,
         price: final
     })

@@ -1,0 +1,280 @@
+<html>
+    <title>Hoodie Order Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        img {
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        html {
+            background-image: linear-gradient(#0095ff, #9ed7ff);
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        h1 {
+            text-align: center;
+        }
+        body {
+            font-size: 16px;
+        }
+        button, select {
+            width: 60%;
+            margin: 0 auto;
+        }
+        label{
+            font-weight: bold;
+        }
+        form > div {
+            margin-bottom: 20px;
+        }
+
+        button, label, input, select {
+            display: block;
+            font-size: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 5px;
+            height: 30px;
+        }
+
+        select {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .select-wrapper {
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .select-wrapper::after {
+            content: "▼";
+            font-size: 1rem;
+            top: 6px;
+            right: 10px;
+            position: absolute;
+        }
+
+        input[type="text"], select {
+            box-shadow: inset 1px 1px 3px #ccc;
+            border-radius: 5px;
+        }
+    </style>
+    <body>
+        <h1>EMA Hoodie Order Form</h1>
+        <img src="https://i.ibb.co/C1gNzdB/ema-hoodie.png" alt="ema-hoodie"/>
+        <form name="Form" action="/process_cart" method="POST">
+            <div>
+                <label for="order_name">Name:</label>
+                <input type="text" id="order_name" name="order_name" required placeholder="Full Name">
+            </div>
+            <div>
+                <label for="order_email">Email:</label>
+                <input type="text" id="order_email" name="order_email" required placeholder="Email">
+            </div>
+            <div id="order1">
+                <h4>Hoodie 1</h4>
+                    <div class="select-wrapper"><select id="select" name="quantity1" required>
+                        <option value="0">Quantity</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    </div>
+                    <div class="select-wrapper"><select id="select" name="color1" required>
+                        <option value="None">Color</option>
+                        <option value="Black">Black</option>
+                        <option value="White">White</option>
+                    </select>
+                    </div>
+                    <div class="select-wrapper"><select id="select" name="size1" required>
+                        <option value="default">Choose Size</option>
+                        <optgroup label="Youth Sizes">
+                            <option value="youth_small">Youth Small</option>
+                            <option value="youth_medium">Youth Medium</option>
+                            <option value="youth_large">Youth Large</option>
+                        </optgroup>
+                        <optgroup label="Adult Sizes">
+                            <option value="adult_small">Adult Small</option>
+                            <option value="adult_medium">Adult Medium</option>
+                            <option value="adult_large">Adult Large</option>
+                            <option value="adult_xlarge">Adult X-Large</option>
+                            <option value="adult_xxlarge">Adult XX-Large</option>
+                        </optgroup>
+                    </select>
+                    </div>
+                    <br>
+                    <button type="button" onclick="show2()">Add More</button>
+                    <br>
+                <div>
+                    <input type="submit" name="Submit" id="checkout1" style="display: block;" value="Checkout"/>
+                </div>
+            </div>
+            <div id="order2" style="display: none;">
+                <h4>Hoodie 2</h4>
+                    <div class="select-wrapper"><select id="select" name="quantity2" required>
+                        <option value="0">Quantity</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    </div>
+                    <div class="select-wrapper"><select id="select" name="color2" required>
+                        <option value="None">Color</option>
+                        <option value="Black">Black</option>
+                        <option value="White">White</option>
+                    </select>
+                    </div>
+                    <div class="select-wrapper"><select id="select" name="size2" required>
+                        <option value="default">Choose Size</option>
+                        <optgroup label="Youth Sizes">
+                            <option value="Youth Small">Youth Small</option>
+                            <option value="Youth Medium">Youth Medium</option>
+                            <option value="Youth Large">Youth Large</option>
+                        </optgroup>
+                        <optgroup label="Adult Sizes">
+                            <option value="Adult Small">Adult Small</option>
+                            <option value="Adult Medium">Adult Medium</option>
+                            <option value="Adult Large">Adult Large</option>
+                            <option value="Adult X-Large">Adult X-Large</option>
+                            <option value="Adult XX-Large">Adult XX-Large</option>
+                        </optgroup>
+                    </select>
+                    </div>
+                <br>
+                <button type="button" onclick="show3()">Add More</button>
+                <br>
+                <div>
+                    <input type="submit" name="Submit" id="checkout2" style="display: none;" value="Checkout"/>
+                </div>
+            </div>
+            <div id="order3" style="display: none;">
+                <h4>Hoodie 3</h4>
+                    <div class="select-wrapper"><select id="select" name="quantity3" required>
+                        <option value="0">Quantity</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    </div>
+                    <div class="select-wrapper"><select id="select" name="color3" required>
+                        <option value="None">Color</option>
+                        <option value="Black">Black</option>
+                        <option value="White">White</option>
+                    </select>
+                    </div>
+                    <div class="select-wrapper"><select id="select" name="size3" required>
+                        <option value="default">Choose Size</option>
+                        <optgroup label="Youth Sizes">
+                            <option value="Youth Small">Youth Small</option>
+                            <option value="Youth Medium">Youth Medium</option>
+                            <option value="Youth Large">Youth Large</option>
+                        </optgroup>
+                        <optgroup label="Adult Sizes">
+                            <option value="Adult Small">Adult Small</option>
+                            <option value="Adult Medium">Adult Medium</option>
+                            <option value="Adult Large">Adult Large</option>
+                            <option value="Adult X-Large">Adult X-Large</option>
+                            <option value="Adult XX-Large">Adult XX-Large</option>
+                        </optgroup>
+                    </select>
+                    </div>
+                    <br>
+                    <button type="button" onclick="show4()">Add More</button>
+                    <br>
+                    <div>
+                        <input type="submit" name="Submit" id="checkout3" style="display: none;" value="Checkout"/>
+                    </div>
+            </div>
+            <div id="order4" style="display: none;">
+                <h4>Hoodie 4</h4>
+                    <div class="select-wrapper"><select id="select" name="quantity4" required>
+                        <option value="0">Quantity</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    </div>
+                    <div class="select-wrapper"><select id="select" name="color4" required>
+                        <option value="None">Color</option>
+                        <option value="Black">Black</option>
+                        <option value="White">White</option>
+                    </select>
+                    </div>
+                    <div class="select-wrapper"><select id="select" name="size4" required>
+                        <option value="default">Choose Size</option>
+                        <optgroup label="Youth Sizes">
+                            <option value="Youth Small">Youth Small</option>
+                            <option value="Youth Medium">Youth Medium</option>
+                            <option value="Youth Large">Youth Large</option>
+                        </optgroup>
+                        <optgroup label="Adult Sizes">
+                            <option value="Adult Small">Adult Small</option>
+                            <option value="Adult Medium">Adult Medium</option>
+                            <option value="Adult Large">Adult Large</option>
+                            <option value="Adult X-Large">Adult X-Large</option>
+                            <option value="Adult XX-Large">Adult XX-Large</option>
+                        </optgroup>
+                    </select>
+                    </div>
+            </div>
+            <div>
+                <input type="submit" name="Submit" id="checkout4" style="display: none;" value="Checkout"/>
+            </div>
+        </form>
+    </body>
+</html>
+<script>
+    function show2() {
+        var x = document.getElementById("order2");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            document.getElementById("checkout1").style.display = "none";
+            document.getElementById("checkout2").style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+    function show3() {
+        var x = document.getElementById("order3");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            document.getElementById("checkout2").style.display = "none";
+            document.getElementById("checkout3").style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+    function show4() {
+        var x = document.getElementById("order4");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            document.getElementById("checkout3").style.display = "none";
+            document.getElementById("checkout4").style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>

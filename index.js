@@ -20,6 +20,10 @@ global.order_desc = [];
 global.order_price = 0;
 global.order_id = '';
 
+app.get('/', function(req, res){
+    res.redirect('https://ema-store.herokuapp.com/shopping_cart');
+});
+
 app.post('/process_cart', function(req, res) {
     var item = {
         order_name: req.sanitize('order_name').trim(),
@@ -84,7 +88,7 @@ app.post('/process_cart', function(req, res) {
         }
     }
     order_id = item.order_name.substring(0, 3) + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
-    res.redirect('checkout.html');
+    res.redirect('/checkout.html');
 });
 
 app.get('/checkout.html', function(req, res){
@@ -122,8 +126,6 @@ app.post('/create-session', async (req, res) => {
     var local_desc = String(order_desc);
     delete global[order_price];
     delete global[order_desc];
-    console.log('order desc is ' + local_desc);
-    console.log('order desc is of type ' + typeof local_desc);
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items: [

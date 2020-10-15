@@ -21,7 +21,7 @@ global.order_price = 0;
 global.order_id = '';
 
 app.get('/', function(req, res){
-    res.redirect('https://ema-store.herokuapp.com/shopping_cart');
+    res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
 })
 
 app.post('/process_cart', function(req, res) {
@@ -88,6 +88,7 @@ app.post('/process_cart', function(req, res) {
         }
     }
     order_id = item.order_name.substring(0, 3) + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
+    console.log('order_desc[0] is ' + order_desc[0]);
     switch (order_size){
         case '1':
             //Build description of order 1x black order_size[2].replace("_" ," ")
@@ -107,7 +108,6 @@ app.post('/process_cart', function(req, res) {
             break;
     }
     console.log('order_desc is ' + order_desc);
-    delete global[order_size];
     console.log('item_desc is ' + item_description);
     var temp = String(order_price);
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
@@ -118,7 +118,7 @@ app.post('/process_cart', function(req, res) {
     })
 });
 
-app.get('checkout.html', function(req, res){
+app.get('/checkout', function(req, res){
     res.render('checkout.html', {
         description: '',
         price: ''
@@ -128,6 +128,7 @@ app.get('checkout.html', function(req, res){
 app.post('/create-session', async (req, res) => {
     var local_price = order_price;
     var local_desc = String(order_desc);
+    delete global[order_size];
     delete global[order_price];
     delete global[order_desc];
     const session = await stripe.checkout.sessions.create({

@@ -125,6 +125,7 @@ app.get('/checkout.html', function(req, res){
 app.post('/create-session', async (req, res) => {
     var local_price = order_price;
     var local_desc = String(order_desc);
+    console.log('local_price is ' + local_price);
     delete global[order_size];
     delete global[order_price];
     delete global[order_desc];

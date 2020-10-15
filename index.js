@@ -16,6 +16,7 @@ global.order_price = 0;
 global.order_id = '';
 
 app.post('/process_cart', function(req, res) {
+    console.log('stripe key is ' + process.env.STRIPE_API_KEY);
     var item = {
         order_name: req.sanitize('order_name').trim(),
         order_email: req.sanitize('order_email').trim(),

@@ -42,8 +42,6 @@ app.post('/process_cart', function(req, res) {
         color4: req.sanitize('color4'),
         size4: req.sanitize('size4')
     }
-    console.log('order_name ' + item.order_name);
-    console.log('color1 ' + item.color1);
     if (item.quantity1 != 0) {
         order_size++;
         order_desc.push(item.quantity1);

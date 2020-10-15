@@ -7,7 +7,6 @@ const dotenv = require('dotenv')
 const app = express();
 app.use(express.static('.'));
 app.use(exp_val());
-const router = express.Router();
 app.use(bodyParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,10 +19,6 @@ global.order_size = 0;
 global.order_desc = [];
 global.order_price = 0;
 global.order_id = '';
-
-app.get('/', function(req, res){
-    res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
-});
 
 app.post('/process_cart', function(req, res) {
     var item = {
@@ -89,10 +84,6 @@ app.post('/process_cart', function(req, res) {
         }
     }
     order_id = item.order_name.substring(0, 3) + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
-    res.redirect('/checkout.html');
-});
-
-app.get('/checkout.html', function(req, res){
     switch (order_size){
         case '1':
             //Build description of order 1x black order_size[2].replace("_" ," ")
@@ -116,6 +107,10 @@ app.get('/checkout.html', function(req, res){
     var temp = String(order_price);
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
     order_desc = item_description;
+    res.redirect('/checkout.html');
+});
+
+app.get('/checkout.html', function(req, res){
     res.render('checkout.html', {
         description: 'hi',
         price: final

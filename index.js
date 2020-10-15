@@ -19,6 +19,7 @@ global.order_size = 0;
 global.order_desc = [];
 global.order_price = 0;
 global.order_id = '';
+global.temp_price = '';
 
 app.get('/', function(req, res){
     res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
@@ -113,16 +114,14 @@ app.post('/process_cart', function(req, res) {
     var temp = String(order_price);
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
     order_desc = item_description;
-    res.render('checkout', {
-        description: item_description,
-        price: final
-    })
+    temp_price = final;
+    res.redirect('/checkout.html');
 });
 
 app.get('/checkout.html', function(req, res){
     res.render('checkout.html', {
-        description: '',
-        price: ''
+        description: order_desc,
+        price: temp_price
     })
 });
 

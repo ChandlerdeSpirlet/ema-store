@@ -110,13 +110,9 @@ app.post('/process_cart', function(req, res) {
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
     order_desc = item_description;
     temp_price = final;
-    res.redirect('https://ema-store.herokuapp.com/checkout.html/' + order_desc + '/' + temp_price);
-});
-
-app.get('/checkout.html/(:desc)/(:price)', function(req, res){
     res.render('checkout.html', {
-        description: req.params.desc,
-        price: req.params.price
+        description: order_desc,
+        price: temp_price
     })
 });
 

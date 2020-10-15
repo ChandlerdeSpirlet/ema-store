@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
-nunjucks.configure('.', {noCache: true});
+nunjucks.configure('/', {noCache: true});
 
 const YOUR_DOMAIN = 'https://ema-store.herokuapp.com';
 global.order_size = 0;
@@ -106,6 +106,7 @@ app.get('/checkout.html', function(req, res){
             var item_description = 'Could not get order quantity and description.';
             break;
     }
+    delete global[order_size];
     console.log('item_desc is ' + item_description);
     var temp = String(order_price);
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
@@ -116,6 +117,8 @@ app.get('/checkout.html', function(req, res){
 });
 
 app.post('/create-session', async (req, res) => {
+    var local_price = order_price;
+    var local_desc = order_desc;
     console.log('order desc is ' + order_desc);
     console.log('orrder price is ' + order_price)
     const session = await stripe.checkout.sessions.create({
@@ -127,9 +130,9 @@ app.post('/create-session', async (req, res) => {
                 product_data: {
                 name: 'EMA Online Store',
                 images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
-                description: order_desc,
+                description: local_desc,
                 },
-                unit_amount: 2000,
+                unit_amount: local_price,
             },
             quantity: 1,
             description: 'order_desc'

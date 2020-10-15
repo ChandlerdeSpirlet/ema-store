@@ -2,12 +2,16 @@ const stripe = require('stripe')(process.env.STRIPE_API_KEY);
 const express = require('express');
 const exp_val = require('express-validator');
 const bodyParser = require('body-parser');
+const nunjucks = require('nunjucks');
 const app = express();
 app.use(express.static('.'));
 app.use(exp_val());
 app.use(bodyParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'html');
+app.engine('html', nunjucks.render);
+nunjucks.configure('views', {noCache: true});
 
 const YOUR_DOMAIN = 'https://ema-store.herokuapp.com';
 global.order_size = 0;
@@ -79,8 +83,12 @@ app.post('/process_cart', function(req, res) {
             order_price = order_price + (5500 * item.quantity4);
         }
     }
-    const order_id = item.order_name.substring(0, 3) + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
+    order_id = item.order_name.substring(0, 3) + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
     console.log('order size in process_cart is ' + order_size);
+    console.log('order size is ' + order_size);
+    console.log('order_desc is ' + order_desc);
+    console.log('order_price is ' + order_price);
+    console.log('order_id is ' + order_id);
     res.redirect('https://ema-store.herokuapp.com/checkout.html');
 });
 

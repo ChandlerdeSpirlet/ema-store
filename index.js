@@ -113,7 +113,7 @@ app.post('/process_cart', function(req, res) {
     var temp = String(order_price);
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
     order_desc = item_description;
-    res.render('checkout.html', {
+    res.render('checkout', {
         description: item_description,
         price: final
     })

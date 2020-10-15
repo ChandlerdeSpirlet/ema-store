@@ -1,9 +1,13 @@
 const stripe = require('stripe')(process.env.STRIPE_API_KEY);
 const express = require('express');
 const exp_val = require('express-validator');
+const bodyParser = require('body-parser');
 const app = express();
 app.use(express.static('.'));
 app.use(exp_val());
+app.use(bodyParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const YOUR_DOMAIN = 'https://ema-store.herokuapp.com';
 global.order_size = 0;
@@ -28,6 +32,8 @@ app.post('/process_cart', function(req, res) {
         color4: req.sanitize('color4'),
         size4: req.sanitize('size4')
     }
+    console.log('order_name ' + item.order_name);
+    console.log('color1 ' + item.color1);
     if (item.quantity1 != 0) {
         order_size++;
         order_desc.push(item.quantity1);

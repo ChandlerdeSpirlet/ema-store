@@ -1,4 +1,4 @@
-const stripe = require('stripe')(process.env.STRIPE_API_KEY);
+const stripe = require('stripe')('sk_test_51H75ScKv0edLDEqJEL6q5HTs0dJN28eeyehpgMBEdEc4BT26iod0kUZpE3zcL0QrwZtwV7kCFTbS7bfb8Ehs6lys00Ut3Az4SN');
 const express = require('express');
 const exp_val = require('express-validator');
 const bodyParser = require('body-parser');
@@ -21,8 +21,6 @@ global.order_price = 0;
 global.order_id = '';
 
 app.post('/process_cart', function(req, res) {
-    console.log('stripe key is ' + process.env.STRIPE_API_KEY);
-    console.log('stripe2 is ' + process.env['STRIPE_API_KEY']);
     var item = {
         order_name: req.sanitize('order_name').trim(),
         order_email: req.sanitize('order_email').trim(),
@@ -95,7 +93,32 @@ app.post('/process_cart', function(req, res) {
 });
 
 app.get('/checkout.html', function(req, res){
-
+    switch (order_size){
+        case '1':
+            //Build description of order 1x black order_size[2].replace("_" ," ")
+            var item_description = String(order_desc[0]) + ' x ' + order_desc[1] + ' ' + order_desc[2];
+            break;
+        case '2':
+            var item_description = String(order_desc[0]) + ' x ' + order_desc[1] + ' ' + order_desc[2] + '\n' + String(order_desc[3]) + ' x ' + order_desc[4] + ' ' + order_desc[5];
+            break;
+        case '3':
+            var item_description = String(order_desc[0]) + ' x ' + order_desc[1] + ' ' + order_desc[2] + '\n' + String(order_desc[3]) + ' x ' + order_desc[4] + ' ' + order_desc[5] + '\n' + String(order_desc[6]) + ' x ' + order_desc[7] + ' ' + order_desc[8];
+            break;
+        case '4':
+            var item_description = String(order_desc[0]) + ' x ' + order_desc[1] + ' ' + order_desc[2] + '\n' + String(order_desc[3]) + ' x ' + order_desc[4] + ' ' + order_desc[5] + '\n' + String(order_desc[6]) + ' x ' + order_desc[7] + ' ' + order_desc[8] + '\n' + String(order_desc[9]) + ' x ' + order_desc[10] + ' ' + order_desc[11];
+            break;
+        default:
+            var item_description = 'Could not get order quantity and description.';
+            break;
+    }
+    var temp = String(order_price);
+    var first_half = temp.substring(0, temp.length - 2);
+    var last_half = temp.substring(temp.length - 2, temp.length);
+    const final = '$' + first_half + '.' + last_half;
+    res.render('checkout', {
+        description: item_description,
+        price: final
+    })
 });
 
 app.post('/create-session', async (req, res) => {
@@ -108,12 +131,12 @@ app.post('/create-session', async (req, res) => {
                 product_data: {
                 name: 'EMA Online Store',
                 images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
-                description: 'EMA Desc',
+                description: order_desc,
                 },
-                unit_amount: 2000,
+                unit_amount: order_price,
             },
             quantity: 1,
-            description: '2020 EMA Hoodie'
+            description: order_desc
             },
         ],
         mode: 'payment',

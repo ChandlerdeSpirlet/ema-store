@@ -3,6 +3,7 @@ const express = require('express');
 const exp_val = require('express-validator');
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
+const dotenv = require('dotenv')
 const app = express();
 app.use(express.static('.'));
 app.use(exp_val());
@@ -21,6 +22,7 @@ global.order_id = '';
 
 app.post('/process_cart', function(req, res) {
     console.log('stripe key is ' + process.env.STRIPE_API_KEY);
+    console.log('stripe2 is ' + process.env['STRIPE_API_KEY']);
     var item = {
         order_name: req.sanitize('order_name').trim(),
         order_email: req.sanitize('order_email').trim(),

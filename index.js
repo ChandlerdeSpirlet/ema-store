@@ -13,9 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
-nunjucks.configure('views', {noCache: true});
-
-app.use('/', router);
+nunjucks.configure('/', {noCache: true});
 
 const YOUR_DOMAIN = 'https://ema-store.herokuapp.com';
 global.order_size = 0;

@@ -112,13 +112,13 @@ app.post('/process_cart', function(req, res) {
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
     order_desc = item_description;
     temp_price = final;
-    res.redirect('/checkout.html/' + order_desc + '/' + temp_price);
+    res.redirect('/checkout.html');
 });
 
-app.get('/checkout.html/(:item_desc)/(:price)', function(req, res){
+app.get('/checkout.html', function(req, res){
     res.render('checkout.html', {
-        description: req.params.item_desc,
-        price: req.params.price
+        description: order_desc,
+        price: temp_price
     })
 });
 

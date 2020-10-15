@@ -1,6 +1,8 @@
 const stripe = require('stripe')(process.env.STRIPE_API_KEY);
 const express = require('express');
+const exp_val = require('express-validator');
 const app = express();
+app.use(exp_val());
 app.use(express.static('.'));
 
 const YOUR_DOMAIN = 'https://ema-store.herokuapp.com';

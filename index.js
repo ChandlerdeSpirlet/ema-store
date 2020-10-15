@@ -141,7 +141,8 @@ app.post('/create-session', async (req, res) => {
                 unit_amount: local_price,
             },
             quantity: 1,
-            description: local_desc
+            description: local_desc,
+            metadata: {"order_id": order_id}
             },
         ],
         mode: 'payment',

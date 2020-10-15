@@ -117,7 +117,7 @@
                     </select>
                     </div>
                     <br>
-                    <button type="button" onclick="show2()">Add More</button>
+                    <button type="button" id="show2button" onclick="show2()">Add More</button>
                     <br>
                 <div>
                     <input type="submit" name="Submit" id="checkout1" style="display: block;" value="Checkout"/>
@@ -253,6 +253,7 @@
             x.style.display = "block";
             document.getElementById("checkout1").style.display = "none";
             document.getElementById("checkout2").style.display = "block";
+            document.getElementById("show2button").style.display = "none";
         } else {
             x.style.display = "none";
         }

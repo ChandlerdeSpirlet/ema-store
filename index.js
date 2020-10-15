@@ -84,7 +84,7 @@ app.post('/process_cart', function(req, res) {
         }
     }
     order_id = item.order_name.substring(0, 3) + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
-    res.redirect('https://ema-store.herokuapp.com/checkout.html');
+    res.redirect('checkout.html');
 });
 
 app.get('/checkout.html', function(req, res){
@@ -111,7 +111,7 @@ app.get('/checkout.html', function(req, res){
     var temp = String(order_price);
     const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
     order_desc = item_description;
-    res.render('checkout.html', {
+    nunjucks.render('checkout.html', {
         description: item_description,
         price: final
     })
@@ -120,6 +120,8 @@ app.get('/checkout.html', function(req, res){
 app.post('/create-session', async (req, res) => {
     var local_price = order_price;
     var local_desc = order_desc;
+    delete global[order_price];
+    delete global[order_desc];
     console.log('order desc is ' + local_desc);
     console.log('order desc is of type ' + typeof local_desc);
     const session = await stripe.checkout.sessions.create({
@@ -137,7 +139,7 @@ app.post('/create-session', async (req, res) => {
                 unit_amount: local_price,
             },
             quantity: 1,
-            description: local_desc
+            description: 'local_desc'
             },
         ],
         mode: 'payment',

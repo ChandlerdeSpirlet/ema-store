@@ -115,25 +115,25 @@ app.post('/create-session', async (req, res) => {
         case 1:
             var session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
-                customer_email: local_order.order_email,
-                client_reference_id: local_order.order_id,
+                customer_email: 'local_order.order_email',
+                client_reference_id: 'local_order.order_id',
                 line_items: [
                     {
                     price_data: {
                         currency: 'usd',
                         product_data: {
-                        name: local_order.descriptor1,
+                        name: 'local_order.descriptor1',
                         images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                         description: '2020 Hoodie',
                         },
-                        unit_amount: local_order.price1,
+                        unit_amount: 500,
                     },
-                    quantity: local_order.quantity1,
+                    quantity: 'local_order.quantity1',
                     description: 'EMA Online Store',
                     },
                 ],
                 mode: 'payment',
-                metadata: {'order_id': local_order.order_id},
+                metadata: {'order_id': 'local_order.order_id'},
                 success_url: `${YOUR_DOMAIN}/success.html`,
                 cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });

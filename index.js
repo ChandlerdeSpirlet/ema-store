@@ -128,7 +128,7 @@ app.post('/create-session', async (req, res) => {
                         },
                         unit_amount: 500,
                     },
-                    quantity: 'local_order.quantity1',
+                    quantity: 1,
                     description: 'EMA Online Store',
                     },
                 ],

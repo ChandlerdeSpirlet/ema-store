@@ -115,7 +115,7 @@ app.post('/create-session', async (req, res) => {
         case 1:
             var session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
-                customer_email: 'local_order.order_email',
+                customer_email: 'chandler.despirlet@icloud.com',
                 client_reference_id: 'local_order.order_id',
                 line_items: [
                     {

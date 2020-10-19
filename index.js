@@ -32,7 +32,7 @@ global.order_info = {
     quantity4 = 0,
     price4 = 0,
     descriptor4 = ''
-}
+};
 
 app.get('/', function(req, res){
     res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');

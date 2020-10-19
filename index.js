@@ -41,7 +41,7 @@ app.post('/process_cart', function(req, res) {
         color4: req.sanitize('color4'),
         size4: req.sanitize('size4')
     }
-    email =  order_email;
+    email = item.order_email;
     if (item.quantity1 != 0) {
         order_size++;
         order_desc.push(item.quantity1);

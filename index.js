@@ -47,7 +47,7 @@ app.post('/process_cart', function(req, res) {
         order_desc.push(item.quantity1);
         order_desc.push(item.size1);
         order_desc.push(item.color1);
-        if ((item.size1 == 'youth_small') || (item.size1 == 'youth_medium') || (item.size1 == 'youth_large')){
+        if ((item.size1 == 'Youth Small') || (item.size1 == 'Youth Medium') || (item.size1 == 'Youth Large')){
             order_price = order_price + (4000 * item.quantity1); //Represents $40 * quantity
         } else {
             order_price = order_price + (5500 * item.quantity1); //Represents $50 * quantity
@@ -58,7 +58,7 @@ app.post('/process_cart', function(req, res) {
         order_desc.push(item.quantity2);
         order_desc.push(item.size2);
         order_desc.push(item.color2);
-        if ((item.size2 == 'youth_small') || (item.size2 == 'youth_medium') || (item.size2 == 'youth_large')){
+        if ((item.size2 == 'Youth Small') || (item.size2 == 'Youth Medium') || (item.size2 == 'Youth Large')){
             order_price = order_price + (4000 * item.quantity2);
         } else {
             order_price = order_price + (5500 * item.quantity2);
@@ -69,7 +69,7 @@ app.post('/process_cart', function(req, res) {
         order_desc.push(item.quantity3);
         order_desc.push(item.size3);
         order_desc.push(item.color3);
-        if ((item.size3 == 'youth_small') || (item.size3 == 'youth_medium') || (item.size3 == 'youth_large')){
+        if ((item.size3 == 'Youth Small') || (item.size3 == 'Youth Medium') || (item.size3 == 'Youth Large')){
             order_price = order_price + (4000 * item.quantity3);
         } else {
             order_price = order_price + (5500 * item.quantity3);
@@ -80,7 +80,7 @@ app.post('/process_cart', function(req, res) {
         order_desc.push(item.quantity4);
         order_desc.push(item.size4);
         order_desc.push(item.color4);
-        if ((item.size4 == 'youth_small') || (item.size4 == 'youth_medium') || (item.size4 == 'youth_large')){
+        if ((item.size4 == 'Youth Small') || (item.size4 == 'Youth Medium') || (item.size4 == 'Youth Large')){
             order_price = order_price + (4000 * item.quantity4);
         } else {
             order_price = order_price + (5500 * item.quantity4);

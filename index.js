@@ -109,29 +109,31 @@ app.get('/checkout.html', function(req, res){
 });
 
 app.post('/create-session', async (req, res) => {
-    switch (order_info.order_size){
+    const local_order = order_info;
+    delete order_info;
+    switch (local_order.order_size){
         case 1:
             var session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
-                customer_email: order_info.order_email,
-                client_reference_id: order_info.order_id,
+                customer_email: local_order.order_email,
+                client_reference_id: local_order.order_id,
                 line_items: [
                     {
                     price_data: {
                         currency: 'usd',
                         product_data: {
-                        name: order_info.descriptor1,
+                        name: local_order.descriptor1,
                         images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                         description: '2020 Hoodie',
                         },
-                        unit_amount: order_info.price1,
+                        unit_amount: local_order.price1,
                     },
-                    quantity: order_info.quantity1,
+                    quantity: local_order.quantity1,
                     description: 'EMA Online Store',
                     },
                 ],
                 mode: 'payment',
-                metadata: {'order_id': order_infoorder_id},
+                metadata: {'order_id': local_order.order_id},
                 success_url: `${YOUR_DOMAIN}/success.html`,
                 cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });
@@ -141,38 +143,38 @@ app.post('/create-session', async (req, res) => {
         case 2:
             var session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
-                customer_email: order_info.order_email,
-                client_reference_id: order_info.order_id,
+                customer_email: local_order.order_email,
+                client_reference_id: local_order.order_id,
                 line_items: [
                     {
                     price_data: {
                         currency: 'usd',
                         product_data: {
-                        name: order_info.descriptor1,
+                        name: local_order.descriptor1,
                         images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                         description: '2020 Hoodie',
                         },
-                        unit_amount: order_info.price1,
+                        unit_amount: local_order.price1,
                     },
-                    quantity: order_info.quantity1,
+                    quantity: local_order.quantity1,
                     description: 'EMA Online Store',
                     },
                     {
                     price_data: {
                         currency: 'usd',
                         product_data: {
-                        name: order_info.descriptor2,
+                        name: local_order.descriptor2,
                         images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                         description: '2020 Hoodie',
                         },
-                        unit_amount: order_info.price2,
+                        unit_amount: local_order.price2,
                     },
-                    quantity: order_info.quantity2,
+                    quantity: local_order.quantity2,
                     description: 'EMA Online Store',
                     },
                 ],
                 mode: 'payment',
-                metadata: {'order_id': order_info.order_id},
+                metadata: {'order_id': local_order.order_id},
                 success_url: `${YOUR_DOMAIN}/success.html`,
                 cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });
@@ -182,51 +184,51 @@ app.post('/create-session', async (req, res) => {
         case 3:
             var session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
-                customer_email: order_info.order_email,
-                client_reference_id: order_info.order_id,
+                customer_email: local_order.order_email,
+                client_reference_id: local_order.order_id,
                 line_items: [
                     {
                     price_data: {
                         currency: 'usd',
                         product_data: {
-                        name: order_info.descriptor1,
+                        name: local_order.descriptor1,
                         images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                         description: '2020 Hoodie',
                         },
-                        unit_amount: order_info.price1,
+                        unit_amount: local_order.price1,
                     },
-                    quantity: order_info.quantity1,
+                    quantity: local_order.quantity1,
                     description: 'EMA Online Store',
                     },
                     {
                     price_data: {
                         currency: 'usd',
                         product_data: {
-                        name: order_info.descriptor2,
+                        name: local_order.descriptor2,
                         images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                         description: '2020 Hoodie',
                         },
-                        unit_amount: order_info.price2,
+                        unit_amount: local_order.price2,
                     },
-                    quantity: order_info.quantity2,
+                    quantity: local_order.quantity2,
                     description: 'EMA Online Store',
                     },
                     {
                     price_data: {
                         currency: 'usd',
                         product_data: {
-                        name: order_info.descriptor3,
+                        name: local_order.descriptor3,
                         images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                         description: '2020 Hoodie',
                         },
-                        unit_amount: order_info.price3,
+                        unit_amount: local_order.price3,
                     },
-                    quantity: order_info.quantity3,
+                    quantity: local_order.quantity3,
                     description: 'EMA Online Store',
                     },
                 ],
                 mode: 'payment',
-                metadata: {'order_id': order_info.order_id},
+                metadata: {'order_id': local_order.order_id},
                 success_url: `${YOUR_DOMAIN}/success.html`,
                 cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });
@@ -236,64 +238,64 @@ app.post('/create-session', async (req, res) => {
         case 4: 
         var session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
-            customer_email: order_info.order_email,
-            client_reference_id: order_info.order_id,
+            customer_email: local_order.order_email,
+            client_reference_id: local_order.order_id,
             line_items: [
                 {
                 price_data: {
                     currency: 'usd',
                     product_data: {
-                    name: order_info.descriptor1,
+                    name: local_order.descriptor1,
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2020 Hoodie',
                     },
-                    unit_amount: order_info.price1,
+                    unit_amount: local_order.price1,
                 },
-                quantity: order_info.quantity1,
+                quantity: local_order.quantity1,
                 description: 'EMA Online Store',
                 },
                 {
                 price_data: {
                     currency: 'usd',
                     product_data: {
-                    name: order_info.descriptor2,
+                    name: local_order.descriptor2,
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2020 Hoodie',
                     },
-                    unit_amount: order_info.price2,
+                    unit_amount: local_order.price2,
                 },
-                quantity: order_info.quantity2,
+                quantity: local_order.quantity2,
                 description: 'EMA Online Store',
                 },
                 {
                 price_data: {
                     currency: 'usd',
                     product_data: {
-                    name: order_info.descriptor3,
+                    name: local_order.descriptor3,
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2020 Hoodie',
                     },
-                    unit_amount: order_info.price3,
+                    unit_amount: local_order.price3,
                 },
-                quantity: order_info.quantity3,
+                quantity: local_order.quantity3,
                 description: 'EMA Online Store',
                 },
                 {
                 price_data: {
                     currency: 'usd',
                     product_data: {
-                    name: order_info.descriptor4,
+                    name: local_order.descriptor4,
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2020 Hoodie',
                     },
-                    unit_amount: order_info.price4,
+                    unit_amount: local_order.price4,
                 },
-                quantity: order_info.quantity4,
+                quantity: local_order.quantity4,
                 description: 'EMA Online Store',
                 },
             ],
             mode: 'payment',
-            metadata: {'order_id': order_info.order_id},
+            metadata: {'order_id': local_order.order_id},
             success_url: `${YOUR_DOMAIN}/success.html`,
             cancel_url: `${YOUR_DOMAIN}/cancel.html`,
         });
@@ -301,7 +303,7 @@ app.post('/create-session', async (req, res) => {
         res.json({ id: session.id });
             break;
         default:
-            console.log('Could not read order_info.order_size');
+            console.log('Could not read local_order.order_size');
             res.redirect('https://ema-store.herokuapp.com/cancel.html');
             break;
     }

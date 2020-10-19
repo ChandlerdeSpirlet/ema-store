@@ -16,22 +16,22 @@ nunjucks.configure('/', {noCache: true});
 
 const YOUR_DOMAIN = 'https://ema-store.herokuapp.com';
 global.order_info = {
-    order_name = '',
-    order_email = '',
-    order_size = 0,
-    order_id = 0,
-    quantity1 = 0,
-    price1 = 0,
-    descriptor1 = '',
-    quantity2 = 0,
-    price2 = 0,
-    descriptor2 = '',
-    quantity3 = 0,
-    price3 = 0,
-    descriptor3 = '',
-    quantity4 = 0,
-    price4 = 0,
-    descriptor4 = ''
+    order_name: '',
+    order_email: '',
+    order_size: 0,
+    order_id: '',
+    quantity1: 0,
+    price1: 0,
+    descriptor1: '',
+    quantity2: 0,
+    price2: 0,
+    descriptor2: '',
+    quantity3: 0,
+    price3: 0,
+    descriptor3: '',
+    quantity4: 0,
+    price4: 0,
+    descriptor4: ''
 };
 
 app.get('/', function(req, res){
@@ -98,6 +98,7 @@ app.post('/process_cart', function(req, res) {
         order_info.descriptor4 = String(item.size4) + ', ' + String(item.color4);
     }
     order_info.order_id = item.order_name.substring(0, 3) + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
+    console.log('order_size ' + order_info.order_size);
     res.redirect('/checkout.html');
 });
 
@@ -110,7 +111,7 @@ app.get('/checkout.html', function(req, res){
 app.post('/create-session', async (req, res) => {
     switch (order_info.order_size){
         case 1:
-            const session = await stripe.checkout.sessions.create({
+            var session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
                 customer_email: order_info.order_email,
                 client_reference_id: order_info.order_id,
@@ -130,7 +131,7 @@ app.post('/create-session', async (req, res) => {
                     },
                 ],
                 mode: 'payment',
-                metadata: {'order_id': order_id},
+                metadata: {'order_id': order_infoorder_id},
                 success_url: `${YOUR_DOMAIN}/success.html`,
                 cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });
@@ -138,7 +139,7 @@ app.post('/create-session', async (req, res) => {
             res.json({ id: session.id });
             break;
         case 2:
-            const session = await stripe.checkout.sessions.create({
+            var session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
                 customer_email: order_info.order_email,
                 client_reference_id: order_info.order_id,
@@ -171,7 +172,7 @@ app.post('/create-session', async (req, res) => {
                     },
                 ],
                 mode: 'payment',
-                metadata: {'order_id': order_id},
+                metadata: {'order_id': order_info.order_id},
                 success_url: `${YOUR_DOMAIN}/success.html`,
                 cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });
@@ -179,7 +180,7 @@ app.post('/create-session', async (req, res) => {
             res.json({ id: session.id });
             break;
         case 3:
-            const session = await stripe.checkout.sessions.create({
+            var session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
                 customer_email: order_info.order_email,
                 client_reference_id: order_info.order_id,
@@ -225,7 +226,7 @@ app.post('/create-session', async (req, res) => {
                     },
                 ],
                 mode: 'payment',
-                metadata: {'order_id': order_id},
+                metadata: {'order_id': order_info.order_id},
                 success_url: `${YOUR_DOMAIN}/success.html`,
                 cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });
@@ -233,7 +234,7 @@ app.post('/create-session', async (req, res) => {
             res.json({ id: session.id });
             break;
         case 4: 
-        const session = await stripe.checkout.sessions.create({
+        var session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             customer_email: order_info.order_email,
             client_reference_id: order_info.order_id,
@@ -307,3 +308,4 @@ app.post('/create-session', async (req, res) => {
 });
 
 app.listen(process.env.PORT, () => console.log('Running on port ' + process.env.PORT));
+//app.listen(666, () => console.log('Running on port ' + 666));

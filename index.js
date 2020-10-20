@@ -18,8 +18,8 @@ app.use(
             client: client
         }),
     secret: process.env.secret_key,
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: false
     })
 );
 
@@ -43,6 +43,7 @@ app.get('/', function(req, res){
     req.session.key = Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1;
     console.log('session key is ' + req.session.key);
     req.session.order_size = 0;
+    req.session.order_price = 0;
     res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
 })
 
@@ -67,15 +68,16 @@ app.post('/process_cart', function(req, res) {
     req.session.email_name = item.order_email;
     console.log('order size is ' + req.session.order_size);
     if (item.quantity1 != 0) {
-        //req.session.order_size = req.session.key["order_size"] + 1;
-        //console.log('order size is ' + req.session.key["order_size"]);
-        order_desc.push(item.quantity1);
-        order_desc.push(item.size1);
-        order_desc.push(item.color1);
+        req.session.order_size = req.session.order_size + 1;
+        console.log('order size is ' + req.session.order_size);
+        req.session.order_desc = [];
+        req.session.order_desc.push(item.quantity1);
+        req.session.order_desc.push(item.size1);
+        req.session.order_desc.push(item.color1);
         if ((item.size1 == 'Youth Small') || (item.size1 == 'Youth Medium') || (item.size1 == 'Youth Large')){
-            order_price = order_price + (4000 * item.quantity1); //Represents $40 * quantity
+            req.session.order_price = req.session.order_price + (4000 * item.quantity1); //Represents $40 * quantity
         } else {
-            order_price = order_price + (5500 * item.quantity1); //Represents $50 * quantity
+            req.session.order_price = req.session.order_price + (5500 * item.quantity1); //Represents $50 * quantity
         }
     }
     if (item.quantity2 != 0) {
@@ -84,7 +86,7 @@ app.post('/process_cart', function(req, res) {
         order_desc.push(item.size2);
         order_desc.push(item.color2);
         if ((item.size2 == 'Youth Small') || (item.size2 == 'Youth Medium') || (item.size2 == 'Youth Large')){
-            order_price = order_price + (4000 * item.quantity2);
+            req.session.order_price = req.session.order_price + (4000 * item.quantity2);
         } else {
             order_price = order_price + (5500 * item.quantity2);
         }
@@ -111,8 +113,8 @@ app.post('/process_cart', function(req, res) {
             order_price = order_price + (5500 * item.quantity4);
         }
     }
-    order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
-    switch (order_size){
+    req.session.order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
+    switch (req.session.order_size){
         case 1:
             //Build description of order 1x black order_size[2].replace("_" ," ")
             var item_description = String(order_desc[0]) + ' x ' + String(order_desc[1]).replace("_" ," ") + ' ' + order_desc[2];
@@ -130,10 +132,7 @@ app.post('/process_cart', function(req, res) {
             var item_description = 'Could not get order quantity and description.';
             break;
     }
-    var temp = String(order_price);
-    const final = '$' + temp.substring(0, temp.length - 2) + '.' + temp.substring(temp.length - 2, temp.length);
-    order_desc = item_description;
-    temp_price = final;
+    req.session.order_desc = item_description;
     res.redirect('/checkout.html');
 });
 
@@ -144,16 +143,13 @@ app.get('/checkout.html', function(req, res){
 });
 
 app.post('/create-session', async (req, res) => {
-    var local_price = order_price;
-    var local_desc = String(order_desc);
+    var local_price = req.session.order_price;
+    var local_desc = String(req.session.order_desc);
     console.log('local_price is ' + local_price);
-    delete global[order_size];
-    delete global[order_price];
-    delete global[order_desc];
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
-        client_reference_id: order_id,
-        customer_email: email_name,
+        client_reference_id: req.session.order_id,
+        customer_email: req.session.email_name,
         line_items: [
             {
             price_data: {

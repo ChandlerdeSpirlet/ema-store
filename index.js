@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const session = require('express-session');
+var client = redis.createClient();
 var RedisStore = require('connect-redis')(session);
 const app = express();
 app.use(express.static('.'));
@@ -13,7 +14,7 @@ app.use(exp_val());
 app.use(
     session({
         store: new RedisStore({ 
-            client: process.env.REDIS_URL
+            client: client
         }),
     secret: process.env.secret_key,
     resave: true,

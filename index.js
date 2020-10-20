@@ -57,6 +57,7 @@ app.post('/process_cart', function(req, res) {
         color4: req.sanitize('color4'),
         size4: req.sanitize('size4')
     }
+    console.log('session ket after redirect ' + req.session.key);
     req.session.email_name = item.order_email;
     console.log('order size is ' + req.session.order_size);
     if (item.quantity1 != 0) {

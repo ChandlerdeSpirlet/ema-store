@@ -128,7 +128,8 @@ app.post('/process_cart', function(req, res) {
     */
     //req.session.order_desc = item_description;
     console.log('req.session: ' + '\n' + json.stringify(req.session));
-    res.redirect('/checkut.html');
+    
+    res.redirect('https://ema-store.herokuapp.com/checkut.html');
 });
 
 app.get('/checkout.html', function(req, res){

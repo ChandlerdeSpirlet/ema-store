@@ -10,7 +10,7 @@ var client = redis.createClient(process.env.REDIS_URL);
 var RedisStore = require('connect-redis')(session);
 const app = express();
 app.use(express.static('.'));
-app.set('view', __dirname + '/');
+app.set('views', __dirname + '/');
 app.use(exp_val());
 
 app.use(
@@ -126,7 +126,6 @@ app.post('/process_cart', function(req, res) {
 
 app.get('/checkout.html', function(req, res){
     res.render('checkout.html', {
-        
     })
 });
 

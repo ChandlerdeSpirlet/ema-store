@@ -9,7 +9,7 @@ var redis = require('redis');
 var client = redis.createClient(process.env.REDIS_URL);
 var RedisStore = require('connect-redis')(session);
 const app = express();
-app.use(express.static('.'));
+app.use(express.static(__dirname + '.'));
 app.use(exp_val());
 
 app.use(
@@ -98,7 +98,7 @@ app.post('/process_cart', function(req, res) {
             req.session.p4 = 5500;
         }
     }
-    req.session.order_id = item.order_name.substring(0, 3).toLowerCase() + req.session.key;
+    req.session.order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
     /*
     switch (req.session.order_size){
         case 1:
@@ -120,7 +120,7 @@ app.post('/process_cart', function(req, res) {
     }
     */
     //req.session.order_desc = item_description;
-    res.render('/checkout.html', {});
+    res.render('checkout.html', {});
 });
 
 app.get('/checkout.html', function(req, res){

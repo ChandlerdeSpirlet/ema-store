@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const app = express();
+let redisClient = redis.createClient();
 var connect = require('connect'),
     RedisStore = require('connect-redis')(connect),
     redis = require('heroku-redis-client');

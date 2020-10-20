@@ -4,10 +4,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
+const session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 const app = express();
 app.use(express.static('.'));
 app.use(exp_val());
 
+app.use(
+    session({
+        store: new RedisStore({ 
+            url: process.env.REDIS_URL
+        }),
+    secret: process.env.secret_key,
+    resave: true,
+    saveUninitialized: true
+    })
+);
 
 app.use(bodyParser());
 app.use(bodyParser.json());

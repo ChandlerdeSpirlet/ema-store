@@ -10,6 +10,15 @@ app.use(express.static('.'));
 app.use(exp_val());
 var Redis = require('ioredis');
 var redis = new Redis(process.env.REDIS_URL);
+var session = require('express-session');
+var redisStore = require('connect-redis')(session);
+app.use(session({
+    secret: 'ssshhhhh',
+    // create new redis store.
+    store: new redisStore(process.env.REDIS_URL),
+    saveUninitialized: false,
+    resave: false
+}));
 app.use(bodyParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,18 +27,21 @@ app.engine('html', nunjucks.render);
 nunjucks.configure('/', {noCache: true});
 
 const YOUR_DOMAIN = 'https://ema-store.herokuapp.com';
-global.order_size = 0;
-global.order_desc = [];
-global.order_price = 0;
-global.order_id = '';
-global.temp_price = '';
-global.email_name = '';
+//global.order_size = 0;
+//global.order_desc = [];
+//global.order_price = 0;
+//global.order_id = '';
+//global.temp_price = '';
+//global.email_name = '';
 
 client.on('connect', function() {
     console.log('connected');
 });
 
 app.get('/', function(req, res){
+    req.session.key = Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1;
+    console.log('session key is ' + req.session.key);
+    req.session.order_size = 0;
     res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
 })
 
@@ -50,9 +62,11 @@ app.post('/process_cart', function(req, res) {
         color4: req.sanitize('color4'),
         size4: req.sanitize('size4')
     }
-    email_name = item.order_email;
+    //email_name = item.order_email;
+    req.session.email_name = item.order_email;
     if (item.quantity1 != 0) {
-        order_size++;
+        req.session.order_size = req.session.key["order_size"] + 1;
+        console.log('order size is ' + req.session.key["order_size"]);
         order_desc.push(item.quantity1);
         order_desc.push(item.size1);
         order_desc.push(item.color1);

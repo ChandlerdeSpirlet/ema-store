@@ -6,6 +6,7 @@ const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const session = require('express-session');
 var redis = require('redis');
+const { json } = require('body-parser');
 var client = redis.createClient(process.env.REDIS_URL);
 var RedisStore = require('connect-redis')(session);
 const app = express();
@@ -126,7 +127,7 @@ app.post('/process_cart', function(req, res) {
     }
     */
     //req.session.order_desc = item_description;
-    console.log('req.session: ' + '\n' + req.session);
+    console.log('req.session: ' + '\n' + json.stringify(req.session));
     res.redirect('/checkut.html');
 });
 

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const session = require('express-session');
+var redis = require('redis');
 var client = redis.createClient();
 var RedisStore = require('connect-redis')(session);
 const app = express();

@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const app = express();
+var connect = require('connect'),
+    RedisStore = require('connect-redis')(connect),
+    redis = require('heroku-redis-client');
 app.use(express.static('.'));
 app.use(exp_val());
 
@@ -15,6 +18,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
 nunjucks.configure('/', {noCache: true});
+
+connect.createServer(
+    connect.cookieParser(),
+    connect.session({ store: new RedisStore({ client: redis.createClient() }), secret: process.env.secret_key })
+);
 
 const YOUR_DOMAIN = 'https://ema-store.herokuapp.com';
 //global.order_size = 0;

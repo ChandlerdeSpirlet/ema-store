@@ -6,7 +6,7 @@ const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const session = require('express-session');
 var redis = require('redis');
-var client = redis.createClient();
+var client = redis.createClient(process.env.REDIS_URL);
 var RedisStore = require('connect-redis')(session);
 const app = express();
 app.use(express.static('.'));

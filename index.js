@@ -9,9 +9,10 @@ var redis = require('redis');
 var client = redis.createClient(process.env.REDIS_URL);
 var RedisStore = require('connect-redis')(session);
 const app = express();
-app.use(express.static(__dirname + '.'));
+app.use(express.static('.'));
+app.set('view', __dirname + '/');
 app.use(exp_val());
-console.log('__dirname is ' + __dirname);
+
 app.use(
     session({
         store: new RedisStore({ 
@@ -120,7 +121,7 @@ app.post('/process_cart', function(req, res) {
     }
     */
     //req.session.order_desc = item_description;
-    res.render('/checkout.html', {});
+    res.render('checkout.html', {});
 });
 
 app.get('/checkout.html', function(req, res){

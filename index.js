@@ -120,7 +120,7 @@ app.post('/process_cart', function(req, res) {
     }
     */
     //req.session.order_desc = item_description;
-    res.redirect('/checkout.html');
+    res.render('/checkout.html', {});
 });
 
 app.get('/checkout.html', function(req, res){

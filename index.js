@@ -46,14 +46,11 @@ const YOUR_DOMAIN = 'https://ema-store.herokuapp.com';
 //global.temp_price = '';
 //global.email_name = '';
 
-client.on('connect', function() {
-    console.log('connected');
-});
 
 app.get('/', function(req, res){
-    req.session.key = Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1;
+    //req.session.key = Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1;
     console.log('session key is ' + req.session.key);
-    req.session.order_size = 0;
+    //req.session.order_size = 0;
     res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
 })
 
@@ -75,10 +72,10 @@ app.post('/process_cart', function(req, res) {
         size4: req.sanitize('size4')
     }
     //email_name = item.order_email;
-    req.session.email_name = item.order_email;
+    //req.session.email_name = item.order_email;
     if (item.quantity1 != 0) {
-        req.session.order_size = req.session.key["order_size"] + 1;
-        console.log('order size is ' + req.session.key["order_size"]);
+        //req.session.order_size = req.session.key["order_size"] + 1;
+        //console.log('order size is ' + req.session.key["order_size"]);
         order_desc.push(item.quantity1);
         order_desc.push(item.size1);
         order_desc.push(item.color1);

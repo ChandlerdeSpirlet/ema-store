@@ -25,9 +25,8 @@
     "express-flash": "0.0.2",
     "express-session": "^1.17.1",
     "express-validator": "^5.3.1",
-    "ioredis": "^4.17.3",
     "nunjucks": "^3.2.2",
-    "redis": "^3.0.2",
-    "stripe": "^8.113.0"
+    "stripe": "^8.113.0",
+    "url": "^0.11.0"
   }
 }

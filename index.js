@@ -171,6 +171,7 @@ app.post('/create-session', async (req, res) => {
         });
     
     res.json({ id: session.id });
+    req.session.destroy();
 });
 
 app.listen(process.env.PORT, () => console.log('Running on port ' + process.env.PORT));

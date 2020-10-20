@@ -13,7 +13,7 @@ app.use(exp_val());
 app.use(
     session({
         store: new RedisStore({ 
-            url: process.env.REDIS_URL
+            client: process.env.REDIS_URL
         }),
     secret: process.env.secret_key,
     resave: true,

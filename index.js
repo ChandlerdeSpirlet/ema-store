@@ -11,7 +11,7 @@ var RedisStore = require('connect-redis')(session);
 const app = express();
 app.use(express.static(__dirname + '.'));
 app.use(exp_val());
-
+console.log('__dirname is ' + __dirname);
 app.use(
     session({
         store: new RedisStore({ 

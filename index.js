@@ -65,7 +65,7 @@ app.post('/process_cart', function(req, res) {
     }
     //email_name = item.order_email;
     req.session.email_name = item.order_email;
-    console.log('order size is ' + req.session.key["order_size"]);
+    console.log('order size is ' + req.session.order_size);
     if (item.quantity1 != 0) {
         //req.session.order_size = req.session.key["order_size"] + 1;
         //console.log('order size is ' + req.session.key["order_size"]);

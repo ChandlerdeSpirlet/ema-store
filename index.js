@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const app = express();
-let redisClient = redis.createClient();
+let redisClient = redis.createClient(redis.createClient(process.env.REDIS_URL));
 var connect = require('connect'),
     RedisStore = require('connect-redis')(connect),
     redis = require('heroku-redis-client');
@@ -22,7 +22,7 @@ nunjucks.configure('/', {noCache: true});
 
 connect.createServer(
     connect.cookieParser(),
-    connect.session({ store: new RedisStore({ client: redis.createClient() }), secret: process.env.secret_key })
+    connect.session({ store: new RedisStore({ client: redis.createClient(process.env.REDIS_URL) }), secret: process.env.secret_key })
 );
 
 const YOUR_DOMAIN = 'https://ema-store.herokuapp.com';

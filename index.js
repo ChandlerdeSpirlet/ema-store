@@ -11,11 +11,12 @@ app.use(exp_val());
 var Redis = require('ioredis');
 var redis = new Redis(process.env.REDIS_URL);
 var session = require('express-session');
-var redisStore = require('connect-redis')(session);
+var redisStore = require('connect-redis')(express);
+
 app.use(session({
     secret: 'ssshhhhh',
     // create new redis store.
-    store: new redisStore(process.env.REDIS_URL),
+    store: new redisStore({client: redis}),
     saveUninitialized: false,
     resave: false
 }));

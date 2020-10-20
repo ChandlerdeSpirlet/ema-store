@@ -1,8 +1,4 @@
 const stripe = require('stripe')('sk_test_51H75ScKv0edLDEqJEL6q5HTs0dJN28eeyehpgMBEdEc4BT26iod0kUZpE3zcL0QrwZtwV7kCFTbS7bfb8Ehs6lys00Ut3Az4SN');
-const express = require('express'),
-    url = require('url'),
-    RedisStore = require('connect-redis')(express);
-var redis = require("redis").createClient();
 const exp_val = require('express-validator');
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
@@ -11,23 +7,6 @@ const app = express();
 app.use(express.static('.'));
 app.use(exp_val());
 
-if (process.env.REDISTOGO_URL) {
-    var rtg   = require("url").parse(process.env.REDISTOGO_URL);
-    var redis = require("redis").createClient(rtg.port, rtg.hostname);
-
-    redis.auth(rtg.auth.split(":")[1]);
-    app.use(express.session({
-        secret: 'ema-store secret KeY',
-        store: new RedisStore({
-            host: url.parse(process.env.REDISTOGO_URL).hostname,
-            port: url.parse(process.env.REDISTOGO_URL).port,
-            db: url.parse(process.env.REDISTOGO_URL).auth.split(':')[0],
-            pass: url.parse(process.env.REDISTOGO_URL).auth.split(':')[1]
-        })
-    }))
-} else {
-    var redis = require("redis").createClient();
-}
 
 app.use(bodyParser());
 app.use(bodyParser.json());
@@ -47,7 +26,7 @@ const YOUR_DOMAIN = 'https://ema-store.herokuapp.com';
 
 app.get('/', function(req, res){
     //req.session.key = Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1;
-    console.log('session key is ' + req.session.key);
+    //console.log('session key is ' + req.session.key);
     //req.session.order_size = 0;
     res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
 })

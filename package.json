@@ -23,7 +23,9 @@
     "express": "^4.17.1",
     "express-flash": "0.0.2",
     "express-validator": "^5.3.1",
+    "ioredis": "^4.17.3",
     "nunjucks": "^3.2.2",
+    "redis": "^3.0.2",
     "stripe": "^8.113.0"
   }
 }

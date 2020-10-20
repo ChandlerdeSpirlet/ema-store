@@ -3,10 +3,13 @@ const express = require('express');
 const exp_val = require('express-validator');
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
+var client = require('redis').createClient(process.env.REDIS_URL);
 const app = express();
 app.use(express.static('.'));
 app.use(exp_val());
+var Redis = require('ioredis');
+var redis = new Redis(process.env.REDIS_URL);
 app.use(bodyParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,6 +24,10 @@ global.order_price = 0;
 global.order_id = '';
 global.temp_price = '';
 global.email_name = '';
+
+client.on('connect', function() {
+    console.log('connected');
+});
 
 app.get('/', function(req, res){
     res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');

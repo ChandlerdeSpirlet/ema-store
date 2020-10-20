@@ -63,11 +63,14 @@ app.post('/process_cart', function(req, res) {
         req.session.order_size = req.session.order_size + 1;
         req.session.q1 = item.quantity1;
         req.session.d1 = item.color1 + ' ' + item.size1;
+        let sess = req.session;
+        console.log('order 1 data: ' + sess.q1 + '/' + sess.d1 + '/' + sess.order_size);
         if ((item.size1 == 'Youth Small') || (item.size1 == 'Youth Medium') || (item.size1 == 'Youth Large')){
             req.session.p1 = 4000;
         } else {
             req.ression.p1 = 5500;
         }
+        console.log('price is ' + sess.p1);
     }
     if (item.quantity2 != 0) {
         req.session.order_size = req.session.order_size + 1;
@@ -100,6 +103,7 @@ app.post('/process_cart', function(req, res) {
         }
     }
     req.session.order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
+    console.log('order_id is ' + req.session.order_id);
     /*
     switch (req.session.order_size){
         case 1:
@@ -121,6 +125,7 @@ app.post('/process_cart', function(req, res) {
     }
     */
     //req.session.order_desc = item_description;
+    console.log('req.session: ' + '\n' + req.session);
     res.render('checkout.html', {});
 });
 

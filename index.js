@@ -127,7 +127,7 @@ app.post('/process_cart', function(req, res) {
     */
     //req.session.order_desc = item_description;
     console.log('req.session: ' + '\n' + req.session);
-    res.render('checkout.html', {});
+    res.redirect('/checkut.html');
 });
 
 app.get('/checkout.html', function(req, res){

@@ -1,25 +1,36 @@
 const stripe = require('stripe')('sk_test_51H75ScKv0edLDEqJEL6q5HTs0dJN28eeyehpgMBEdEc4BT26iod0kUZpE3zcL0QrwZtwV7kCFTbS7bfb8Ehs6lys00Ut3Az4SN');
-const express = require('express');
+const express = require('express'),
+    url = require('url'),
+    RedisStore = require('connect-redis')(express);
 const exp_val = require('express-validator');
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
-var client = require('redis').createClient(process.env.REDIS_URL);
 const app = express();
 app.use(express.static('.'));
 app.use(exp_val());
-var Redis = require('ioredis');
-var redis = new Redis(process.env.REDIS_URL);
-var session = require('express-session');
-var redisStore = require('connect-redis')(express);
 
-app.use(session({
-    secret: 'ssshhhhh',
-    // create new redis store.
-    store: new redisStore({client: redis}),
-    saveUninitialized: false,
-    resave: false
-}));
+
+app.configure('production', function () {
+    var redisUrl = url.parse(process.env.REDISTOGO_URL),
+        redisAuth = redisUrl.auth.split(':');  
+    app.set('redisHost', redisUrl.hostname);
+    app.set('redisPort', redisUrl.port);
+    app.set('redisDb', redisAuth[0]);
+    app.set('redisPass', redisAuth[1]);
+});  
+app.configure(function () {
+    app.use(express.session({
+        secret: 'ema-store Secret Key',
+        store: new RedisStore({
+            host: app.set('redisHost'),
+            port: app.set('redisPort'),
+            db: app.set('redisDb'),
+            pass: app.set('redisPass')
+        })
+    }));
+});
+
 app.use(bodyParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

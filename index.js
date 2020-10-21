@@ -103,8 +103,8 @@ app.post('/process_cart', function(req, res) {
     if (item.quantity4 != 0) {
         req.session.order_size = req.session.order_size + 1;
         var temp_q4 = item.quantity4;
-        req.session.q4 = Number(temp_q34;
-        var temp_d4= item.color3 + ' ' + item.size4;
+        req.session.q4 = Number(temp_q4);
+        var temp_d4= item.color4 + ' ' + item.size4;
         req.session.d4 = String(temp_d4);
         if ((item.size4 == 'Youth Small') || (item.size4 == 'Youth Medium') || (item.size4 == 'Youth Large')){
             sess.p4 = 4000;
@@ -149,10 +149,10 @@ app.post('/process_cart', function(req, res) {
         );
         cache = null;
         return retVal;
-      };
-      
+    };
+    
       // Example:
-      console.log('req.session', JSON.safeStringify(req.session))
+    console.log('req.session', JSON.safeStringify(req.session))
     
     res.redirect('https://ema-store.herokuapp.com/checkout.html');
 });

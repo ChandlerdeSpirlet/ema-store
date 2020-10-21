@@ -127,7 +127,24 @@ app.post('/process_cart', function(req, res) {
     }
     */
     //req.session.order_desc = item_description;
-    console.log('req.session: ' + '\n' + json.stringify(req.session));
+    JSON.safeStringify = (obj, indent = 2) => {
+        let cache = [];
+        const retVal = JSON.stringify(
+            obj,
+            (key, value) =>
+                typeof value === "object" && value !== null
+                ? cache.includes(value)
+                    ? undefined // Duplicate reference found, discard key
+                    : cache.push(value) && value // Store value in our collection
+                : value,
+            indent
+        );
+        cache = null;
+        return retVal;
+      };
+      
+      // Example:
+      console.log('req.session', JSON.safeStringify(req.session))
     
     res.redirect('https://ema-store.herokuapp.com/checkut.html');
 });

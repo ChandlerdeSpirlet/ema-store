@@ -148,7 +148,7 @@ app.post('/process_cart', function(req, res) {
       // Example:
       console.log('req.session', JSON.safeStringify(req.session))
     
-    res.redirect('https://ema-store.herokuapp.com/checkut.html');
+    res.redirect('https://ema-store.herokuapp.com/checkout.html');
 });
 
 app.get('/checkout.html', function(req, res){

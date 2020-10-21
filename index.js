@@ -360,10 +360,10 @@ app.post('/create-session', async (req, res) => {
         req.session.destroy();
         res.redirect('https://ema-store.herokuapp.com/cancel.html');
     }
-    req.session.destroy();
+    //req.session.destroy();
 });
 app.get('/success.html', function(req, res){
-    req.session.destroy();
+    //req.session.destroy();
     res.render('success.html', {
     })
 });

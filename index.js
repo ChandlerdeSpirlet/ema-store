@@ -61,13 +61,13 @@ app.post('/process_cart', function(req, res) {
     console.log('session ket after redirect ' + req.session.key);
     req.session.email_name = item.order_email;
     console.log('order size is ' + req.session.order_size);
+    let sess = req.session;
     if (item.quantity1 != 0) {
         req.session.order_size = req.session.order_size + 1;
         var temp_q1  = item.quantity1;
         req.session.q1 = Number(temp_q1);
         var temp_d1 = item.color1 + ' ' + item.size1;
         req.session.d1 = String(temp_d1);
-        let sess = req.session;
         console.log('order 1 data: ' + sess.q1 + '/' + sess.d1 + '/' + sess.order_size);
         if ((item.size1 == 'Youth Small') || (item.size1 == 'Youth Medium') || (item.size1 == 'Youth Large')){
             sess.p1 = 4000;
@@ -78,32 +78,38 @@ app.post('/process_cart', function(req, res) {
     }
     if (item.quantity2 != 0) {
         req.session.order_size = req.session.order_size + 1;
-        req.session.q2 = item.quantity2;
-        req.session.d2 = item.color2 + ' ' + item.size2;
+        var temp_q2 = item.quantity2;
+        req.session.q2 = Number(temp_q2);
+        var temp_d2 = item.color2 + ' ' + item.size2;
+        req.session.d2 = String(temp_d2);
         if ((item.size2 == 'Youth Small') || (item.size2 == 'Youth Medium') || (item.size2 == 'Youth Large')){
-            req.session.p2 = 4000;
+            sess.p2 = 4000;
         } else {
-            req.session.p2 = 5500;
+            sess.p2 = 5500;
         }
     }
     if (item.quantity3 != 0) {
         req.session.order_size = req.session.order_size + 1;
-        req.session.q3 = item.quantity3;
-        req.session.d3 = item.color3 + ' ' + item.size3;
+        var temp_q3 = item.quantity3;
+        req.session.q3 = Number(temp_q3);
+        var temp_d3 = item.color3 + ' ' + item.size3;
+        req.session.d3 = String(temp_d3);
         if ((item.size3 == 'Youth Small') || (item.size3 == 'Youth Medium') || (item.size3 == 'Youth Large')){
-            req.session.p3 = 4000;
+            sess.p3 = 4000;
         } else {
-            req.session.p3 = 5500;
+            sess.p3 = 5500;
         }
     }
     if (item.quantity4 != 0) {
         req.session.order_size = req.session.order_size + 1;
-        req.session.q4 = item.quantity4;
-        req.session.d4 = item.color4 + ' ' +  item.size4;
+        var temp_q4 = item.quantity4;
+        req.session.q4 = Number(temp_q34;
+        var temp_d4= item.color3 + ' ' + item.size4;
+        req.session.d4 = String(temp_d4);
         if ((item.size4 == 'Youth Small') || (item.size4 == 'Youth Medium') || (item.size4 == 'Youth Large')){
-            req.session.p4 = 4000;
+            sess.p4 = 4000;
         } else {
-            req.session.p4 = 5500;
+            sess.p4 = 5500;
         }
     }
     req.session.order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);

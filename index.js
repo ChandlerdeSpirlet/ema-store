@@ -158,7 +158,11 @@ app.post('/process_cart', function(req, res) {
 });
 
 app.get('/checkout.html', function(req, res){
+    let sess = req.session;
+    let amount = ((sess.q1 * sess.p1) + (sess.q2 * sess.p2) + (sess.q3 * sess.p3) + (sess.q4 * sess.p4));
+    var final = '$' + amount.substring(0, amount.length - 2) + '.' + amount.substring(amount.length - 2, amount.length);
     res.render('checkout.html', {
+        price: final
     })
 });
 
@@ -356,6 +360,11 @@ app.post('/create-session', async (req, res) => {
         req.session.destroy();
         res.redirect('https://ema-store.herokuapp.com/cancel.html');
     }
+    req.session.destroy();
 });
-
+app.get('/success.html', function(req, res){
+    req.session.destroy();
+    res.render('success.html', {
+    })
+});
 app.listen(process.env.PORT, () => console.log('Running on port ' + process.env.PORT));

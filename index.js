@@ -63,14 +63,16 @@ app.post('/process_cart', function(req, res) {
     console.log('order size is ' + req.session.order_size);
     if (item.quantity1 != 0) {
         req.session.order_size = req.session.order_size + 1;
-        req.session.q1 = item.quantity1;
-        req.session.d1 = item.color1 + ' ' + item.size1;
+        var temp_q1  = item.quantity1;
+        req.session.q1 = Number(temp_q1);
+        var temp_d1 = item.color1 + ' ' + item.size1;
+        req.session.d1 = String(temp_d1);
         let sess = req.session;
         console.log('order 1 data: ' + sess.q1 + '/' + sess.d1 + '/' + sess.order_size);
         if ((item.size1 == 'Youth Small') || (item.size1 == 'Youth Medium') || (item.size1 == 'Youth Large')){
-            req.session.p1 = 4000;
+            sess.p1 = 4000;
         } else {
-            req.ression.p1 = 5500;
+            sess.p1 = 5500;
         }
         console.log('price is ' + sess.p1);
     }

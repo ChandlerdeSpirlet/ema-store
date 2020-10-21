@@ -17,7 +17,8 @@ app.use(exp_val());
 app.use(
     session({
         store: new RedisStore({ 
-            client: client
+            client: client,
+            ttl: 5 * 60
         }),
     secret: process.env.secret_key,
     resave: false,

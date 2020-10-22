@@ -178,7 +178,7 @@ app.post('/process_cart', function(req, res) {
     var final = '$' + String(amount).substring(0, amount.length - 2) + '.' + String(amount).substring(amount.length - 2, amount.length);
     var allowed = false;
     const query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
-    db.query(query, [sess.order_id, sess.order_name, sess.order_email, 'UNPAID', 0, order_contents])
+    db.query(query, [sess.order_id, sess.order_name, sess.email_name, 'UNPAID', 0, order_contents])
         .then(function(rows){
             allowed = true;
         })

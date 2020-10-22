@@ -8,6 +8,7 @@ const db =  require('./database');
 const session = require('express-session');
 var redis = require('redis');
 const { json } = require('body-parser');
+const { proc } = require('./database');
 var client = redis.createClient(process.env.REDIS_URL);
 var RedisStore = require('connect-redis')(session);
 const app = express();
@@ -178,7 +179,7 @@ app.post('/process_cart', function(req, res) {
     var final = '$' + amount.substring(0, amount.length - 2) + '.' + amount.substring(amount.length - 2, amount.length);
     var allowed = false;
     const query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
-    db.query(query, [sess.order_id, sess.order_name, sess.order_email, 'UNPAID', amount / 100, order_contents])
+    db.query(query, [sess.order_id, sess.order_name, sess.order_email, 'UNPAID', 0, order_contents])
         .then(function(rows){
             allowed = true;
         })
@@ -399,4 +400,23 @@ app.get('/success.html', function(req, res){
     res.render('success.html', {
     })
 });
+
+app.post('/webhook', bodyParser.raw({type: 'application/json'}), (request, response) => {
+    const payload = request.body;
+    console.log("Got payload: " + payload);
+    const sig = request.headers['stripe-signature'];
+
+    let event;
+
+    try {
+        event = stripe.webhooks.constructEvent(payload, sig, process.env.webhook_secret);
+    } catch (err) {
+        return response.status(400).send(`Webhook Error: ${err.message}`);
+    }
+    if (event.type === 'checkout.session.completed'){
+        console.log('payload' + '\n' + payload);
+    }
+    response.status(200);
+});
+
 app.listen(process.env.PORT, () => console.log('Running on port ' + process.env.PORT));

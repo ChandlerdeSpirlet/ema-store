@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
+const db =  require('./database');
 const session = require('express-session');
 var redis = require('redis');
 const { json } = require('body-parser');
@@ -61,6 +62,7 @@ app.post('/process_cart', function(req, res) {
     }
     console.log('session ket after redirect ' + req.session.key);
     req.session.email_name = item.order_email;
+    req.session.order_name = item.order_name;
     console.log('order size is ' + req.session.order_size);
     let sess = req.session;
     if (item.quantity1 != 0) {
@@ -153,17 +155,46 @@ app.post('/process_cart', function(req, res) {
     };
     
       // Example:
-    console.log('req.session', JSON.safeStringify(req.session))
-    
-    res.redirect('https://ema-store.herokuapp.com/checkout.html');
-});
-
-app.get('/checkout.html', function(req, res){
     let sess = req.session;
+    console.log('req.session', JSON.safeStringify(req.session));
+    switch (sess.order_size){
+        case 1:
+            var order_contents = String(sess.q1 + ' ' + sess.d1);
+            break;
+        case 2:
+            var order_contents = String(sess.q1 + ' ' +  sess.d1 + ' / ' + sess.q2 + ' ' +  sess.d2);
+            break;
+        case 3: 
+            var order_contents = String(sess.q1 + ' ' +  sess.d1 + ' / ' + sess.q2 + ' ' +  sess.d2 + ' / ' + sess.q3 + ' ' +  sess.d3);
+            break;
+        case 4: 
+            var order_contents = String(sess.q1 + ' ' +  sess.d1 + ' / ' + sess.q2 + ' ' +  sess.d2 + ' / ' + sess.q3 + ' ' +  sess.d3 + ' / ' + sess.q4 + ' ' +  sess.d4);
+            break;
+        default:
+            var order_contents = 'Unable to gather order information';
+            break;
+    }
     let amount = ((sess.q1 * sess.p1) + (sess.q2 * sess.p2) + (sess.q3 * sess.p3) + (sess.q4 * sess.p4));
     var final = '$' + amount.substring(0, amount.length - 2) + '.' + amount.substring(amount.length - 2, amount.length);
+    var allowed = false;
+    const query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
+    db.query(query, [sess.order_id, sess.order_name, sess.order_email, 'UNPAID', amount / 100, order_contents])
+        .then(function(rows){
+            allowed = true;
+        })
+        .catch(function(err){
+            console.log("Err in adding to db: " + err);
+        })
+    if (allowed){
+        res.redirect('https://ema-store.herokuapp.com/checkout.html/' + final);
+    } else {
+        res.redirect('https://ema-store.herokuapp.com/');
+    }
+});
+
+app.get('/checkout.html/(:final)', function(req, res){
     res.render('checkout.html', {
-        price: final
+        price: req.params.final
     })
 });
 

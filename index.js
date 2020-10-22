@@ -156,7 +156,6 @@ app.post('/process_cart', function(req, res) {
     };
     
       // Example:
-    let sess = req.session;
     console.log('req.session', JSON.safeStringify(req.session));
     switch (sess.order_size){
         case 1:

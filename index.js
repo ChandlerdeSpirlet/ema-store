@@ -175,7 +175,7 @@ app.post('/process_cart', function(req, res) {
             break;
     }
     let amount = ((sess.q1 * sess.p1) + (sess.q2 * sess.p2) + (sess.q3 * sess.p3) + (sess.q4 * sess.p4));
-    var final = '$' + amount.substring(0, amount.length - 2) + '.' + amount.substring(amount.length - 2, amount.length);
+    var final = '$' + String(amount).substring(0, amount.length - 2) + '.' + String(amount).substring(amount.length - 2, amount.length);
     var allowed = false;
     const query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
     db.query(query, [sess.order_id, sess.order_name, sess.order_email, 'UNPAID', 0, order_contents])

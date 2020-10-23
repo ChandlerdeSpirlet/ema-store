@@ -20,7 +20,7 @@ app.use(
     session({
         store: new RedisStore({ 
             client: client,
-            ttl: 5 * 60
+            ttl: 5 * 60 * 1000
         }),
     secret: process.env.secret_key,
     resave: false,
@@ -65,20 +65,19 @@ app.post('/process_cart', function(req, res) {
     req.session.email_name = item.order_email;
     req.session.order_name = item.order_name;
     console.log('order size is ' + req.session.order_size);
-    let sess = req.session;
     if (item.quantity1 != 0) {
         req.session.order_size = req.session.order_size + 1;
         var temp_q1  = item.quantity1;
         req.session.q1 = Number(temp_q1);
         var temp_d1 = item.color1 + ' ' + item.size1;
         req.session.d1 = String(temp_d1);
-        console.log('order 1 data: ' + sess.q1 + '/' + sess.d1 + '/' + sess.order_size);
+        console.log('order 1 data: ' + req.session.q1 + '/' + req.session.d1 + '/' + req.session.order_size);
         if ((item.size1 == 'Youth Small') || (item.size1 == 'Youth Medium') || (item.size1 == 'Youth Large')){
-            sess.p1 = 4000;
+            req.session.p1 = 4000;
         } else {
-            sess.p1 = 5500;
+            req.session.p1 = 5500;
         }
-        console.log('price is ' + sess.p1);
+        console.log('price is ' + req.session.p1);
     }
     if (item.quantity2 != 0) {
         req.session.order_size = req.session.order_size + 1;
@@ -87,9 +86,9 @@ app.post('/process_cart', function(req, res) {
         var temp_d2 = item.color2 + ' ' + item.size2;
         req.session.d2 = String(temp_d2);
         if ((item.size2 == 'Youth Small') || (item.size2 == 'Youth Medium') || (item.size2 == 'Youth Large')){
-            sess.p2 = 4000;
+            req.session.p2 = 4000;
         } else {
-            sess.p2 = 5500;
+            req.session.p2 = 5500;
         }
     }
     if (item.quantity3 != 0) {
@@ -99,9 +98,9 @@ app.post('/process_cart', function(req, res) {
         var temp_d3 = item.color3 + ' ' + item.size3;
         req.session.d3 = String(temp_d3);
         if ((item.size3 == 'Youth Small') || (item.size3 == 'Youth Medium') || (item.size3 == 'Youth Large')){
-            sess.p3 = 4000;
+            req.session.p3 = 4000;
         } else {
-            sess.p3 = 5500;
+            req.session.p3 = 5500;
         }
     }
     if (item.quantity4 != 0) {
@@ -111,9 +110,9 @@ app.post('/process_cart', function(req, res) {
         var temp_d4= item.color4 + ' ' + item.size4;
         req.session.d4 = String(temp_d4);
         if ((item.size4 == 'Youth Small') || (item.size4 == 'Youth Medium') || (item.size4 == 'Youth Large')){
-            sess.p4 = 4000;
+            req.session.p4 = 4000;
         } else {
-            sess.p4 = 5500;
+            req.session.p4 = 5500;
         }
     }
     req.session.order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
@@ -157,28 +156,28 @@ app.post('/process_cart', function(req, res) {
     
       // Example:
     console.log('req.session', JSON.safeStringify(req.session));
-    switch (sess.order_size){
+    switch (req.session.order_size){
         case 1:
-            var order_contents = String(sess.q1 + ' ' + sess.d1);
+            var order_contents = String(req.session.q1 + ' ' + req.session.d1);
             break;
         case 2:
-            var order_contents = String(sess.q1 + ' ' +  sess.d1 + ' / ' + sess.q2 + ' ' +  sess.d2);
+            var order_contents = String(req.session.q1 + ' ' +  req.session.d1 + ' / ' + req.session.q2 + ' ' +  req.session.d2);
             break;
         case 3: 
-            var order_contents = String(sess.q1 + ' ' +  sess.d1 + ' / ' + sess.q2 + ' ' +  sess.d2 + ' / ' + sess.q3 + ' ' +  sess.d3);
+            var order_contents = String(req.session.q1 + ' ' +  req.session.d1 + ' / ' + req.session.q2 + ' ' +  req.session.d2 + ' / ' + req.session.q3 + ' ' +  req.session.d3);
             break;
         case 4: 
-            var order_contents = String(sess.q1 + ' ' +  sess.d1 + ' / ' + sess.q2 + ' ' +  sess.d2 + ' / ' + sess.q3 + ' ' +  sess.d3 + ' / ' + sess.q4 + ' ' +  sess.d4);
+            var order_contents = String(req.session.q1 + ' ' +  req.session.d1 + ' / ' + req.session.q2 + ' ' +  req.session.d2 + ' / ' + req.session.q3 + ' ' +  req.session.d3 + ' / ' + req.session.q4 + ' ' +  req.session.d4);
             break;
         default:
             var order_contents = 'Unable to gather order information';
             break;
     }
-    let amount = ((sess.q1 * sess.p1) + (sess.q2 * sess.p2) + (sess.q3 * sess.p3) + (sess.q4 * sess.p4));
+    let amount = ((req.session.q1 * req.session.p1) + (req.session.q2 * req.session.p2) + (req.session.q3 * req.session.p3) + (req.session.q4 * req.session.p4));
     var final = '$' + String(amount).substring(0, amount.length - 2) + '.' + String(amount).substring(amount.length - 2, amount.length);
     var allowed = false;
     const query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
-    db.query(query, [sess.order_id, sess.order_name, sess.email_name, 'UNPAID', 0, order_contents])
+    db.query(query, [req.session.order_id, req.session.order_name, req.session.email_name, 'UNPAID', 0, order_contents])
         .then(function(rows){
             allowed = true;
         })

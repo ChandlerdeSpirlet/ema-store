@@ -173,22 +173,18 @@ app.post('/process_cart', function(req, res) {
             var order_contents = 'Unable to gather order information';
             break;
     }
+    console.log('order contents are ' + order_contents);
     let amount = ((req.session.q1 * req.session.p1) + (req.session.q2 * req.session.p2) + (req.session.q3 * req.session.p3) + (req.session.q4 * req.session.p4));
     var final = '$' + String(amount).substring(0, amount.length - 2) + '.' + String(amount).substring(amount.length - 2, amount.length);
-    var allowed = false;
     const query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
     db.query(query, [req.session.order_id, req.session.order_name, req.session.email_name, 'UNPAID', 0, order_contents])
         .then(function(rows){
-            allowed = true;
+            res.redirect('https://ema-store.herokuapp.com/checkout.html/' + final);
         })
         .catch(function(err){
             console.log("Err in adding to db: " + err);
+            res.redirect('https://ema-store.herokuapp.com/');
         })
-    if (allowed){
-        res.redirect('https://ema-store.herokuapp.com/checkout.html/' + final);
-    } else {
-        res.redirect('https://ema-store.herokuapp.com/');
-    }
 });
 
 app.get('/checkout.html/(:final)', function(req, res){

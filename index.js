@@ -405,10 +405,35 @@ app.post('/webhook', (req, res) => {
     switch(req.body.type){
         case 'checkout.session.completed':
             console.log('PAYMENT STATUS: ' + req.body.data.object.payment_status);
-            res.status(200).send();
+            let payment_status = req.body.data.object.payment_status.toUpperCase();
+            let order_id = req.body.data.object.client_reference_id;
+            let email = req.body.data.object.customer_email;
+            let amount_total = Number(req.body.data.object.amount_total) / 100;
+            let intent = req.body.data.object.payment_intent;
+            let query = 'update orders set pay_status = $1, bill_total = $2, payment_intent = $3, where order_id = $4 and email = $5;';
+            db.query(query, [payment_status.toUpperCase(), amount_total, intent, order_id, email])
+                .then(function(rows){
+                    res.status(200).send();
+                })
+                .catch(function(err){
+                    console.log('Error updating checkout session webhook ' + err);
+                    res.status(400).send(`Webhook Error: ${err}`);
+                })
+        case 'charge.refunded':
+            var payment_intent = req.body.data.object.payment_intent;
+            var email_refund = req.body.data.object.email;
+            var refunded = Number(req.body.data.object.amount_refunded) / 100;
+            let refund_query = 'update orders set pay_status = $1, bill_total = bill_total - $2 where payment_intent = $3 and email = $4;';
+            db.query(refund_query, ['REFUNDED', refunded, payment_intent, email_refund])
+                .then(function(rows){
+                    res.status(200).send();
+                })
+                .catch(function(err){
+                    console.log('Error updating refund webhook ' + err);
+                    res.status(400).send(`Webhook Error: ${err}`);
+                })
             break;
         default:
-            res.status(400).end();
             break;
     }
     res.json({recieved: true});

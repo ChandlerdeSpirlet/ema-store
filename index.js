@@ -41,6 +41,10 @@ app.get('/', function(req, res){
     req.session.key = Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1;
     console.log('session key is ' + req.session.key);
     req.session.order_size = 0;
+    if(!req.session.key >= 0){
+        req.session.destroy();
+        res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
+    }
     res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
 })
 

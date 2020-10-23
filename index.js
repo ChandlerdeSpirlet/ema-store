@@ -395,22 +395,23 @@ app.get('/success.html', function(req, res){
     })
 });
 
-app.post('/webhook', bodyParser.raw({type: 'application/json'}), (request, response) => {
-    const payload = request.body;
-    console.log("Got payload: " + payload);
-    const sig = request.headers['stripe-signature'];
-
+app.post('/webhook', (req, res) => {
     let event;
-
     try {
-        event = stripe.webhooks.constructEvent(payload, sig, process.env.webhook_secret);
-    } catch (err) {
-        return response.status(400).send(`Webhook Error: ${err.message}`);
+        console.log('event is ' + event);
+    } catch(err) {
+        res.status(400).send(`Webhook Error: ${err.message}`);
     }
-    if (event.type === 'checkout.session.completed'){
-        console.log('payload' + '\n' + payload);
+    switch(req.body.type){
+        case 'checkout.session.completed':
+            console.log('PAYMENT STATUS: ' + req.body.data.object.payment_status);
+            res.status(200).send();
+            break;
+        default:
+            res.status(400).end();
+            break;
     }
-    response.status(200);
-});
+    res.json({recieved: true});
+})
 
 app.listen(process.env.PORT, () => console.log('Running on port ' + process.env.PORT));

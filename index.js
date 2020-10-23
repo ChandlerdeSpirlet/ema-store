@@ -176,6 +176,7 @@ app.post('/process_cart', function(req, res) {
     console.log('order contents are ' + order_contents);
     let amount = ((req.session.q1 * req.session.p1) + (req.session.q2 * req.session.p2) + (req.session.q3 * req.session.p3) + (req.session.q4 * req.session.p4));
     var final = '$' + String(amount).substring(0, amount.length - 2) + '.' + String(amount).substring(amount.length - 2, amount.length);
+    console.log('final in process is ' + final);
     const query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
     db.query(query, [req.session.order_id, req.session.order_name, req.session.email_name, 'UNPAID', 0, order_contents])
         .then(function(rows){
@@ -188,6 +189,7 @@ app.post('/process_cart', function(req, res) {
 });
 
 app.get('/checkout.html/(:final)', function(req, res){
+    console.log('final in checkout is ' + req.params.final);
     res.render('checkout.html', {
         price: req.params.final
     })
@@ -419,13 +421,17 @@ app.post('/webhook', (req, res) => {
                     console.log('Error updating checkout session webhook ' + err);
                     res.status(400).send(`Webhook Error: ${err}`);
                 })
+            break;
         case 'charge.refunded':
             var payment_intent = req.body.data.object.payment_intent;
             var email_refund = req.body.data.object.email;
             var refunded = Number(req.body.data.object.amount_refunded) / 100;
+            console.log('amount refunded = ' + String(refunded));
+            console.log('payment_intent refunded: ' + payment_intent);
             let refund_query = 'update orders set pay_status = $1, bill_total = bill_total - $2 where payment_intent = $3 and email = $4;';
             db.query(refund_query, ['REFUNDED', refunded, payment_intent, email_refund])
                 .then(function(rows){
+                    console.log('Refund sent');
                     res.status(200).send();
                 })
                 .catch(function(err){

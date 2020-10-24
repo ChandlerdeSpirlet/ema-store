@@ -23,8 +23,8 @@ app.use(
             ttl: 5 * 60 * 1000
         }),
     secret: process.env.secret_key,
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true
     })
 );
 

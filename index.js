@@ -184,7 +184,7 @@ app.post('/process_cart', function(req, res) {
     const query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
     db.query(query, [req.session.order_id, req.session.order_name, req.session.email_name, 'UNPAID', 0, order_contents])
         .then(function(rows){
-            res.redirect('https://ema-store.herokuapp.com/checkout.html/' + final);
+            res.redirect('https://ema-store.herokuapp.com/checkout.html');
         })
         .catch(function(err){
             console.log("Err in adding to db: " + err);
@@ -192,10 +192,10 @@ app.post('/process_cart', function(req, res) {
         })
 });
 
-app.get('/checkout.html/(:final)', function(req, res){
+app.get('/checkout.html', function(req, res){
     console.log('final in checkout is ' + req.params.final);
     res.render('checkout.html', {
-        price: req.params.final
+        
     })
 });
 

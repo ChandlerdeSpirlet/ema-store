@@ -450,8 +450,8 @@ app.post('/webhook', (req, res) => {
             console.log('amount refunded = ' + String(refunded));
             console.log('payment_intent refunded: ' + payment_intent);
             console.log('email is ' + email_refund);
-            let refund_query = 'update orders set pay_status = $1, bill_total = bill_total - $2 where payment_intent = $3 and email = $4;';
-            db.query(refund_query, ['REFUNDED', refunded, payment_intent, email_refund])
+            let refund_query = 'update orders set pay_status = $1, bill_total = bill_total - $2, order_contents = $3 where payment_intent = $4 and email = $5;';
+            db.query(refund_query, ['REFUNDED', refunded, 'NONE - ORDER REFUNDED',payment_intent, email_refund])
                 .then(function(rows){
                     JSON.safeStringify = (obj, indent = 2) => {
                         let cache = [];

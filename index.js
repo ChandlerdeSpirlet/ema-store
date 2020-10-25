@@ -435,7 +435,7 @@ app.post('/webhook', (req, res) => {
             let checkout_query = 'update orders set pay_status = $1, bill_total = $2, payment_intent = $3 where order_id = $4 and email = $5;';
             db.query(checkout_query, [payment_status.toUpperCase(), amount_total, intent, order_id, email])
                 .then(function(rows){
-                    console.log('Refund sent for ' + email);
+                    console.log('Payment made for ' + email);
                     res.status(200).send();
                 })
                 .catch(function(err){
@@ -445,7 +445,7 @@ app.post('/webhook', (req, res) => {
             break;
         case 'charge.refunded':
             var payment_intent = req.body.data.object.payment_intent;
-            var email_refund = req.body.data.object.email;
+            var email_refund = req.body.data.object.billing_details.email;
             var refunded = Number(req.body.data.object.amount_refunded) / 100;
             console.log('amount refunded = ' + String(refunded));
             console.log('payment_intent refunded: ' + payment_intent);

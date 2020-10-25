@@ -423,6 +423,7 @@ app.post('/webhook', (req, res) => {
     } catch(err) {
         res.status(400).send(`Webhook Error: ${err.message}`);
     }
+    console.log('req.body.type is ' + req.body.type);
     switch(req.body.type){
         case 'checkout.session.completed':
             console.log('PAYMENT STATUS: ' + req.body.data.object.payment_status);
@@ -448,6 +449,7 @@ app.post('/webhook', (req, res) => {
             var refunded = Number(req.body.data.object.amount_refunded) / 100;
             console.log('amount refunded = ' + String(refunded));
             console.log('payment_intent refunded: ' + payment_intent);
+            console.log('email is ' + email_refund);
             let refund_query = 'update orders set pay_status = $1, bill_total = bill_total - $2 where payment_intent = $3 and email = $4;';
             db.query(refund_query, ['REFUNDED', refunded, payment_intent, email_refund])
                 .then(function(rows){

@@ -20,7 +20,7 @@ app.use(
     session({
         store: new RedisStore({ 
             client: client,
-            ttl: 5 * 60 * 1000
+            ttl: 5 * 60
         }),
     secret: process.env.secret_key,
     resave: true,
@@ -54,7 +54,7 @@ app.post('/process_cart', function(req, res) {
             session({
                 store: new RedisStore({ 
                     client: client,
-                    ttl: 5 * 60 * 1000
+                    ttl: 5 * 60
                 }),
             secret: process.env.secret_key,
             resave: true,
@@ -207,6 +207,8 @@ app.post('/process_cart', function(req, res) {
 
 app.get('/checkout.html', function(req, res){
     console.log('final in checkout is ' + req.params.final);
+    let amount = ((req.session.q1 * req.session.p1) + (req.session.q2 * req.session.p2) + (req.session.q3 * req.session.p3) + (req.session.q4 * req.session.p4));
+    var final = '$' + String(amount).substring(0, amount.length - 2) + '.' + String(amount).substring(amount.length - 2, amount.length);
     res.render('checkout.html', {
         
     })

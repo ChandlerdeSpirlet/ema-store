@@ -434,6 +434,23 @@ app.post('/webhook', (req, res) => {
             let checkout_query = 'update orders set pay_status = $1, bill_total = $2, payment_intent = $3 where order_id = $4 and email = $5;';
             db.query(checkout_query, [payment_status.toUpperCase(), amount_total, intent, order_id, email])
                 .then(function(rows){
+                    console.log('Refund sent for ' + email);
+                    res.status(200).send();
+                })
+                .catch(function(err){
+                    console.log('Error updating checkout session webhook ' + err);
+                    res.status(400).send(`Webhook Error: ${err}`);
+                })
+            break;
+        case 'charge.refunded':
+            var payment_intent = req.body.data.object.payment_intent;
+            var email_refund = req.body.data.object.email;
+            var refunded = Number(req.body.data.object.amount_refunded) / 100;
+            console.log('amount refunded = ' + String(refunded));
+            console.log('payment_intent refunded: ' + payment_intent);
+            let refund_query = 'update orders set pay_status = $1, bill_total = bill_total - $2 where payment_intent = $3 and email = $4;';
+            db.query(refund_query, ['REFUNDED', refunded, payment_intent, email_refund])
+                .then(function(rows){
                     JSON.safeStringify = (obj, indent = 2) => {
                         let cache = [];
                         const retVal = JSON.stringify(
@@ -452,23 +469,6 @@ app.post('/webhook', (req, res) => {
                     
                       // Example:
                     console.log('rows', JSON.safeStringify(rows));
-                    res.status(200).send();
-                })
-                .catch(function(err){
-                    console.log('Error updating checkout session webhook ' + err);
-                    res.status(400).send(`Webhook Error: ${err}`);
-                })
-            break;
-        case 'charge.refunded':
-            var payment_intent = req.body.data.object.payment_intent;
-            var email_refund = req.body.data.object.email;
-            var refunded = Number(req.body.data.object.amount_refunded) / 100;
-            console.log('amount refunded = ' + String(refunded));
-            console.log('payment_intent refunded: ' + payment_intent);
-            let refund_query = 'update orders set pay_status = $1, bill_total = bill_total - $2 where payment_intent = $3 and email = $4;';
-            db.query(refund_query, ['REFUNDED', refunded, payment_intent, email_refund])
-                .then(function(rows){
-                    console.log('rows: ' + )
                     console.log('Refund sent');
                     res.status(200).send();
                 })

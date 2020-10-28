@@ -85,7 +85,7 @@
             <div id="order1">
                 <h4>Hoodie 1</h4>
                     <div class="select-wrapper"><select id="select" name="quantity1" required>
-                        <option value="0" >Quantity</option>
+                        <option value="0" disabled selected>Quantity</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -95,13 +95,13 @@
                     </select>
                     </div>
                     <div class="select-wrapper"><select id="select" name="color1" required>
-                        <option value="None" >Color</option>
+                        <option value="None" disabled selected>Color</option>
                         <option value="Black">Black</option>
                         <option value="White">White</option>
                     </select>
                     </div>
                     <div class="select-wrapper"><select id="select" name="size1" required>
-                        <option value="default" >Choose Size</option>
+                        <option value="default" disabled selected>Choose Size</option>
                         <optgroup label="Youth Sizes">
                             <option value="Youth Small">Youth Small</option>
                             <option value="Youth Medium">Youth Medium</option>
@@ -126,7 +126,7 @@
             <div id="order2" style="display: none;">
                 <h4>Hoodie 2</h4>
                     <div class="select-wrapper"><select id="select" name="quantity2" required>
-                        <option value="0" >Quantity</option>
+                        <option value="0" disabled selected>Quantity</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -136,13 +136,13 @@
                     </select>
                     </div>
                     <div class="select-wrapper"><select id="select" name="color2" required>
-                        <option value="None" >Color</option>
+                        <option value="None" disabled selected>Color</option>
                         <option value="Black">Black</option>
                         <option value="White">White</option>
                     </select>
                     </div>
                     <div class="select-wrapper"><select id="select" name="size2" required>
-                        <option value="default" >Choose Size</option>
+                        <option value="default" disabled selected>Choose Size</option>
                         <optgroup label="Youth Sizes">
                             <option value="Youth Small">Youth Small</option>
                             <option value="Youth Medium">Youth Medium</option>
@@ -158,7 +158,7 @@
                     </select>
                     </div>
                 <br>
-                <button type="button" onclick="show3()">Add More</button>
+                <button type="button" id="show3button" onclick="show3()">Add More</button>
                 <br>
                 <div>
                     <input type="submit" name="Submit" id="checkout2" style="display: none;" value="Checkout"/>
@@ -167,7 +167,7 @@
             <div id="order3" style="display: none;">
                 <h4>Hoodie 3</h4>
                     <div class="select-wrapper"><select id="select" name="quantity3" required>
-                        <option value="0" >Quantity</option>
+                        <option value="0" disabled selected>Quantity</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -177,13 +177,13 @@
                     </select>
                     </div>
                     <div class="select-wrapper"><select id="select" name="color3" required>
-                        <option value="None" >Color</option>
+                        <option value="None" disabled selected>Color</option>
                         <option value="Black">Black</option>
                         <option value="White">White</option>
                     </select>
                     </div>
                     <div class="select-wrapper"><select id="select" name="size3" required>
-                        <option value="default" >Choose Size</option>
+                        <option value="default" disabled selected>Choose Size</option>
                         <optgroup label="Youth Sizes">
                             <option value="Youth Small">Youth Small</option>
                             <option value="Youth Medium">Youth Medium</option>
@@ -199,7 +199,7 @@
                     </select>
                     </div>
                     <br>
-                    <button type="button" onclick="show4()">Add More</button>
+                    <button type="button" id="show4button" onclick="show4()">Add More</button>
                     <br>
                     <div>
                         <input type="submit" name="Submit" id="checkout3" style="display: none;" value="Checkout"/>
@@ -208,7 +208,7 @@
             <div id="order4" style="display: none;">
                 <h4>Hoodie 4</h4>
                     <div class="select-wrapper"><select id="select" name="quantity4" required>
-                        <option value="0">Quantity</option>
+                        <option value="0" disabled selected>Quantity</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -218,13 +218,13 @@
                     </select>
                     </div>
                     <div class="select-wrapper"><select id="select" name="color4" required>
-                        <option value="None">Color</option>
+                        <option value="None" disabled selected>Color</option>
                         <option value="Black">Black</option>
                         <option value="White">White</option>
                     </select>
                     </div>
                     <div class="select-wrapper"><select id="select" name="size4" required>
-                        <option value="default">Choose Size</option>
+                        <option value="default" disabled selected>Choose Size</option>
                         <optgroup label="Youth Sizes">
                             <option value="Youth Small">Youth Small</option>
                             <option value="Youth Medium">Youth Medium</option>
@@ -264,6 +264,7 @@
             x.style.display = "block";
             document.getElementById("checkout2").style.display = "none";
             document.getElementById("checkout3").style.display = "block";
+            document.getElementById("show3button").style.display = "none";
         } else {
             x.style.display = "none";
         }
@@ -274,6 +275,7 @@
             x.style.display = "block";
             document.getElementById("checkout3").style.display = "none";
             document.getElementById("checkout4").style.display = "block";
+            document.getElementById("show4button").style.display = "none";
         } else {
             x.style.display = "none";
         }

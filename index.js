@@ -62,6 +62,7 @@ app.post('/process_cart', function(req, res) {
             })
         );
     }
+    req.session.order_size = 0;
     var item = {
         order_name: req.sanitize('order_name').trim(),
         order_email: req.sanitize('order_email').trim(),
@@ -78,7 +79,7 @@ app.post('/process_cart', function(req, res) {
         color4: req.sanitize('color4'),
         size4: req.sanitize('size4')
     }
-    console.log('session ket after redirect ' + req.session.key);
+    console.log('session key after redirect ' + req.session.key);
     req.session.email_name = item.order_email;
     req.session.order_name = item.order_name;
     console.log('order size is ' + req.session.order_size);
@@ -239,7 +240,6 @@ app.post('/create-session', async (req, res) => {
                 },
             ],
             mode: 'payment',
-            allow_promotion_codes: true,
             success_url: `${YOUR_DOMAIN}/success.html`,
             cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });
@@ -280,7 +280,6 @@ app.post('/create-session', async (req, res) => {
                 },
             ],
             mode: 'payment',
-            allow_promotion_codes: true,
             success_url: `${YOUR_DOMAIN}/success.html`,
             cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });
@@ -334,7 +333,6 @@ app.post('/create-session', async (req, res) => {
                 },
             ],
             mode: 'payment',
-            allow_promotion_codes: true,
             success_url: `${YOUR_DOMAIN}/success.html`,
             cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });
@@ -401,7 +399,6 @@ app.post('/create-session', async (req, res) => {
                 },
             ],
             mode: 'payment',
-            allow_promotion_codes: true,
             success_url: `${YOUR_DOMAIN}/success.html`,
             cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });

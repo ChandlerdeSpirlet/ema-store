@@ -242,6 +242,7 @@ app.post('/create-session', async (req, res) => {
             mode: 'payment',
             success_url: `${YOUR_DOMAIN}/success.html`,
             cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+            allow_promotion_codes: true,
             });
         
         res.json({ id: session.id });

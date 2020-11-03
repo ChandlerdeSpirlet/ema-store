@@ -239,6 +239,7 @@ app.post('/create-session', async (req, res) => {
                 },
             ],
             mode: 'payment',
+            allow_promotion_codes: true,
             success_url: `${YOUR_DOMAIN}/success.html`,
             cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });
@@ -279,6 +280,7 @@ app.post('/create-session', async (req, res) => {
                 },
             ],
             mode: 'payment',
+            allow_promotion_codes: true,
             success_url: `${YOUR_DOMAIN}/success.html`,
             cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });
@@ -332,6 +334,7 @@ app.post('/create-session', async (req, res) => {
                 },
             ],
             mode: 'payment',
+            allow_promotion_codes: true,
             success_url: `${YOUR_DOMAIN}/success.html`,
             cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });
@@ -398,6 +401,7 @@ app.post('/create-session', async (req, res) => {
                 },
             ],
             mode: 'payment',
+            allow_promotion_codes: true,
             success_url: `${YOUR_DOMAIN}/success.html`,
             cancel_url: `${YOUR_DOMAIN}/cancel.html`,
             });

@@ -104,6 +104,11 @@ app.post('/process_qty', function(req, res) {
             
               // Example:
             console.log('rows', JSON.safeStringify(rows));
+            console.log('rows[0].product_id: ' + rows[0].product_id);
+            console.log('rows[1].product_id: ' + rows[1].product_id);
+            rows.forEach(function(item) {
+                console.log('item.product_id: ' + item.product_id);
+            })
             res.redirect('/');
         })
         .catch(function(err){

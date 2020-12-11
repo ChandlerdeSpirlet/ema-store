@@ -1,0 +1,85 @@
+<html>
+    <title>Hoodie Order Form</title>
+    <meta name="viewport" content="width=device-width, inital-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        img {
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        html {
+            background-image: linear-gradient(#0095ff, #9ed7ff);
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        h1 {
+            text-align: center;
+        }
+        body {
+            font-size: 16px;
+        }
+        button, select {
+            width: 60%;
+            margin: 0 auto;
+        }
+        label {
+            font-weight: 60%;
+        }
+        form > div {
+            margin-bottom: 20px;
+        }
+        button, label, input, select {
+            display: block;
+            font-size: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 5px;
+            height: 30px;
+        }
+        select {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .select-wrapper {
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .select-wrapper::after {
+            content: "▼";
+            font-size: 1rem;
+            top: 6px;
+            right: 10px;
+            position: absolute;
+        }
+        input[type="text"], select {
+            box-shadow: inset 1px 1px 3px #ccc;
+            border-radius: 5px;
+        }
+    </style>
+    <body>
+        <h1>EMA Hoodie Order Form</h1>
+        <form name="Form" action="/process_qty" method="POST">
+            <h3>Order Info</h3>
+            <div>
+                <label for="order_name">Name:</label>
+                <input type="text" id="order_name" name="order_name" required placeholder="Full Name">
+            </div>
+            <div>
+                <label for="order_email">Email:</label>
+                <input type="text" id="order_email" name="order_email" required placeholder="Email">
+            </div>
+            <h3>Kid Sizes</h3>
+            
+            <h3>Adult Sizes</h3>
+        </form>
+    </body>
+</html>

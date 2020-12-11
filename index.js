@@ -46,7 +46,42 @@ app.get('/', function(req, res){
     //    res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
     //}  
     res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
-})
+});
+
+app.get('/quantity_cart.html', function(req, res){
+    req.session.qty_key = Math.floor( Math.random() * (1 + 10000 - 1)) + 1;
+    console.log('sess_qty key is ' + req.session.qty_key);
+    req.session.order_qty_size = 0;
+    let qty_query = 'select * from inventory;';
+    db.query(qty_query)
+        .then(function(rows){
+            JSON.safeStringify = (obj, indent = 2) => {
+                let cache = [];
+                const retVal = JSON.stringify(
+                    obj,
+                    (key, value) =>
+                        typeof value === "object" && value !== null
+                        ? cache.includes(value)
+                            ? undefined // Duplicate reference found, discard key
+                            : cache.push(value) && value // Store value in our collection
+                        : value,
+                    indent
+                );
+                cache = null;
+                return retVal;
+            };
+            
+              // Example:
+            console.log('rows', JSON.safeStringify(rows));
+            res.render('quantity_cart.html', {
+                data: rows
+            })
+        })
+        .catch(function(err){
+            console.log('ERROR: quantity_cart:: ' + err);
+            res.redirect('/');
+        })
+});
 
 app.post('/process_cart', function(req, res) {
     if (!req.session){

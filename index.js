@@ -298,8 +298,8 @@ router.post('/qty-create-session', async(req, res) => {
                 },
             ],
             mode: 'payment',
-            success_url: `${YOUR_DOMAIN}/qty_success.html`,
-            cancel_url: `${YOUR_DOMAIN}/qty_cancel.html`,
+            success_url: `${YOUR_DOMAIN}/views/qty_success.html`,
+            cancel_url: `${YOUR_DOMAIN}/views/qty_cancel.html`,
             allow_promotion_codes: true,
             });
         
@@ -339,8 +339,8 @@ router.post('/qty-create-session', async(req, res) => {
                 },
             ],
             mode: 'payment',
-            success_url: `${YOUR_DOMAIN}/qty_success.html`,
-            cancel_url: `${YOUR_DOMAIN}/qty_cancel.html`,
+            success_url: `${YOUR_DOMAIN}/views/qty_success.html`,
+            cancel_url: `${YOUR_DOMAIN}/views/qty_cancel.html`,
             allow_promotion_codes: true,
             });
         
@@ -393,8 +393,8 @@ router.post('/qty-create-session', async(req, res) => {
                 },
             ],
             mode: 'payment',
-            success_url: `${YOUR_DOMAIN}/qty_success.html`,
-            cancel_url: `${YOUR_DOMAIN}/qty_cancel.html`,
+            success_url: `${YOUR_DOMAIN}/views/qty_success.html`,
+            cancel_url: `${YOUR_DOMAIN}/views/qty_cancel.html`,
             allow_promotion_codes: true,
             });
         
@@ -460,8 +460,8 @@ router.post('/qty-create-session', async(req, res) => {
                 },
             ],
             mode: 'payment',
-            success_url: `${YOUR_DOMAIN}/qty_success.html`,
-            cancel_url: `${YOUR_DOMAIN}/qty_cancel.html`,
+            success_url: `${YOUR_DOMAIN}/views/qty_success.html`,
+            cancel_url: `${YOUR_DOMAIN}/views/qty_cancel.html`,
             allow_promotion_codes: true,
             });
         
@@ -540,8 +540,8 @@ router.post('/qty-create-session', async(req, res) => {
                 },
             ],
             mode: 'payment',
-            success_url: `${YOUR_DOMAIN}/qty_success.html`,
-            cancel_url: `${YOUR_DOMAIN}/qty_cancel.html`,
+            success_url: `${YOUR_DOMAIN}/views/qty_success.html`,
+            cancel_url: `${YOUR_DOMAIN}/views/qty_cancel.html`,
             allow_promotion_codes: true,
             });
         

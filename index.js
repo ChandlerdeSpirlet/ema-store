@@ -277,7 +277,23 @@ router.post('/process_cart', function(req, res) {
 
 router.get('/checkout.html', function(req, res){
     console.log('final in checkout is ' + req.params.final);
-    let amount = ((req.session.q1 * req.session.p1) + (req.session.q2 * req.session.p2) + (req.session.q3 * req.session.p3) + (req.session.q4 * req.session.p4));
+    switch (req.session.order_size){
+        case 1:
+            var amount = (req.session.q1 * req.session.p1);
+            break;
+        case 2:
+            var amount = (req.session.q1 * req.session.p1) + (req.session.q2 * req.session.p2);
+            break;
+        case 3:
+            var amount = (req.session.q1 * req.session.p1) + (req.session.q2 * req.session.p2) + (req.session.q3 * req.session.p3);
+            break;
+        case 4:
+            var amount = (req.session.q1 * req.session.p1) + (req.session.q2 * req.session.p2) + (req.session.q3 * req.session.p3) + (req.session.q4 * req.session.p4);
+            break;
+        default:
+            res.redirect('/');
+            break;
+    }
     var final = '$' + String(amount).substring(0, amount.length - 2) + '.' + String(amount).substring(amount.length - 2, amount.length);
     res.render('checkout.html', {
         price: final

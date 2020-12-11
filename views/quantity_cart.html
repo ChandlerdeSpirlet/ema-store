@@ -117,7 +117,7 @@
                     <div class="card">
                         <p style="font-size: 24px; text-align: center; ">{{ item.description }}</h5>
                         <p>Only {{ item.qty }} in stock!</p>
-                        <label for="{{ item.product_id">I want: </label>
+                        <label for="{{ item.product_id }}">I want: </label>
                         <input style="width: 30%;" type="number" id="{{ item.product_id }}" name="{{ item.product_id }}" placeholder="0" min="0" max="{{ item.qty }}"><br>
                     </div>
                 {% endfor %}

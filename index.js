@@ -54,12 +54,21 @@ router.get('/quantity_cart.html', function(req, res){
     req.session.qty_key = Math.floor( Math.random() * (1 + 10000 - 1)) + 1;
     console.log('sess_qty key is ' + req.session.qty_key);
     req.session.order_qty_size = 0;
-    let qty_query = 'select * from inventory;';
-    db.query(qty_query)
+    let qty_query_youth = "select * from inventory where size like '%Youth%';";
+    let qty_query_adult = "select * from inventory where size like '%Adult%';";
+    db.query(qty_query_youth)
         .then(function(rows){
-            res.render('quantity_cart.html', {
-                data: rows
-            })
+            db.query(qty_query_youth)
+                .then(function(rows_adult){
+                    res.render('quantity_cart.html', {
+                        youth: rows,
+                        adult: rows_adult
+                    })
+                })
+                .catch(function(err){
+                    console.log('ERROR: quantity_cart:: ' + err);
+                    res.redirect('/');
+                })
         })
         .catch(function(err){
             console.log('ERROR: quantity_cart:: ' + err);

@@ -101,37 +101,27 @@
                 <input type="text" id="order_email" name="order_email" required placeholder="Email">
             </div>
             <h3>Kid Sizes</h3>
-            <div class="card">
-                <p style="font-size: 24px; text-align: center; ">{{ data[0].description }}</h5>
-                <p>Only {{ data[0].qty }} in stock!</p>
-                <p style="font-size: 16px; font-style: normal;">I want: <input style="width: 30%;" type="number" id="{{ data[0].product_id }}" name="item_0" min="0" max="{{ data[0].qty }}"></p><br>
-            </div>
-            <div class="card">
-                <h5>{{ data[1].description }}</h5>
-                <p>Only {{ data[1].qty }} in stock!</p>
-                <p style="font-size: 16px; font-style: normal;">I want: </p><input type="number" id="{{ data[1].product_id }}" name="item_1" min="0" max="{{ data[1].qty }}">
-            </div>
-            <div class="card">
-                <h5>{{ data[2].description }}</h5>
-                <p>Only {{ data[2].qty }} in stock!</p>
-                <input type="number" id="{{ data[2].product_id }}" name="item_2" min="0" max="{{ data[2].qty }}">
-            </div>
-            <div class="card">
-                <h5>{{ data[3].description }}</h5>
-                <p>Only {{ data[3].qty }} in stock!</p>
-                <input type="number" id="{{ data[3].product_id }}" name="item_3" min="0" max="{{ data[3].qty }}">
-            </div>
-            <div class="card">
-                <h5>{{ data[4].description }}</h5>
-                <p>Only {{ data[4].qty }} in stock!</p>
-                <input type="number" id="{{ data[4].product_id }}" name="item_4" min="0" max="{{ data[4].qty }}">
-            </div>
-            <div class="card">
-                <h5>{{ data[5].description }}</h5>
-                <p>Only {{ data[5].qty }} in stock!</p>
-                <input type="number" id="{{ data[5].product_id }}" name="item_5" min="0" max="{{ data[5].qty }}">
-            </div>
+            {% if youth %}
+                {% for item in youth %}
+                    <div class="card">
+                        <p style="font-size: 24px; text-align: center; ">{{ item.description }}</h5>
+                        <p>Only {{ item.qty }} in stock!</p>
+                        <label for="{{ item.product_id }}">I want: </label>
+                        <input style="width: 30%;" type="number" id="{{ item.product_id }}" name="{{ item.product_id }}" placeholder="0" min="0" max="{{ item.qty }}"><br>
+                    </div>
+                {% endfor %}
+            {% endif %}
             <h3>Adult Sizes</h3>
+            {% if adult %}
+                {% for item in adult %}
+                    <div class="card">
+                        <p style="font-size: 24px; text-align: center; ">{{ item.description }}</h5>
+                        <p>Only {{ item.qty }} in stock!</p>
+                        <label for="{{ item.product_id">I want: </label>
+                        <input style="width: 30%;" type="number" id="{{ item.product_id }}" name="{{ item.product_id }}" placeholder="0" min="0" max="{{ item.qty }}"><br>
+                    </div>
+                {% endfor %}
+            {% endif %}
             <div>
                 <input type="submit" name="Submit" value="Checkout"/>
             </div>

@@ -58,7 +58,7 @@ router.get('/quantity_cart.html', function(req, res){
     let qty_query_adult = "select * from inventory where size like '%Adult%';";
     db.query(qty_query_youth)
         .then(function(rows){
-            db.query(qty_query_youth)
+            db.query(qty_query_adult)
                 .then(function(rows_adult){
                     res.render('quantity_cart.html', {
                         youth: rows,
@@ -77,14 +77,15 @@ router.get('/quantity_cart.html', function(req, res){
 });
 
 router.post('/process_qty', function(req, res) {
-    db.query('select * from inventory')
-        .then(function(rows){
-            res.redirect('/');
-        })
-        .catch(function(err){
-            console.log(err);
-            res.redirect('/');
-        })
+    var item = {
+        order_name: req.sanitize('order_name').trim(),
+        order_email: req.sanitize('order_email').trim(),
+        black_as: req.sanitize('black_as').trim(),
+        black_ys: req.sanitize('black_ys').trim()
+    }
+    console.log('item.order_name: ' + item.order_name);
+    console.log('black_as: ' + item.black_as);
+    res.redirect('/');
 });
 
 router.post('/process_cart', function(req, res) {

@@ -360,7 +360,7 @@ router.post('/qty-create-session', async(req, res) => {
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2021 Hoodie'
                     },
-                    unit_amount: Number(req.session.qty_order[0][2]),
+                    unit_amount: Number(req.session.qty_order[0][2]) * 100,
                 },
                 quantity: Number(req.session.qty_order[0][1]),
                 description: 'EMA Online Store',
@@ -373,7 +373,7 @@ router.post('/qty-create-session', async(req, res) => {
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2021 Hoodie'
                     },
-                    unit_amount: Number(req.session.qty_order[1][2]),
+                    unit_amount: Number(req.session.qty_order[1][2]) * 100,
                 },
                 quantity: Number(req.session.qty_order[1][1]),
                 description: 'EMA Online Store',
@@ -386,7 +386,7 @@ router.post('/qty-create-session', async(req, res) => {
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2021 Hoodie'
                     },
-                    unit_amount: Number(req.session.qty_order[2][2]),
+                    unit_amount: Number(req.session.qty_order[2][2]) * 100,
                 },
                 quantity: Number(req.session.qty_order[2][1]),
                 description: 'EMA Online Store',
@@ -414,7 +414,7 @@ router.post('/qty-create-session', async(req, res) => {
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2021 Hoodie'
                     },
-                    unit_amount: Number(req.session.qty_order[0][2]),
+                    unit_amount: Number(req.session.qty_order[0][2]) * 100,
                 },
                 quantity: Number(req.session.qty_order[0][1]),
                 description: 'EMA Online Store',
@@ -427,7 +427,7 @@ router.post('/qty-create-session', async(req, res) => {
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2021 Hoodie'
                     },
-                    unit_amount: Number(req.session.qty_order[1][2]),
+                    unit_amount: Number(req.session.qty_order[1][2]) * 100,
                 },
                 quantity: Number(req.session.qty_order[1][1]),
                 description: 'EMA Online Store',
@@ -440,7 +440,7 @@ router.post('/qty-create-session', async(req, res) => {
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2021 Hoodie'
                     },
-                    unit_amount: Number(req.session.qty_order[2][2]),
+                    unit_amount: Number(req.session.qty_order[2][2]) * 100,
                 },
                 quantity: Number(req.session.qty_order[2][1]),
                 description: 'EMA Online Store',
@@ -453,7 +453,7 @@ router.post('/qty-create-session', async(req, res) => {
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2021 Hoodie'
                     },
-                    unit_amount: Number(req.session.qty_order[3][2]),
+                    unit_amount: Number(req.session.qty_order[3][2]) * 100,
                 },
                 quantity: Number(req.session.qty_order[3][1]),
                 description: 'EMA Online Store',
@@ -481,7 +481,7 @@ router.post('/qty-create-session', async(req, res) => {
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2021 Hoodie'
                     },
-                    unit_amount: Number(req.session.qty_order[0][2]),
+                    unit_amount: Number(req.session.qty_order[0][2]) * 100,
                 },
                 quantity: Number(req.session.qty_order[0][1]),
                 description: 'EMA Online Store',
@@ -494,7 +494,7 @@ router.post('/qty-create-session', async(req, res) => {
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2021 Hoodie'
                     },
-                    unit_amount: Number(req.session.qty_order[1][2]),
+                    unit_amount: Number(req.session.qty_order[1][2]) * 100,
                 },
                 quantity: Number(req.session.qty_order[1][1]),
                 description: 'EMA Online Store',
@@ -507,7 +507,7 @@ router.post('/qty-create-session', async(req, res) => {
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2021 Hoodie'
                     },
-                    unit_amount: Number(req.session.qty_order[2][2]),
+                    unit_amount: Number(req.session.qty_order[2][2]) * 100,
                 },
                 quantity: Number(req.session.qty_order[2][1]),
                 description: 'EMA Online Store',
@@ -520,7 +520,7 @@ router.post('/qty-create-session', async(req, res) => {
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2021 Hoodie'
                     },
-                    unit_amount: Number(req.session.qty_order[3][2]),
+                    unit_amount: Number(req.session.qty_order[3][2]) * 100,
                 },
                 quantity: Number(req.session.qty_order[3][1]),
                 description: 'EMA Online Store',
@@ -533,7 +533,7 @@ router.post('/qty-create-session', async(req, res) => {
                     images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
                     description: '2021 Hoodie'
                     },
-                    unit_amount: Number(req.session.qty_order[4][2]),
+                    unit_amount: Number(req.session.qty_order[4][2]) * 100,
                 },
                 quantity: Number(req.session.qty_order[4][1]),
                 description: 'EMA Online Store',

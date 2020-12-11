@@ -47,7 +47,9 @@ router.get('/', function(req, res){
         req.session.destroy();
         res.redirect('https://ema-store.herokuapp.com/views/shopping_cart.html');
     }
-    res.redirect('https://ema-store.herokuapp.com/views/shopping_cart.html');
+    res.render('shopping_cart.html', function(req, res){
+
+    });
 });
 
 router.get('/quantity_cart.html', function(req, res){
@@ -99,21 +101,163 @@ router.post('/process_qty', function(req, res) {
         white_axl: req.sanitize('white_axl').trim(),
         white_axxl: req.sanitize('white_axxl').trim(),
     }
-    console.log('item.order_name: ' + item.order_name);
-    console.log('black_as: ' + item.black_as);
-    console.log('white_as: ' + item.white_as);
-    console.log('type of black_as: ' + typeof item.black_as);
     req.session.qty_order = [];
+    req.session.qty_order_name = item.order_name;
+    req.session.qty_order_email = item.order_email;
+    req.session.qty_desc = '';
     //YOUTH
     if (item.white_ys != 0){
-        req.session.order_qty_size += 1
-        req.session.qty_order.push(['Youth Small, White', item.white_ys, 40]);
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Youth Small, White', Number(item.white_ys), 40]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Youth Small, White';
+        } else {
+            req.session.qty_desc += ' / Youth Small, White';
+        }
     }
+    if (item.black_ys != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Youth Small, Black', Number(item.black_ys), 40]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Youth Small, Black';
+        } else {
+            req.session.qty_desc += ' / Youth Small, Black';
+        }
+    }
+    if (item.white_ym != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Medium Small, White', Number(item.white_ym), 40]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Youth Medium, White';
+        } else {
+            req.session.qty_desc += ' / Youth Medium, White';
+        }
+    }
+    if (item.black_ym != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Medium Small, Black', Number(item.black_ym), 40]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Youth Medium, Black';
+        } else {
+            req.session.qty_desc += ' / Youth Medium, Black';
+        }
+    }
+    if (item.white_yl != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Youth Large, White', Number(item.white_yl), 40]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Youth Large, White';
+        } else {
+            req.session.qty_desc += ' / Youth Large, White';
+        }
+    }
+    if (item.black_yl != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Youth Large, Black', Number(item.black_yl), 40]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Youth Large, Black';
+        } else {
+            req.session.qty_desc += ' / Youth Large, Black';
+        }
+    }
+    //SEPERATOR
     if (item.black_as != 0){
-        req.session.order_qty_size += 1
-        req.session.qty_order.push(['Adult Small, Black', item.black_as, 55])
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Adult Small, Black', Number(item.black_as), 55]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Adult Small, Black';
+        } else {
+            req.session.qty_desc += ' / Adult Small, Black';
+        }
+    }
+    if (item.white_as != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Adult Small, White', Number(item.white_as), 55]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Adult Small, White';
+        } else {
+            req.session.qty_desc += ' / Adult Small, White';
+        }
+    }
+    if (item.black_am != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Adult Medium, Black', Number(item.black_am), 55]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Adult Medium, Black';
+        } else {
+            req.session.qty_desc += ' / Adult Medium, Black';
+        }
+    }
+    if (item.white_am != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Adult Medium, White', Number(item.white_am), 55]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Adult Medium, White';
+        } else {
+            req.session.qty_desc += ' / Adult Medium, White';
+        }
+    }
+    if (item.black_al != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Adult Large, Black', Number(item.black_al), 55]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Adult Large, Black';
+        } else {
+            req.session.qty_desc += ' / Adult Large, Black';
+        }
+    }
+    if (item.white_al != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Adult Large, White', Number(item.white_al), 55]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Adult Large, White';
+        } else {
+            req.session.qty_desc += ' / Adult Large, White';
+        }
+    }
+    if (item.black_axl != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Adult X-Large, Black', Number(item.black_axl), 55]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Adult X-Large, Black';
+        } else {
+            req.session.qty_desc += ' / Adult X-Large, Black';
+        }
+    }
+    if (item.white_axl != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Adult X-Large, White', Number(item.white_axl), 55]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Adult X-Large, White';
+        } else {
+            req.session.qty_desc += ' / Adult X-Large, White';
+        }
+    }
+    if (item.black_axxl != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Adult XX-Large, Black', Number(item.black_axxl), 55]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Adult XX-Large, Black';
+        } else {
+            req.session.qty_desc += ' / Adult XX-Large, Black';
+        }
+    }
+    if (item.white_axxl != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Adult XX-Large, White', Number(item.white_axxl), 55]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Adult XX-Large, White';
+        } else {
+            req.session.qty_desc += ' / Adult XX-Large, White';
+        }
     }
     console.log('req.session.qty_order: ' + req.session.qty_order);
+    req.session.qty_order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor(Math.random() * (1 + 10000 - 1)) + 1);
+    const qty_query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
+    db.query(qty_query, [req.session.qty_order_id, req.session.qty_order_name, req.session.qty_order_email, 'UNPAID', 0, req.session.qty_desc])
+        .then(function(rows){
+
+        })
     res.redirect('/');
 });
 
@@ -294,7 +438,7 @@ router.get('/checkout.html', function(req, res){
             res.redirect('/');
             break;
     }
-    var final = '$' + String(amount).substring(0, amount.length - 2) + '.' + String(amount).substring(amount.length - 2, amount.length);
+    var final = '$' + String(amount).substring(0, String(amount).length - 2) + '.' + String(amount).substring(String(amount).length - 2, String(amount).length);
     res.render('checkout.html', {
         price: final
     })

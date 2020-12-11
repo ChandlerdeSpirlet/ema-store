@@ -110,54 +110,54 @@ router.post('/process_qty', function(req, res) {
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Youth Small, White', Number(item.white_ys), 40]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Youth Small, White';
+            req.session.qty_desc += 'Youth Small, White X ' + item.white_ys;
         } else {
-            req.session.qty_desc += ' / Youth Small, White';
+            req.session.qty_desc += ' / Youth Small, White X ' + item.white_ys;
         }
     }
     if (item.black_ys != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Youth Small, Black', Number(item.black_ys), 40]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Youth Small, Black';
+            req.session.qty_desc += 'Youth Small, Black X ' + item.black_ys;
         } else {
-            req.session.qty_desc += ' / Youth Small, Black';
+            req.session.qty_desc += ' / Youth Small, Black X ' + item.black_ys;
         }
     }
     if (item.white_ym != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Medium Small, White', Number(item.white_ym), 40]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Youth Medium, White';
+            req.session.qty_desc += 'Youth Medium, White X ' + item.white_ym;
         } else {
-            req.session.qty_desc += ' / Youth Medium, White';
+            req.session.qty_desc += ' / Youth Medium, White X ' + item.white_ym;
         }
     }
     if (item.black_ym != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Medium Small, Black', Number(item.black_ym), 40]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Youth Medium, Black';
+            req.session.qty_desc += 'Youth Medium, Black X ' + item.black_ym;
         } else {
-            req.session.qty_desc += ' / Youth Medium, Black';
+            req.session.qty_desc += ' / Youth Medium, Black X ' + item.black_ym;
         }
     }
     if (item.white_yl != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Youth Large, White', Number(item.white_yl), 40]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Youth Large, White';
+            req.session.qty_desc += 'Youth Large, White X ' + item.white_yl;
         } else {
-            req.session.qty_desc += ' / Youth Large, White';
+            req.session.qty_desc += ' / Youth Large, White X ' + item.white_yl;
         }
     }
     if (item.black_yl != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Youth Large, Black', Number(item.black_yl), 40]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Youth Large, Black';
+            req.session.qty_desc += 'Youth Large, Black X ' + item.black_yl;
         } else {
-            req.session.qty_desc += ' / Youth Large, Black';
+            req.session.qty_desc += ' / Youth Large, Black X ' + item.black_yl;
         }
     }
     //SEPERATOR
@@ -165,90 +165,90 @@ router.post('/process_qty', function(req, res) {
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Adult Small, Black', Number(item.black_as), 55]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Adult Small, Black';
+            req.session.qty_desc += 'Adult Small, Black X ' + item.black_as;
         } else {
-            req.session.qty_desc += ' / Adult Small, Black';
+            req.session.qty_desc += ' / Adult Small, Black X ' + item.black_as;
         }
     }
     if (item.white_as != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Adult Small, White', Number(item.white_as), 55]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Adult Small, White';
+            req.session.qty_desc += 'Adult Small, White X ' + item.white_as;
         } else {
-            req.session.qty_desc += ' / Adult Small, White';
+            req.session.qty_desc += ' / Adult Small, White X ' + item.white_as;
         }
     }
     if (item.black_am != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Adult Medium, Black', Number(item.black_am), 55]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Adult Medium, Black';
+            req.session.qty_desc += 'Adult Medium, Black X ' + item.black_am;
         } else {
-            req.session.qty_desc += ' / Adult Medium, Black';
+            req.session.qty_desc += ' / Adult Medium, Black X ' + item.black_am;
         }
     }
     if (item.white_am != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Adult Medium, White', Number(item.white_am), 55]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Adult Medium, White';
+            req.session.qty_desc += 'Adult Medium, White X ' + item.white_am;
         } else {
-            req.session.qty_desc += ' / Adult Medium, White';
+            req.session.qty_desc += ' / Adult Medium, White X ' + item.white_am;
         }
     }
     if (item.black_al != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Adult Large, Black', Number(item.black_al), 55]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Adult Large, Black';
+            req.session.qty_desc += 'Adult Large, Black X ' + item.black_al;
         } else {
-            req.session.qty_desc += ' / Adult Large, Black';
+            req.session.qty_desc += ' / Adult Large, Black X ' + item.black_al;
         }
     }
     if (item.white_al != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Adult Large, White', Number(item.white_al), 55]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Adult Large, White';
+            req.session.qty_desc += 'Adult Large, White X ' + item.white_al;
         } else {
-            req.session.qty_desc += ' / Adult Large, White';
+            req.session.qty_desc += ' / Adult Large, White X ' + item.white_al;
         }
     }
     if (item.black_axl != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Adult X-Large, Black', Number(item.black_axl), 55]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Adult X-Large, Black';
+            req.session.qty_desc += 'Adult X-Large, Black X ' + item.black_axl;
         } else {
-            req.session.qty_desc += ' / Adult X-Large, Black';
+            req.session.qty_desc += ' / Adult X-Large, Black X ' + item.black_axl;
         }
     }
     if (item.white_axl != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Adult X-Large, White', Number(item.white_axl), 55]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Adult X-Large, White';
+            req.session.qty_desc += 'Adult X-Large, White X ' + item.white_axl;
         } else {
-            req.session.qty_desc += ' / Adult X-Large, White';
+            req.session.qty_desc += ' / Adult X-Large, White X ' + item.white_axl;
         }
     }
     if (item.black_axxl != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Adult XX-Large, Black', Number(item.black_axxl), 55]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Adult XX-Large, Black';
+            req.session.qty_desc += 'Adult XX-Large, Black X ' + item.black_axxl;
         } else {
-            req.session.qty_desc += ' / Adult XX-Large, Black';
+            req.session.qty_desc += ' / Adult XX-Large, Black X ' + item.black_axxl;
         }
     }
     if (item.white_axxl != 0){
         req.session.order_qty_size += 1;
         req.session.qty_order.push(['Adult XX-Large, White', Number(item.white_axxl), 55]);
         if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Adult XX-Large, White';
+            req.session.qty_desc += 'Adult XX-Large, White X ' + item.white_axxl;
         } else {
-            req.session.qty_desc += ' / Adult XX-Large, White';
+            req.session.qty_desc += ' / Adult XX-Large, White X ' + item.white_axxl;
         }
     }
     console.log('req.session.qty_order: ' + req.session.qty_order);
@@ -256,9 +256,296 @@ router.post('/process_qty', function(req, res) {
     const qty_query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
     db.query(qty_query, [req.session.qty_order_id, req.session.qty_order_name, req.session.qty_order_email, 'UNPAID', 0, req.session.qty_desc])
         .then(function(rows){
-
+            res.redirect('https://ema-store.herokuapp.com/qty_checkout.html');
         })
-    res.redirect('/');
+        .catch(function(err){
+            console.log("Err in adding to db - qty: " + err);
+            res.redirect('https://ema-store.herokuapp.com/')
+        })
+});
+
+router.get('/qty_checkout.html', function(req, res){
+    res.render('qty_checkout.html', {
+
+    })
+});
+
+router.post('/qty-create-session', async(req, res) => {
+    if (req.session.order_qty_size == 1){
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.qty_order_id,
+            customer_email: req.session.qty_order_email,
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[0],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[2],
+                },
+                quantity: req.session.qty_order[1],
+                description: 'EMA Online Store',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/qty_success.html`,
+            cancel_url: `${YOUR_DOMAIN}/qty_cancel.html`,
+            allow_promotion_codes: true,
+            });
+        
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else if (req.session.order_qty_size == 2){
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.qty_order_id,
+            customer_email: req.session.qty_order_email,
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[0],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[2],
+                },
+                quantity: req.session.qty_order[1],
+                description: 'EMA Online Store',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[3],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[5],
+                },
+                quantity: req.session.qty_order[4],
+                description: 'EMA Online Store',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/qty_success.html`,
+            cancel_url: `${YOUR_DOMAIN}/qty_cancel.html`,
+            allow_promotion_codes: true,
+            });
+        
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else if (req.session.order_qty_size == 3){
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.qty_order_id,
+            customer_email: req.session.qty_order_email,
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[0],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[2],
+                },
+                quantity: req.session.qty_order[1],
+                description: 'EMA Online Store',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[3],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[5],
+                },
+                quantity: req.session.qty_order[4],
+                description: 'EMA Online Store',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[6],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[8],
+                },
+                quantity: req.session.qty_order[7],
+                description: 'EMA Online Store',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/qty_success.html`,
+            cancel_url: `${YOUR_DOMAIN}/qty_cancel.html`,
+            allow_promotion_codes: true,
+            });
+        
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else if (req.session.order_size == 4){
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.qty_order_id,
+            customer_email: req.session.qty_order_email,
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[0],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[2],
+                },
+                quantity: req.session.qty_order[1],
+                description: 'EMA Online Store',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[3],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[5],
+                },
+                quantity: req.session.qty_order[4],
+                description: 'EMA Online Store',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[6],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[8],
+                },
+                quantity: req.session.qty_order[7],
+                description: 'EMA Online Store',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[9],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[11],
+                },
+                quantity: req.session.qty_order[10],
+                description: 'EMA Online Store',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/qty_success.html`,
+            cancel_url: `${YOUR_DOMAIN}/qty_cancel.html`,
+            allow_promotion_codes: true,
+            });
+        
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else if (req.session.order_size == 5){
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.qty_order_id,
+            customer_email: req.session.qty_order_email,
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[0],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[2],
+                },
+                quantity: req.session.qty_order[1],
+                description: 'EMA Online Store',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[3],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[5],
+                },
+                quantity: req.session.qty_order[4],
+                description: 'EMA Online Store',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[6],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[8],
+                },
+                quantity: req.session.qty_order[7],
+                description: 'EMA Online Store',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[9],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[11],
+                },
+                quantity: req.session.qty_order[10],
+                description: 'EMA Online Store',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[12],
+                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
+                    description: '2021 Hoodie'
+                    },
+                    unit_amount: req.session.qty_order[14],
+                },
+                quantity: req.session.qty_order[13],
+                description: 'EMA Online Store',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/qty_success.html`,
+            cancel_url: `${YOUR_DOMAIN}/qty_cancel.html`,
+            allow_promotion_codes: true,
+            });
+        
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else {
+        console.log('6 or more different hoodies ordered. Advise on two different orders.');
+        req.session.destroy();
+        res.redirect('/');
+    }
 });
 
 router.post('/process_cart', function(req, res) {

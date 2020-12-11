@@ -83,6 +83,35 @@ app.get('/quantity_cart.html', function(req, res){
         })
 });
 
+app.post('/process_qty', function(req, res) {
+    db.query('select * from inventory')
+        .then(function(rows){
+            JSON.safeStringify = (obj, indent = 2) => {
+                let cache = [];
+                const retVal = JSON.stringify(
+                    obj,
+                    (key, value) =>
+                        typeof value === "object" && value !== null
+                        ? cache.includes(value)
+                            ? undefined // Duplicate reference found, discard key
+                            : cache.push(value) && value // Store value in our collection
+                        : value,
+                    indent
+                );
+                cache = null;
+                return retVal;
+            };
+            
+              // Example:
+            console.log('rows', JSON.safeStringify(rows));
+            res.redirect('/');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.redirect('/');
+        })
+});
+
 app.post('/process_cart', function(req, res) {
     if (!req.session){
         app.use(

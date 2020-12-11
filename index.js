@@ -57,24 +57,6 @@ router.get('/quantity_cart.html', function(req, res){
     let qty_query = 'select * from inventory;';
     db.query(qty_query)
         .then(function(rows){
-            JSON.safeStringify = (obj, indent = 2) => {
-                let cache = [];
-                const retVal = JSON.stringify(
-                    obj,
-                    (key, value) =>
-                        typeof value === "object" && value !== null
-                        ? cache.includes(value)
-                            ? undefined // Duplicate reference found, discard key
-                            : cache.push(value) && value // Store value in our collection
-                        : value,
-                    indent
-                );
-                cache = null;
-                return retVal;
-            };
-            
-              // Example:
-            console.log('rows', JSON.safeStringify(rows));
             res.render('quantity_cart.html', {
                 data: rows
             })
@@ -88,29 +70,6 @@ router.get('/quantity_cart.html', function(req, res){
 router.post('/process_qty', function(req, res) {
     db.query('select * from inventory')
         .then(function(rows){
-            JSON.safeStringify = (obj, indent = 2) => {
-                let cache = [];
-                const retVal = JSON.stringify(
-                    obj,
-                    (key, value) =>
-                        typeof value === "object" && value !== null
-                        ? cache.includes(value)
-                            ? undefined // Duplicate reference found, discard key
-                            : cache.push(value) && value // Store value in our collection
-                        : value,
-                    indent
-                );
-                cache = null;
-                return retVal;
-            };
-            
-              // Example:
-            console.log('rows', JSON.safeStringify(rows));
-            console.log('rows[0].product_id: ' + rows[0].product_id);
-            console.log('rows[1].product_id: ' + rows[1].product_id);
-            rows.forEach(function(item) {
-                console.log('item.product_id: ' + item.product_id);
-            })
             res.redirect('/');
         })
         .catch(function(err){

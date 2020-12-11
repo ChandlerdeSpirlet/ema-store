@@ -253,10 +253,10 @@ router.post('/process_qty', function(req, res) {
     }
     console.log('req.session.qty_order: ' + req.session.qty_order);
     console.log('Should be: desc, qty, desc, qty');
-    console.log('req.session.qty_order[0]: ' + req.session.qty_order[0]);
-    console.log('req.session.qty_order[1]: ' + req.session.qty_order[1]);
-    console.log('req.session.qty_order[3]: ' + req.session.qty_order[3]);
-    console.log('req.session.qty_order[4]: ' + req.session.qty_order[4]);
+    console.log('req.session.qty_order[0][0]: ' + req.session.qty_order[0][0]);
+    console.log('req.session.qty_order[0][1]: ' + req.session.qty_order[0][1]);
+    console.log('req.session.qty_order[1][0]: ' + req.session.qty_order[1][0]);
+    console.log('req.session.qty_order[1][1]: ' + req.session.qty_order[1][1]);
     console.log('req.session.order_qty_size = ' + req.session.order_qty_size);
     req.session.qty_order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor(Math.random() * (1 + 10000 - 1)) + 1);
     const qty_query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';

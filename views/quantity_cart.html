@@ -72,10 +72,9 @@
             background: #fff;
             box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
             transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
-            
             cursor: pointer;
-            width: 90%;
-            align-self: center;
+            padding-left: 10%;
+            padding-right: 10%;
             background-color: rgba(255,255,255,0.8);
         }
 
@@ -91,6 +90,7 @@
         h5 {
             font-size: 24px;
             text-align: center;
+            line-height: 1px;
         }
     </style>
     <body>
@@ -109,7 +109,7 @@
             <div class="card">
                 <h5>{{ data[0].description }}</h5>
                 <p>Only {{ data[0].qty }} in stock!</p>
-                <input type="number" id="{{ data[0].product_id }}" name="item_0" min="0" max="{{ data[0].qty }}">
+                I want: <input type="number" id="{{ data[0].product_id }}" name="item_0" min="0" max="{{ data[0].qty }}">
             </div>
             <div class="card">
                 <h5>{{ data[1].description }}</h5>

@@ -66,11 +66,20 @@
             box-shadow: inset 1px 1px 3px #ccc;
             border-radius: 5px;
         }
-        .my-card-content {
-            padding: 16px;
-        }
-        .my-card {
+
+        .card{
+            border-radius: 4px;
+            background: #fff;
+            box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+            transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+            padding: 14px 80px 18px 36px;
+            cursor: pointer;
             width: 90%;
+        }
+
+        .card:hover{
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
         }
     </style>
     <body>
@@ -86,7 +95,36 @@
                 <input type="text" id="order_email" name="order_email" required placeholder="Email">
             </div>
             <h3>Kid Sizes</h3>
-            {{ data[0].product_id }}
+            <div class="card">
+                <h5>{{ data[0].description }}</h5>
+                <p>Only {{ data[0].qty }} in stock!</p>
+                <input type="number" id="{% data[0].product_id %}" name="item_0" min="0" max="{% data[0].qty %}">
+            </div>
+            <div class="card">
+                <h5>{{ data[1].description }}</h5>
+                <p>Only {{ data[1].qty }} in stock!</p>
+                <input type="number" id="{% data[1].product_id %}" name="item_1" min="0" max="{% data[1].qty %}">
+            </div>
+            <div class="card">
+                <h5>{{ data[2].description }}</h5>
+                <p>Only {{ data[2].qty }} in stock!</p>
+                <input type="number" id="{% data[2].product_id %}" name="item_2" min="0" max="{% data[2].qty %}">
+            </div>
+            <div class="card">
+                <h5>{{ data[3].description }}</h5>
+                <p>Only {{ data[3].qty }} in stock!</p>
+                <input type="number" id="{% data[3].product_id %}" name="item_3" min="0" max="{% data[3].qty %}">
+            </div>
+            <div class="card">
+                <h5>{{ data[4].description }}</h5>
+                <p>Only {{ data[4].qty }} in stock!</p>
+                <input type="number" id="{% data[4].product_id %}" name="item_4" min="0" max="{% data[4].qty %}">
+            </div>
+            <div class="card">
+                <h5>{{ data[5].description }}</h5>
+                <p>Only {{ data[5].qty }} in stock!</p>
+                <input type="number" id="{% data[5].product_id %}" name="item_5" min="0" max="{% data[5].qty %}">
+            </div>
             <h3>Adult Sizes</h3>
             <div>
                 <input type="submit" name="Submit" value="Checkout"/>

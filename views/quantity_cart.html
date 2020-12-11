@@ -1,11 +1,9 @@
 <html>
+    {% block content %}
     <title>Hoodie Order Form</title>
     <meta name="viewport" content="width=device-width, inital-scale=1">
     
     <style>
-    @use "@material/card";
-
-    @include card.core-styles;
         * {
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -88,16 +86,11 @@
                 <input type="text" id="order_email" name="order_email" required placeholder="Email">
             </div>
             <h3>Kid Sizes</h3>
-            {{ data[0].product_id }}
-            {{ data[1].product_id }}
-
             <h3>Adult Sizes</h3>
-            <div class="mdc-card">
-                {{ data[0].product_id }}
-            </div>
             <div>
                 <input type="submit" name="Submit" value="Checkout"/>
             </div>
         </form>
     </body>
 </html>
+{% endblock %}

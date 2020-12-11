@@ -12,9 +12,10 @@ const { proc } = require('./database');
 var client = redis.createClient(process.env.REDIS_URL);
 var RedisStore = require('connect-redis')(session);
 const app = express();
-app.use(express.static('.'));
-app.set('views', __dirname + '/');
+app.use(express.static(__dirname));
+//app.set('views', __dirname + '/');
 app.use(exp_val());
+const router = express.Router();
 
 app.use(
     session({
@@ -33,11 +34,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
-nunjucks.configure('/', {noCache: true});
+nunjucks.configure('views', {noCache: true});
+app.use('/', router);
 
 const YOUR_DOMAIN = 'https://ema-store.herokuapp.com';
 
-app.get('/', function(req, res){
+router.get('/', function(req, res){
     req.session.key = Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1;
     console.log('session key is ' + req.session.key);
     req.session.order_size = 0;
@@ -45,10 +47,10 @@ app.get('/', function(req, res){
     //    req.session.destroy();
     //    res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
     //}  
-    res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
+    res.redirect('https://ema-store.herokurouter.com/shopping_cart.html');
 });
 
-app.get('/quantity_cart.html', function(req, res){
+router.get('/quantity_cart.html', function(req, res){
     req.session.qty_key = Math.floor( Math.random() * (1 + 10000 - 1)) + 1;
     console.log('sess_qty key is ' + req.session.qty_key);
     req.session.order_qty_size = 0;
@@ -83,7 +85,7 @@ app.get('/quantity_cart.html', function(req, res){
         })
 });
 
-app.post('/process_qty', function(req, res) {
+router.post('/process_qty', function(req, res) {
     db.query('select * from inventory')
         .then(function(rows){
             JSON.safeStringify = (obj, indent = 2) => {
@@ -117,7 +119,7 @@ app.post('/process_qty', function(req, res) {
         })
 });
 
-app.post('/process_cart', function(req, res) {
+router.post('/process_cart', function(req, res) {
     if (!req.session){
         app.use(
             session({
@@ -275,7 +277,7 @@ app.post('/process_cart', function(req, res) {
         })
 });
 
-app.get('/checkout.html', function(req, res){
+router.get('/checkout.html', function(req, res){
     console.log('final in checkout is ' + req.params.final);
     let amount = ((req.session.q1 * req.session.p1) + (req.session.q2 * req.session.p2) + (req.session.q3 * req.session.p3) + (req.session.q4 * req.session.p4));
     var final = '$' + String(amount).substring(0, amount.length - 2) + '.' + String(amount).substring(amount.length - 2, amount.length);
@@ -284,7 +286,7 @@ app.get('/checkout.html', function(req, res){
     })
 });
 
-app.post('/create-session', async (req, res) => {
+router.post('/create-session', async (req, res) => {
     //var local_price = req.session.order_price;
     //var local_desc = String(req.session.order_desc);
     //console.log('local_price is ' + local_price);
@@ -484,13 +486,13 @@ app.post('/create-session', async (req, res) => {
     }
     //req.session.destroy();
 });
-app.get('/success.html', function(req, res){
+router.get('/success.html', function(req, res){
     //req.session.destroy();
     res.render('success.html', {
     })
 });
 
-app.post('/webhook', (req, res) => {
+router.post('/webhook', (req, res) => {
     let event;
     try {
         console.log('event is ' + event);

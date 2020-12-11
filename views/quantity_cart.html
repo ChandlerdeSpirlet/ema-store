@@ -104,12 +104,12 @@
             <div class="card">
                 <p style="font-size: 24px; text-align: center; ">{{ data[0].description }}</h5>
                 <p>Only {{ data[0].qty }} in stock!</p>
-                <p style="font-size: 16px;">I want: </p><input type="number" id="{{ data[0].product_id }}" name="item_0" min="0" max="{{ data[0].qty }}">
+                <p style="font-size: 16px; font-style: normal;">I want: </p><input type="number" id="{{ data[0].product_id }}" name="item_0" min="0" max="{{ data[0].qty }}">
             </div>
             <div class="card">
                 <h5>{{ data[1].description }}</h5>
                 <p>Only {{ data[1].qty }} in stock!</p>
-                <input style="width: 30%; "number" id="{{ data[1].product_id }}" name="item_1" min="0" max="{{ data[1].qty }}">
+                <p style="font-size: 16px; font-style: normal;">I want: </p><input type="number" id="{{ data[1].product_id }}" name="item_1" min="0" max="{{ data[1].qty }}">
             </div>
             <div class="card">
                 <h5>{{ data[2].description }}</h5>

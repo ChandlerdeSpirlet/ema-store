@@ -47,7 +47,7 @@ router.get('/', function(req, res){
     //    req.session.destroy();
     //    res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
     //}  
-    res.redirect('https://ema-store.herokurouter.com/shopping_cart.html');
+    res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
 });
 
 router.get('/quantity_cart.html', function(req, res){

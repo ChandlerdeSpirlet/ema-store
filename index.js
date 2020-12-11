@@ -43,11 +43,11 @@ router.get('/', function(req, res){
     req.session.key = Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1;
     console.log('session key is ' + req.session.key);
     req.session.order_size = 0;
-    //if(!req.session.key >= 0){
-    //    req.session.destroy();
-    //    res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
-    //}  
-    res.redirect('https://ema-store.herokuapp.com/shopping_cart.html');
+    if(!req.session.key >= 0){
+        req.session.destroy();
+        res.redirect('https://ema-store.herokuapp.com/views/shopping_cart.html');
+    }
+    res.redirect('https://ema-store.herokuapp.com/views/shopping_cart.html');
 });
 
 router.get('/quantity_cart.html', function(req, res){
@@ -77,6 +77,20 @@ router.get('/quantity_cart.html', function(req, res){
 });
 
 router.post('/process_qty', function(req, res) {
+    if (!req.session){
+        app.use(
+            session({
+                store: new RedisStore({ 
+                    client: client,
+                    ttl: 5 * 60
+                }),
+            secret: process.env.secret_key,
+            resave: true,
+            saveUninitialized: true
+            })
+        );
+    }
+    req.session.order_qty_size = 0;
     var item = {
         order_name: req.sanitize('order_name').trim(),
         order_email: req.sanitize('order_email').trim(),

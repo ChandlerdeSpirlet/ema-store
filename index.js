@@ -77,28 +77,43 @@ router.get('/quantity_cart.html', function(req, res){
 });
 
 router.post('/process_qty', function(req, res) {
-    if (!req.session){
-        app.use(
-            session({
-                store: new RedisStore({ 
-                    client: client,
-                    ttl: 5 * 60
-                }),
-            secret: process.env.secret_key,
-            resave: true,
-            saveUninitialized: true
-            })
-        );
-    }
     req.session.order_qty_size = 0;
     var item = {
         order_name: req.sanitize('order_name').trim(),
         order_email: req.sanitize('order_email').trim(),
+        white_ys: req.sanitize('white_ys').trim(),
+        black_ys: req.sanitize('black_ys').trim(),
+        white_ym: req.sanitize('white_ym').trim(),
+        black_ym: req.sanitize('black_ym').trim(),
+        white_yl: req.sanitize('white_yl').trim(),
+        black_yl: req.sanitize('black_yl').trim(),
+        //SEPERATOR
         black_as: req.sanitize('black_as').trim(),
-        black_ys: req.sanitize('black_ys').trim()
+        black_am: req.sanitize('black_am').trim(),
+        black_al: req.sanitize('black_al').trim(),
+        black_axl: req.sanitize('black_axl').trim(),
+        black_axxl: req.sanitize('black_axxl').trim(),
+        white_as: req.sanitize('white_as').trim(),
+        white_am: req.sanitize('white_am').trim(),
+        white_al: req.sanitize('white_al').trim(),
+        white_axl: req.sanitize('white_axl').trim(),
+        white_axxl: req.sanitize('white_axxl').trim(),
     }
     console.log('item.order_name: ' + item.order_name);
     console.log('black_as: ' + item.black_as);
+    console.log('white_as: ' + item.white_as);
+    console.log('type of black_as: ' + typeof item.black_as);
+    req.session.qty_order = [];
+    //YOUTH
+    if (item.white_ys != 0){
+        req.session.order_qty_size += 1
+        req.session.qty_order.push(['Youth Small, White', item.white_ys, 40]);
+    }
+    if (item.black_as != 0){
+        req.session.order_qty_size += 1
+        req.session.qty_order.push(['Adult Small, Black', item.black_as, 55])
+    }
+    console.log('req.session.qty_order: ' + req.session.qty_order);
     res.redirect('/');
 });
 
@@ -265,7 +280,7 @@ router.get('/checkout.html', function(req, res){
     let amount = ((req.session.q1 * req.session.p1) + (req.session.q2 * req.session.p2) + (req.session.q3 * req.session.p3) + (req.session.q4 * req.session.p4));
     var final = '$' + String(amount).substring(0, amount.length - 2) + '.' + String(amount).substring(amount.length - 2, amount.length);
     res.render('checkout.html', {
-        
+        price: final
     })
 });
 

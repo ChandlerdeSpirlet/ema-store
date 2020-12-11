@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    {% block content %}
     <head>
         <title>Buy cool new product</title>
         <link rel="stylesheet" href="../views/style.css">
@@ -20,7 +21,7 @@
                 <h5>2020 EMA Hoodie</h5>
                 </div>
             </div>
-        <button id="checkout-button"><i class="material-icons">shopping_cart</i> Checkout </button>
+        <button id="checkout-button"><i class="material-icons">shopping_cart</i> Checkout - {{ price }}</button>
         </section>
     </body>
     <script type="text/javascript">
@@ -52,3 +53,4 @@
         });
     </script>
 </html>
+{% endblock %}

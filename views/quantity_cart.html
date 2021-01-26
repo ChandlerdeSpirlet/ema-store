@@ -137,9 +137,7 @@
                         <p>Only {{ item.qty }} in stock!</p>
                         {% endif %}
                         <label for="{{ item.product_id }}">I want: </label>
-                        {% if item.qty > 0 %}
-                            <input style="width: 30%;" type="number" inputmode="numeric" id="{{ item.product_id }}" name="{{ item.product_id }}" placeholder="0" min="0" max="{{ item.qty }}"><br>
-                        {% endif %}
+                        <input style="width: 30%;" type="number" inputmode="numeric" id="{{ item.product_id }}" name="{{ item.product_id }}" placeholder="0" min="0" max="{{ item.qty }}"><br>
                     </div>
                 {% endfor %}
             {% endif %}

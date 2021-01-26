@@ -90,8 +90,47 @@ router.get('/quantity_cart.html', function(req, res){
             res.redirect('/');
         })
 });
-
-router.post('/process_qty', function(req, res) {
+router.post('/process_qty', function(req, res) {//towels
+    req.session.order_qty_size = 0;
+    var item = {
+        red_towel: req.sanitize('red_towel').trim(),
+        blue_towel: req.sanitize('blue_towel').trim()
+    }
+    req.session.qty_order = [];
+    req.session.qty_order_name = item.order_name;
+    req.session.qty_order_email = item.order_email;
+    req.session.qty_desc = '';
+    if (item.blue_towel != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Hand Towel, Blue', Number(item.blue_towel), 10]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Hand Towel, Blue X ' + item.blue_towel;
+        } else {
+            req.session.qty_desc += ' / Hand Towel, Blue X ' + item.blue_towel;
+        }
+    }
+    if (item.red_towel != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Hand Towel, Red', Number(item.red_towel), 10]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Hand Towel, Red X ' + item.red_towel;
+        } else {
+            req.session.qty_desc += ' / Hand Towel, Red X ' + item.red_towel;
+        }
+    }
+    req.session.qty_order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor(Math.random() * (1 + 10000 - 1)) + 1);
+    const qty_query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
+    db.query(qty_query, [req.session.qty_order_id, req.session.qty_order_name, req.session.qty_order_email, 'UNPAID', 0, req.session.qty_desc])
+        .then(function(rows){
+            res.redirect('https://ema-store.herokuapp.com/qty_checkout.html');
+        })
+        .catch(function(err){
+            console.log("Err in adding to db - qty: " + err);
+            res.redirect('https://ema-store.herokuapp.com/')
+        })
+});
+/*
+router.post('/process_qty', function(req, res) {//hoodies
     req.session.order_qty_size = 0;
     var item = {
         order_name: req.sanitize('order_name').trim(),
@@ -303,6 +342,7 @@ router.post('/process_qty', function(req, res) {
             res.redirect('https://ema-store.herokuapp.com/')
         })
 });
+*/
 
 router.get('/qty_checkout.html', function(req, res){
     res.render('qty_checkout.html', {

@@ -1,4 +1,4 @@
-const stripe = require('stripe')('sk_test_51Hjb1lBoWPpK8JFgjYugtscvqpaEQ7AswBZ3qmMwKWSm6E2WamPJRRk5rZTDogPf7hdqZJtvVQciAbu4KKdAecJO00tCH20RKo');
+const stripe = require('stripe')(PROCESS.ENV.STRIPE_KEY);
 const exp_val = require('express-validator');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -56,6 +56,7 @@ router.get('/quantity_cart.html', function(req, res){
     req.session.qty_key = Math.floor( Math.random() * (1 + 10000 - 1)) + 1;
     console.log('sess_qty key is ' + req.session.qty_key);
     req.session.order_qty_size = 0;
+    /*
     let qty_query_youth = "select * from inventory where size like '%Youth%';";
     let qty_query_adult = "select * from inventory where size like '%Adult%';";
     db.query(qty_query_youth)
@@ -71,6 +72,18 @@ router.get('/quantity_cart.html', function(req, res){
                     console.log('ERROR: quantity_cart:: ' + err);
                     res.redirect('/');
                 })
+        })
+        .catch(function(err){
+            console.log('ERROR: quantity_cart:: ' + err);
+            res.redirect('/');
+        })
+    */
+    let qty_towel = "select * from inventory where size = 'Hand Towel';";
+    db.query(qty_towel)
+        .then(function(rows){
+            res.render('quantity_cart.html', {
+                towels: rows
+            })
         })
         .catch(function(err){
             console.log('ERROR: quantity_cart:: ' + err);
@@ -100,6 +113,9 @@ router.post('/process_qty', function(req, res) {
         white_al: req.sanitize('white_al').trim(),
         white_axl: req.sanitize('white_axl').trim(),
         white_axxl: req.sanitize('white_axxl').trim(),
+        //SEPERATOR
+        red_towel: req.sanitize('red_towel').trim(),
+        blue_towel: req.sanitize('blue_towel').trim()
     }
     req.session.qty_order = [];
     req.session.qty_order_name = item.order_name;
@@ -251,6 +267,24 @@ router.post('/process_qty', function(req, res) {
             req.session.qty_desc += ' / Adult XX-Large, White X ' + item.white_axxl;
         }
     }
+    if (item.blue_towel != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Hand Towel, Blue', Number(item.blue_towel), 10]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Hand Towel, Blue X ' + item.blue_towel;
+        } else {
+            req.session.qty_desc += ' / Hand Towel, Blue X ' + item.blue_towel;
+        }
+    }
+    if (item.red_towel != 0){
+        req.session.order_qty_size += 1;
+        req.session.qty_order.push(['Hand Towel, Red', Number(item.red_towel), 10]);
+        if (req.session.qty_desc == ''){
+            req.session.qty_desc += 'Hand Towel, Red X ' + item.red_towel;
+        } else {
+            req.session.qty_desc += ' / Hand Towel, Red X ' + item.red_towel;
+        }
+    }
     console.log('req.session.qty_order: ' + req.session.qty_order);
     console.log('Should be: desc, qty, desc, qty');
     console.log('req.session.qty_order[0][0]: ' + req.session.qty_order[0][0]);
@@ -276,7 +310,84 @@ router.get('/qty_checkout.html', function(req, res){
     })
 });
 
-router.post('/qty-create-session', async(req, res) => {
+router.post('/qty-create-session', async(req, res) => { //Hand Towel
+    if (req.session.order_qty_size == 1){
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.qty_order_id,
+            customer_email: req.session.qty_order_email,
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[0][0],
+                    images: ['https://scontent.fapa1-2.fna.fbcdn.net/v/t1.0-9/142708276_10158908630253374_264610551351045715_o.jpg?_nc_cat=107&ccb=2&_nc_sid=825194&_nc_ohc=Yoaqnx29oxEAX-4O0OX&_nc_ht=scontent.fapa1-2.fna&oh=42ed29cbceb8bdb991142da3466724e7&oe=6036A938'],
+                    description: '2021 Hand Towel'
+                    },
+                    unit_amount: Number(req.session.qty_order[0][2]),
+                },
+                quantity: Number(req.session.qty_order[0][1]),
+                description: 'EMA Online Store',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/views/qty_success.html`,
+            cancel_url: `${YOUR_DOMAIN}/views/qty_cancel.html`,
+            allow_promotion_codes: true,
+            });
+        
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else if (req.session.order_qty_size == 2){
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.qty_order_id,
+            customer_email: req.session.qty_order_email,
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[0][0],
+                    images: ['https://scontent.fapa1-2.fna.fbcdn.net/v/t1.0-9/142708276_10158908630253374_264610551351045715_o.jpg?_nc_cat=107&ccb=2&_nc_sid=825194&_nc_ohc=Yoaqnx29oxEAX-4O0OX&_nc_ht=scontent.fapa1-2.fna&oh=42ed29cbceb8bdb991142da3466724e7&oe=6036A938'],
+                    description: '2021 Hand Towel'
+                    },
+                    unit_amount: Number(req.session.qty_order[0][2]),
+                },
+                quantity: Number(req.session.qty_order[0][1]),
+                description: 'EMA Online Store',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                    name: req.session.qty_order[1][0],
+                    images: ['https://scontent.fapa1-2.fna.fbcdn.net/v/t1.0-9/142708276_10158908630253374_264610551351045715_o.jpg?_nc_cat=107&ccb=2&_nc_sid=825194&_nc_ohc=Yoaqnx29oxEAX-4O0OX&_nc_ht=scontent.fapa1-2.fna&oh=42ed29cbceb8bdb991142da3466724e7&oe=6036A938'],
+                    description: '2021 Hand Towel'
+                    },
+                    unit_amount: Number(req.session.qty_order[1][2]),
+                },
+                quantity: Number(req.session.qty_order[1][1]),
+                description: 'EMA Online Store',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/views/qty_success.html`,
+            cancel_url: `${YOUR_DOMAIN}/views/qty_cancel.html`,
+            allow_promotion_codes: true,
+            });
+        
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else {
+        console.log('3 or more different hand towels ordered. Advise on two different orders.');
+        req.session.destroy();
+        res.redirect('/');
+    }
+});
+/*
+router.post('/qty-create-session', async(req, res) => { //Hoodies
     if (req.session.order_qty_size == 1){
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -553,7 +664,7 @@ router.post('/qty-create-session', async(req, res) => {
         res.redirect('/');
     }
 });
-
+*/
 router.post('/process_cart', function(req, res) {
     if (!req.session){
         app.use(

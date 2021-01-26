@@ -1,6 +1,6 @@
 <html>
     {% block content %}
-    <title>Hoodie Order Form</title>
+    <title>Hand Towel Order Form</title>
     <meta name="viewport" content="width=device-width, inital-scale=1">
     
     <style>
@@ -92,7 +92,7 @@
         }
     </style>
     <body>
-        <h1>EMA Hoodie Order Form</h1>
+        <h1>EMA Hand Towel Order Form</h1>
         <form name="Form" action="/process_qty" method="POST">
             <h3>Order Info</h3>
             <div>
@@ -102,7 +102,7 @@
             <div>
                 <label for="order_email">Email:</label>
                 <input type="text" id="order_email" name="order_email" required placeholder="Email">
-            </div>
+            </div><!--
             <h3>Kid Sizes</h3>
             {% if youth %}
                 {% for item in youth %}
@@ -125,6 +125,14 @@
                     </div>
                 {% endfor %}
             {% endif %}
+            -->
+            <h3>Hand Towels</h3>
+            {% if towels %}
+                {% for item in towels %}
+                    <p style="font-size: 24px; text-align: center; font-weight: bold;">{{ item.description }} &mdash; ${{ item.price }}.00</h5>
+                    <p>Only {{ item.qty }} in stock!</p>
+                    <label for="{{ item.product_id }}">I want: </label>
+                    <input style="width: 30%;" type="number" inputmode="numeric" id="{{ item.product_id }}" name="{{ item.product_id }}" placeholder="0" min="0" max="{{ item.qty }}"><br>
             <div>
                 <input type="submit" name="Submit" value="Checkout"/>
             </div>

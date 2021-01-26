@@ -114,7 +114,7 @@ router.post('/process_qty', function(req, res) {//towels
             } else {
                 req.session.qty_desc += ' / Hand Towel, Blue X ' + item.blue_towel;
             }
-            cost += 10 * item.blue;
+            cost += 10 * item.blue_towel;
         }
         if (item.red_towel != 0){
             req.session.order_qty_size += 1;
@@ -126,7 +126,7 @@ router.post('/process_qty', function(req, res) {//towels
             } else {
                 req.session.qty_desc += ' / Hand Towel, Red X ' + item.red_towel;
             }
-            cost += red_towel * 10;
+            cost += item.red_towel * 10;
         }
         req.session.qty_order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor(Math.random() * (1 + 10000 - 1)) + 1);
         const qty_query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';

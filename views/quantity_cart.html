@@ -129,14 +129,18 @@
             <h3>Hand Towels</h3>
             {% if towels %}
                 {% for item in towels %}
-                    <p style="font-size: 24px; text-align: center; font-weight: bold;">{{ item.description }} &mdash; ${{ item.price }}.00</h5>
-                    <p>Only {{ item.qty }} in stock!</p>
-                    <label for="{{ item.product_id }}">I want: </label>
-                    <input style="width: 30%;" type="number" inputmode="numeric" id="{{ item.product_id }}" name="{{ item.product_id }}" placeholder="0" min="0" max="{{ item.qty }}"><br>
+                    <div class="card">
+                        <p style="font-size: 24px; text-align: center; font-weight: bold;">{{ item.description }} &mdash; ${{ item.price }}.00</h5>
+                        <p>Only {{ item.qty }} in stock!</p>
+                        <label for="{{ item.product_id }}">I want: </label>
+                        <input style="width: 30%;" type="number" inputmode="numeric" id="{{ item.product_id }}" name="{{ item.product_id }}" placeholder="0" min="0" max="{{ item.qty }}"><br>
+                    </div>
+                {% endfor %}
+            {% endif %}
             <div>
                 <input type="submit" name="Submit" value="Checkout"/>
             </div>
         </form>
     </body>
+    {% endblock %}
 </html>
-{% endblock %}

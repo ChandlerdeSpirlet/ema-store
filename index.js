@@ -93,6 +93,8 @@ router.get('/quantity_cart.html', function(req, res){
 router.post('/process_qty', function(req, res) {//towels
     req.session.order_qty_size = 0;
     var item = {
+        order_name: req.sanitize('order_name').trim(),
+        order_email: req.sanitize('order_email').trim(),
         red_towel: req.sanitize('red_towel').trim(),
         blue_towel: req.sanitize('blue_towel').trim()
     }

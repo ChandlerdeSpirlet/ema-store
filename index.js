@@ -132,11 +132,11 @@ router.post('/process_qty', function(req, res) {//towels
         const qty_query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
         db.query(qty_query, [req.session.qty_order_id, req.session.qty_order_name, req.session.qty_order_email, 'PAID - Cash or ZP', cost, req.session.qty_desc])
             .then(function(rows){
-                res.redirect('https://ema-store.herokuapp.com/qty_success.html');
+                res.redirect('https://ema-store.herokuapp.com/views/qty_success.html');
             })
             .catch(function(err){
                 console.log("Err in adding to db - qty: " + err);
-                res.redirect('https://ema-store.herokuapp.com/')
+                res.redirect('https://ema-store.herokuapp.com/quantity_cart.html')
             })
     }
     if (item.blue_towel != 0){

@@ -103,7 +103,7 @@ router.post('/process_qty', function(req, res) {//towels
     req.session.qty_order_email = item.order_email;
     req.session.qty_desc = '';
     var cost = 0
-    if (req.session.qty_order_name == 'Sal Yang' && req.session.qty_order_email == 'exclusivemartialarts@gmail.com'){
+    if (req.session.qty_order_name == 'Sal Yang'){
         if (item.blue_towel != 0){
             req.session.order_qty_size += 1;
             var dec_qty_blue = 'update inventory set qty = qty - $1 where product_id = $2';

@@ -104,7 +104,7 @@ router.post('/process_qty', function(req, res) {//towels
     req.session.qty_desc = '';
     if (item.blue_towel != 0){
         req.session.order_qty_size += 1;
-        req.session.qty_order.push(['Hand Towel, Blue', Number(item.blue_towel), 10]);
+        req.session.qty_order.push(['Hand Towel, Blue', Number(item.blue_towel), 1000]);
         if (req.session.qty_desc == ''){
             req.session.qty_desc += 'Hand Towel, Blue X ' + item.blue_towel;
         } else {
@@ -113,7 +113,7 @@ router.post('/process_qty', function(req, res) {//towels
     }
     if (item.red_towel != 0){
         req.session.order_qty_size += 1;
-        req.session.qty_order.push(['Hand Towel, Red', Number(item.red_towel), 10]);
+        req.session.qty_order.push(['Hand Towel, Red', Number(item.red_towel), 1000]);
         if (req.session.qty_desc == ''){
             req.session.qty_desc += 'Hand Towel, Red X ' + item.red_towel;
         } else {

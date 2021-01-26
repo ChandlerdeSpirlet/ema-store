@@ -105,7 +105,6 @@ router.post('/process_qty', function(req, res) {//towels
     var cost = 0
     if (req.session.qty_order_name == 'Sal Yang'){
         if (item.blue_towel != 0){
-            req.session.order_qty_size += 1;
             var dec_qty_blue = 'update inventory set qty = qty - $1 where product_id = $2';
             db.none(dec_qty_blue, [item.blue_towel, 'blue_towel'])
             req.session.qty_order.push(['Hand Towel, Blue', Number(item.blue_towel), 1000]);
@@ -138,39 +137,40 @@ router.post('/process_qty', function(req, res) {//towels
                 console.log("Err in adding to db - qty: " + err);
                 res.redirect('https://ema-store.herokuapp.com/quantity_cart.html')
             })
-    }
-    if (item.blue_towel != 0){
-        req.session.order_qty_size += 1;
-        var dec_qty_blue = 'update inventory set qty = qty - $1 where product_id = $2';
-        db.none(dec_qty_blue, [item.blue_towel, 'blue_towel'])
-        req.session.qty_order.push(['Hand Towel, Blue', Number(item.blue_towel), 1000]);
-        if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Hand Towel, Blue X ' + item.blue_towel;
-        } else {
-            req.session.qty_desc += ' / Hand Towel, Blue X ' + item.blue_towel;
+    } else {
+        if (item.blue_towel != 0){
+            req.session.order_qty_size += 1;
+            var dec_qty_blue = 'update inventory set qty = qty - $1 where product_id = $2';
+            db.none(dec_qty_blue, [item.blue_towel, 'blue_towel'])
+            req.session.qty_order.push(['Hand Towel, Blue', Number(item.blue_towel), 1000]);
+            if (req.session.qty_desc == ''){
+                req.session.qty_desc += 'Hand Towel, Blue X ' + item.blue_towel;
+            } else {
+                req.session.qty_desc += ' / Hand Towel, Blue X ' + item.blue_towel;
+            }
         }
-    }
-    if (item.red_towel != 0){
-        req.session.order_qty_size += 1;
-        var dec_qty_red = 'update inventory set qty = qty - $1 where product_id = $2';
-        db.none(dec_qty_blue, [item.red_towel, 'red_towel'])
-        req.session.qty_order.push(['Hand Towel, Red', Number(item.red_towel), 1000]);
-        if (req.session.qty_desc == ''){
-            req.session.qty_desc += 'Hand Towel, Red X ' + item.red_towel;
-        } else {
-            req.session.qty_desc += ' / Hand Towel, Red X ' + item.red_towel;
+        if (item.red_towel != 0){
+            req.session.order_qty_size += 1;
+            var dec_qty_red = 'update inventory set qty = qty - $1 where product_id = $2';
+            db.none(dec_qty_blue, [item.red_towel, 'red_towel'])
+            req.session.qty_order.push(['Hand Towel, Red', Number(item.red_towel), 1000]);
+            if (req.session.qty_desc == ''){
+                req.session.qty_desc += 'Hand Towel, Red X ' + item.red_towel;
+            } else {
+                req.session.qty_desc += ' / Hand Towel, Red X ' + item.red_towel;
+            }
         }
+        req.session.qty_order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor(Math.random() * (1 + 10000 - 1)) + 1);
+        const qty_query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
+        db.query(qty_query, [req.session.qty_order_id, req.session.qty_order_name, req.session.qty_order_email, 'UNPAID', 0, req.session.qty_desc])
+            .then(function(rows){
+                res.redirect('https://ema-store.herokuapp.com/qty_checkout.html');
+            })
+            .catch(function(err){
+                console.log("Err in adding to db - qty: " + err);
+                res.redirect('https://ema-store.herokuapp.com/')
+            })
     }
-    req.session.qty_order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor(Math.random() * (1 + 10000 - 1)) + 1);
-    const qty_query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
-    db.query(qty_query, [req.session.qty_order_id, req.session.qty_order_name, req.session.qty_order_email, 'UNPAID', 0, req.session.qty_desc])
-        .then(function(rows){
-            res.redirect('https://ema-store.herokuapp.com/qty_checkout.html');
-        })
-        .catch(function(err){
-            console.log("Err in adding to db - qty: " + err);
-            res.redirect('https://ema-store.herokuapp.com/')
-        })
 });
 /*
 router.post('/process_qty', function(req, res) {//hoodies

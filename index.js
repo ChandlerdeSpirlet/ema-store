@@ -119,7 +119,7 @@ router.post('/process_qty', function(req, res) {//towels
         if (item.red_towel != 0){
             req.session.order_qty_size += 1;
             var dec_qty_red = 'update inventory set qty = qty - $1 where product_id = $2';
-            db.none(dec_qty_blue, [item.red_towel, 'red_towel'])
+            db.none(dec_qty_red, [item.red_towel, 'red_towel'])
             req.session.qty_order.push(['Hand Towel, Red', Number(item.red_towel), 1000]);
             if (req.session.qty_desc == ''){
                 req.session.qty_desc += 'Hand Towel, Red X ' + item.red_towel;
@@ -154,7 +154,7 @@ router.post('/process_qty', function(req, res) {//towels
         if (item.red_towel != 0){
             req.session.order_qty_size += 1;
             var dec_qty_red = 'update inventory set qty = qty - $1 where product_id = $2';
-            db.none(dec_qty_blue, [item.red_towel, 'red_towel'])
+            db.none(dec_qty_red, [item.red_towel, 'red_towel'])
             req.session.qty_order.push(['Hand Towel, Red', Number(item.red_towel), 1000]);
             if (req.session.qty_desc == ''){
                 req.session.qty_desc += 'Hand Towel, Red X ' + item.red_towel;

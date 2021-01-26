@@ -133,13 +133,12 @@
                         <p style="font-size: 24px; text-align: center; font-weight: bold;">{{ item.description }} &mdash; ${{ item.price }}.00</h5>
                         {% if item.qty == 0 %}
                         <p>Sold Out</p>
-                        {% endif %}
+                        {% else %}
                         <p>Only {{ item.qty }} in stock!</p>
+                        {% endif %}
                         <label for="{{ item.product_id }}">I want: </label>
                         {% if item.qty > 0 %}
                             <input style="width: 30%;" type="number" inputmode="numeric" id="{{ item.product_id }}" name="{{ item.product_id }}" placeholder="0" min="0" max="{{ item.qty }}"><br>
-                        {% else %}
-                        <input style="width: 30%;" type="number" inputmode="numeric" id="{{ item.product_id }}" name="{{ item.product_id }}" placeholder="0" min="0" max="{{ item.qty }}" disabled><br>
                         {% endif %}
                     </div>
                 {% endfor %}

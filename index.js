@@ -52,6 +52,12 @@ router.get('/', function(req, res){
     });
 });
 
+router.get('/', function(req, res){
+    res.render('info.html', function(req, res){
+
+    });
+});
+
 router.get('/quantity_cart.html', function(req, res){
     req.session.qty_key = Math.floor( Math.random() * (1 + 10000 - 1)) + 1;
     console.log('sess_qty key is ' + req.session.qty_key);

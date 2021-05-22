@@ -9,7 +9,6 @@ const session = require('express-session');
 var redis = require('redis');
 const { json } = require('body-parser');
 const { proc } = require('./database');
-const db = require('./database')
 var client = redis.createClient(process.env.HEROKU_REDIS_JADE_URL);
 var RedisStore = require('connect-redis')(session);
 const app = express();

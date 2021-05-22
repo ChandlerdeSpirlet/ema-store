@@ -798,9 +798,9 @@ router.post('/process_cart', function(req, res) {
         req.session.d1 = String(temp_d1);
         console.log('order 1 data: ' + req.session.q1 + '/' + req.session.d1 + '/' + req.session.order_size);
         if ((item.size1 == 'Youth Small') || (item.size1 == 'Youth Medium') || (item.size1 == 'Youth Large')){
-            req.session.p1 = 4000;
+            req.session.p1 = 2500;
         } else {
-            req.session.p1 = 5500;
+            req.session.p1 = 2500;
         }
         console.log('price is ' + req.session.p1);
     }
@@ -811,9 +811,9 @@ router.post('/process_cart', function(req, res) {
         var temp_d2 = item.color2 + ' ' + item.size2;
         req.session.d2 = String(temp_d2);
         if ((item.size2 == 'Youth Small') || (item.size2 == 'Youth Medium') || (item.size2 == 'Youth Large')){
-            req.session.p2 = 4000;
+            req.session.p2 = 2500;
         } else {
-            req.session.p2 = 5500;
+            req.session.p2 = 2500;
         }
     }
     if (item.quantity3 != 0) {
@@ -823,9 +823,9 @@ router.post('/process_cart', function(req, res) {
         var temp_d3 = item.color3 + ' ' + item.size3;
         req.session.d3 = String(temp_d3);
         if ((item.size3 == 'Youth Small') || (item.size3 == 'Youth Medium') || (item.size3 == 'Youth Large')){
-            req.session.p3 = 4000;
+            req.session.p3 = 2500;
         } else {
-            req.session.p3 = 5500;
+            req.session.p3 = 2500;
         }
     }
     if (item.quantity4 != 0) {
@@ -835,9 +835,9 @@ router.post('/process_cart', function(req, res) {
         var temp_d4= item.color4 + ' ' + item.size4;
         req.session.d4 = String(temp_d4);
         if ((item.size4 == 'Youth Small') || (item.size4 == 'Youth Medium') || (item.size4 == 'Youth Large')){
-            req.session.p4 = 4000;
+            req.session.p4 = 2500;
         } else {
-            req.session.p4 = 5500;
+            req.session.p4 = 2500;
         }
     }
     req.session.order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
@@ -883,19 +883,19 @@ router.post('/process_cart', function(req, res) {
     console.log('req.session', JSON.safeStringify(req.session));
     switch (req.session.order_size){
         case 1:
-            var order_contents = String(req.session.q1 + ' ' + req.session.d1);
+            var order_contents = 'T-Shirt round 2: ' + String(req.session.q1 + ' ' + req.session.d1);
             break;
         case 2:
-            var order_contents = String(req.session.q1 + ' ' +  req.session.d1 + ' / ' + req.session.q2 + ' ' +  req.session.d2);
+            var order_contents = 'T-Shirt round 2: ' + String(req.session.q1 + ' ' +  req.session.d1 + ' / ' + req.session.q2 + ' ' +  req.session.d2);
             break;
         case 3: 
-            var order_contents = String(req.session.q1 + ' ' +  req.session.d1 + ' / ' + req.session.q2 + ' ' +  req.session.d2 + ' / ' + req.session.q3 + ' ' +  req.session.d3);
+            var order_contents = 'T-Shirt round 2: ' + String(req.session.q1 + ' ' +  req.session.d1 + ' / ' + req.session.q2 + ' ' +  req.session.d2 + ' / ' + req.session.q3 + ' ' +  req.session.d3);
             break;
         case 4: 
-            var order_contents = String(req.session.q1 + ' ' +  req.session.d1 + ' / ' + req.session.q2 + ' ' +  req.session.d2 + ' / ' + req.session.q3 + ' ' +  req.session.d3 + ' / ' + req.session.q4 + ' ' +  req.session.d4);
+            var order_contents = 'T-Shirt round 2: ' + String(req.session.q1 + ' ' +  req.session.d1 + ' / ' + req.session.q2 + ' ' +  req.session.d2 + ' / ' + req.session.q3 + ' ' +  req.session.d3 + ' / ' + req.session.q4 + ' ' +  req.session.d4);
             break;
         default:
-            var order_contents = 'Unable to gather order information';
+            var order_contents = 'T-Shirt round 2: ' + 'Unable to gather order information';
             break;
     }
     console.log('order contents are ' + order_contents);
@@ -953,13 +953,13 @@ router.post('/create-session', async (req, res) => {
                     currency: 'usd',
                     product_data: {
                     name: req.session.d1,
-                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
-                    description: '2020 Hoodie'
+                    images: ["./combined.png"],
+                    description: '2021 T-Shirt'
                     },
                     unit_amount: req.session.p1,
                 },
                 quantity: req.session.q1,
-                description: 'EMA Online Store',
+                description: 'EMA Online Store - T-Shirt round 2',
                 },
             ],
             mode: 'payment',
@@ -981,26 +981,26 @@ router.post('/create-session', async (req, res) => {
                     currency: 'usd',
                     product_data: {
                     name: req.session.d1,
-                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
-                    description: '2020 Hoodie'
+                    images: ["./combined.png"],
+                    description: '2021 T-Shirt'
                     },
                     unit_amount: req.session.p1,
                 },
                 quantity: req.session.q1,
-                description: 'EMA Online Store',
+                description: 'EMA Online Store - T-Shirt round 2',
                 },
                 {
                 price_data: {
                     currency: 'usd',
                     product_data: {
                     name: req.session.d2,
-                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
-                    description: '2020 Hoodie'
+                    images: ["./combined.png"],
+                    description: '2021 T-Shirt'
                     },
                     unit_amount: req.session.p2,
                 },
                 quantity: req.session.q2,
-                description: 'EMA Online Store',
+                description: 'EMA Online Store - T-Shirt round 2',
                 },
             ],
             mode: 'payment',
@@ -1022,39 +1022,39 @@ router.post('/create-session', async (req, res) => {
                     currency: 'usd',
                     product_data: {
                     name: req.session.d1,
-                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
-                    description: '2020 Hoodie'
+                    images: ["./combined.png"],
+                    description: '2021 T-Shirt'
                     },
                     unit_amount: req.session.p1,
                 },
                 quantity: req.session.q1,
-                description: 'EMA Online Store',
+                description: 'EMA Online Store - T-Shirt round 2',
                 },
                 {
                 price_data: {
                     currency: 'usd',
                     product_data: {
                     name: req.session.d2,
-                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
-                    description: '2020 Hoodie'
+                    images: ["./combined.png"],
+                    description: '2021 T-Shirt'
                     },
                     unit_amount: req.session.p2,
                 },
                 quantity: req.session.q2,
-                description: 'EMA Online Store',
+                description: 'EMA Online Store - T-Shirt round 2',
                 },
                 {
                 price_data: {
                     currency: 'usd',
                     product_data: {
                     name: req.session.d3,
-                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
-                    description: '2020 Hoodie'
+                    images: ["./combined.png"],
+                    description: '2021 T-Shirt'
                     },
                     unit_amount: req.session.p3,
                 },
                 quantity: req.session.q3,
-                description: 'EMA Online Store',
+                description: 'EMA Online Store - T-Shirt round 2',
                 },
             ],
             mode: 'payment',
@@ -1076,52 +1076,52 @@ router.post('/create-session', async (req, res) => {
                     currency: 'usd',
                     product_data: {
                     name: req.session.d1,
-                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
-                    description: '2020 Hoodie'
+                    images: ["./combined.png"],
+                    description: '2021 T-Shirt'
                     },
                     unit_amount: req.session.p1,
                 },
                 quantity: req.session.q1,
-                description: 'EMA Online Store',
+                description: 'EMA Online Store - T-Shirt round 2',
                 },
                 {
                 price_data: {
                     currency: 'usd',
                     product_data: {
                     name: req.session.d2,
-                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
-                    description: '2020 Hoodie'
+                    images: ["./combined.png"],
+                    description: '2021 T-Shirt'
                     },
                     unit_amount: req.session.p2,
                 },
                 quantity: req.session.q2,
-                description: 'EMA Online Store',
+                description: 'EMA Online Store - T-Shirt round 2',
                 },
                 {
                 price_data: {
                     currency: 'usd',
                     product_data: {
                     name: req.session.d3,
-                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
-                    description: '2020 Hoodie'
+                    images: ["./combined.png"],
+                    description: '2021 T-Shirt'
                     },
                     unit_amount: req.session.p3,
                 },
                 quantity: req.session.q3,
-                description: 'EMA Online Store',
+                description: 'EMA Online Store - T-Shirt round 2',
                 },
                 {
                 price_data: {
                     currency: 'usd',
                     product_data: {
                     name: req.session.d4,
-                    images: ['https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121185484_10158652691288374_6371473402707957527_n.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_ohc=s87FZ63TNKwAX9Dv8Ht&_nc_ht=scontent.fapa1-1.fna&oh=f6382a44ace51f3e269042529ba750b2&oe=5FAA9A15', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/121239752_10158652691348374_2337616342705280587_n.jpg?_nc_cat=101&_nc_sid=b9115d&_nc_ohc=BRf6f4sxNccAX_lGh63&_nc_ht=scontent.fapa1-1.fna&oh=c5a4d7fdc585bb0c80c3d1677dafab61&oe=5FAB83B9'],
-                    description: '2020 Hoodie'
+                    images: ["./combined.png"],
+                    description: '2021 T-Shirt'
                     },
                     unit_amount: req.session.p4,
                 },
                 quantity: req.session.q4,
-                description: 'EMA Online Store',
+                description: 'EMA Online Store - T-Shirt round 2',
                 },
             ],
             mode: 'payment',

@@ -1,0 +1,143 @@
+<html>
+    <title>EMA T-Shirt Order Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        img {
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        html {
+            background-image: linear-gradient(#0095ff, #9ed7ff);
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        h1 {
+            text-align: center;
+        }
+        body {
+            font-size: 16px;
+        }
+        button, select {
+            width: 60%;
+            margin: 0 auto;
+        }
+        label{
+            font-weight: bold;
+        }
+        form > div {
+            margin-bottom: 20px;
+        }
+
+        button, label, input, select {
+            display: block;
+            font-size: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 5px;
+            height: 35px;
+        }
+
+        select {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .select-wrapper {
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .select-wrapper::after {
+            content: "▼";
+            font-size: 1rem;
+            top: 6px;
+            right: 10px;
+            position: absolute;
+        }
+
+        input[type="text"], select {
+            box-shadow: inset 1px 1px 3px #ccc;
+            border-radius: 5px;
+        }
+    </style>
+    <body>
+        <h1>EMA T-Shirt Order Form</h1>
+        <img src="../ema_green_shirt.png" alt="ema_green_shirt"/>
+        <p style="text-align: center; font-weight: bold; font-size: 14px;">EMA Green Shirt</p>
+        <img src="../ema_orange_shirt.png" alt="ema_orange_shirt"/>
+        <p style="text-align: center; font-weight: bold; font-size: 14px;">EMA Orange Shirt</p>
+        <img src="../ema_purple_shirt.png" alt="ema_purple_shirt"/>
+        <p style="text-align: center; font-weight: bold; font-size: 14px;">EMA Purple Shirt</p>
+        <form name="Form" action="/process_cart" method="POST">
+            <div>
+                <label for="order_name">Name:</label>
+                <input type="text" id="order_name" name="order_name" required placeholder="Full Name">
+            </div>
+            <div>
+                <label for="order_email">Email:</label>
+                <input type="text" id="order_email" name="order_email" required placeholder="Email">
+            </div>
+            <div id="section">
+                <h4>Youth Small</h4>
+                <label>Youth Small - Green</label> &mdash; <input type="number" inputmode="numeric" name="ysg" placeholder="Qty"><br>
+                <label>Youth Small - Orange</label> &mdash; <input type="number" inputmode="numeric" name="yso" placeholder="Qty"><br>
+                <label>Youth Small - Purple</label> &mdash; <input type="number" inputmode="numeric" name="ysp" placeholder="Qty"><br>
+            </div>
+            <div id="section">
+                <h4>Youth Medium</h4>
+                <label>Youth Medium - Green</label> &mdash; <input type="number" inputmode="numeric" name="ysg" placeholder="Qty"><br>
+                <label>Youth Medium - Orange</label> &mdash; <input type="number" inputmode="numeric" name="yso" placeholder="Qty"><br>
+                <label>Youth Medium - Purple</label> &mdash; <input type="number" inputmode="numeric" name="ysp" placeholder="Qty"><br>
+            </div>
+            <div id="section">
+                <h4>Youth Large</h4>
+                <label>Youth Large - Green</label> &mdash; <input type="number" inputmode="numeric" name="ysg" placeholder="Qty"><br>
+                <label>Youth Large - Orange</label> &mdash; <input type="number" inputmode="numeric" name="yso" placeholder="Qty"><br>
+                <label>Youth Large - Purple</label> &mdash; <input type="number" inputmode="numeric" name="ysp" placeholder="Qty"><br>
+            </div>
+            <div id="section">
+                <h4>Adult Small</h4>
+                <label>Adult Small - Green</label> &mdash; <input type="number" inputmode="numeric" name="ysg" placeholder="Qty"><br>
+                <label>Adult Small - Orange</label> &mdash; <input type="number" inputmode="numeric" name="yso" placeholder="Qty"><br>
+                <label>Adult Small - Purple</label> &mdash; <input type="number" inputmode="numeric" name="ysp" placeholder="Qty"><br>
+            </div>
+            <div id="section">
+                <h4>Adult Medium</h4>
+                <label>Adult Medium - Green</label> &mdash; <input type="number" inputmode="numeric" name="ysg" placeholder="Qty"><br>
+                <label>Adult Medium - Orange</label> &mdash; <input type="number" inputmode="numeric" name="yso" placeholder="Qty"><br>
+                <label>Adult Medium - Purple</label> &mdash; <input type="number" inputmode="numeric" name="ysp" placeholder="Qty"><br>
+            </div>
+            <div id="section">
+                <h4>Adult Large</h4>
+                <label>Adult Large - Green</label> &mdash; <input type="number" inputmode="numeric" name="ysg" placeholder="Qty"><br>
+                <label>Adult Large - Orange</label> &mdash; <input type="number" inputmode="numeric" name="yso" placeholder="Qty"><br>
+                <label>Adult Large - Purple</label> &mdash; <input type="number" inputmode="numeric" name="ysp" placeholder="Qty"><br>
+            </div>
+            <div id="section">
+                <h4>Adult X-Large</h4>
+                <label>Adult X-Large - Green</label> &mdash; <input type="number" inputmode="numeric" name="ysg" placeholder="Qty"><br>
+                <label>Adult X-Large - Orange</label> &mdash; <input type="number" inputmode="numeric" name="yso" placeholder="Qty"><br>
+                <label>Adult X-Large - Purple</label> &mdash; <input type="number" inputmode="numeric" name="ysp" placeholder="Qty"><br>
+            </div>
+            <div id="section">
+                <h4>Adult XX-Large</h4>
+                <label>Adult XX-Large - Green</label> &mdash; <input type="number" inputmode="numeric" name="ysg" placeholder="Qty"><br>
+                <label>Adult XX-Large - Orange</label> &mdash; <input type="number" inputmode="numeric" name="yso" placeholder="Qty"><br>
+                <label>Adult XX-Large - Purple</label> &mdash; <input type="number" inputmode="numeric" name="ysp" placeholder="Qty"><br>
+            </div>
+            <div>
+                <input type="submit" name="Submit" id="checkout4" style="display: none;" value="Checkout"/>
+            </div>
+        </form>
+    </body>
+</html>

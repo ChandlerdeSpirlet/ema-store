@@ -53,8 +53,8 @@ router.get('/', function(req, res){
 });
 
 router.get('/shopping_cart_test', (req, res) => {
-    res.render('shopping_cart_temp.html', (req, res) => {
-        
+    res.render('shopping_cart_test.html', (req, res) => {
+
     })
 })
 

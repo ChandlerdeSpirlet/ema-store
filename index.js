@@ -18,17 +18,17 @@ app.use(express.static(__dirname));
 app.use(exp_val());
 const router = express.Router();
 
-//app.use(
-//    session({
-//        store: new RedisStore({ 
-//            client: client,
-//            ttl: 5 * 60
-//        }),
-//    secret: process.env.secret_key,
-//    resave: false,
-//    saveUninitialized: true
-//    })
-//);
+app.use(
+    session({
+        store: new RedisStore({ 
+            client: client,
+            ttl: 5 * 60
+        }),
+    secret: process.env.secret_key,
+    resave: false,
+    saveUninitialized: true
+    })
+);
 
 app.use(bodyParser());
 app.use(bodyParser.json());
@@ -765,17 +765,18 @@ router.post('/qty-create-session', async(req, res) => { //Hoodies
 
 router.post('/process_cart_all', function(req, res){ 
     if (!req.session){
-        app.use(
-            session({
-                store: new RedisStore({ 
-                    client: client,
-                    ttl: 5 * 60
-                }),
-            secret: process.env.secret_key,
-            resave: false,
-            saveUninitialized: true
-            })
-        );
+        //app.use(
+        //    session({
+        //        store: new RedisStore({ 
+        //            client: client,
+        //            ttl: 5 * 60
+        //        }),
+        //    secret: process.env.secret_key,
+        //    resave: false,
+        //    saveUninitialized: true
+        //    })
+        //);
+        console.log('In !req.session');
     }
     req.session.order_size = 0;
     var item = {

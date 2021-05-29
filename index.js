@@ -894,7 +894,7 @@ router.post('/process_cart_all', function(req, res){
     }
     if (item.alo != ''){
         req.session.order_contents.push(['Adult Large, Orange', Number(item.alo), Number(item.alo) * 2500]);
-        req.session.order_desc += String(item.alo) + 'Adult Large, Orange / ';
+        req.session.order_desc += String(item.alo) + ' Adult Large, Orange / ';
         req.session.order_size += 1;
     }
     if (item.alp != ''){

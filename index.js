@@ -955,7 +955,7 @@ router.post('/process_cart_all', function(req, res){
         req.session.total_price += shirt[2]
     })
     console.log('req.session', JSON.safeStringify(req.session));
-    var final = '$' + String(req.session.total_price).substring(0, req.session.total_price.length - 2) + '.' + String(req.session.total_price).substring(req.session.total_price.length - 2, req.session.total_price.length);
+    var final = '$' + String(req.session.total_price).substring(0, String(req.session.total_price).length - 2) + '.' + String(req.session.total_price).substring(String(req.session.total_price).length - 2, String(req.session.total_price).length);
     console.log('final in process is ' + final);
     const query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
     db.query(query, [req.session.order_id, req.session.order_name, req.session.order_email, 'UNPAID', 0, req.session.order_desc])
@@ -1162,7 +1162,7 @@ router.post('/create-session-all', async (req, res) => {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
-            customer_email: req.session.email_name,
+            customer_email: req.session.order_email,
             
             line_items: [
                 {
@@ -1190,7 +1190,7 @@ router.post('/create-session-all', async (req, res) => {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
-            customer_email: req.session.email_name,
+            customer_email: req.session.order_email,
             
             line_items: [
                 {
@@ -1231,7 +1231,7 @@ router.post('/create-session-all', async (req, res) => {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
-            customer_email: req.session.email_name,
+            customer_email: req.session.order_email,
             
             line_items: [
                 {
@@ -1285,7 +1285,7 @@ router.post('/create-session-all', async (req, res) => {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
-            customer_email: req.session.email_name,
+            customer_email: req.session.order_email,
             
             line_items: [
                 {
@@ -1352,8 +1352,7 @@ router.post('/create-session-all', async (req, res) => {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
-            customer_email: req.session.email_name,
-            
+            customer_email: req.session.order_email,           
             line_items: [
                 {
                 price_data: {
@@ -1432,7 +1431,7 @@ router.post('/create-session-all', async (req, res) => {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
-            customer_email: req.session.email_name,
+            customer_email: req.session.order_email,
             
             line_items: [
                 {
@@ -1525,7 +1524,7 @@ router.post('/create-session-all', async (req, res) => {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
-            customer_email: req.session.email_name,
+            customer_email: req.session.order_email,
             
             line_items: [
                 {
@@ -1631,7 +1630,7 @@ router.post('/create-session-all', async (req, res) => {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
-            customer_email: req.session.email_name,
+            customer_email: req.session.order_email,
             
             line_items: [
                 {

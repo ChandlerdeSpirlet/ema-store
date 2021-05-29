@@ -1126,7 +1126,7 @@ router.post('/process_cart', function(req, res) {
 });
 
 router.get('/checkout_all.html', (req, res) => {
-    var final = '$' + String(req.session.total_price).substring(0, String(req.session.total_price.length) - 2) + '.' + String(req.session.total_price).substring(req.session.total_price.length - 2, req.session.total_price.length);
+    var final = '$' + String(req.session.total_price).substring(0, String(req.session.total_price).length - 2) + '.' + String(req.session.total_price).substring(String(req.session.total_price).length - 2, String(req.session.total_price).length);
     res.render('checkout_all.html', {
         price: final
     })

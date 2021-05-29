@@ -948,12 +948,13 @@ router.post('/process_cart_all', function(req, res){
         cache = null;
         return retVal;
     };
-    console.log('req.session', JSON.safeStringify(req.session));
+    
 
     req.session.order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
     req.session.order_contents.forEach(shirt => {
         req.session.total_price += shirt[2]
     })
+    console.log('req.session', JSON.safeStringify(req.session));
     var final = '$' + String(req.session.total_price).substring(0, req.session.total_price.length - 2) + '.' + String(req.session.total_price).substring(req.session.total_price.length - 2, req.session.total_price.length);
     console.log('final in process is ' + final);
     const query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
@@ -1125,10 +1126,7 @@ router.post('/process_cart', function(req, res) {
 });
 
 router.get('/checkout_all.html', (req, res) => {
-    req.session.order_contents.forEach(shirt => {
-        req.session.total_price += shirt[2]
-    })
-    var final = '$' + String(req.session.total_price).substring(0, req.session.total_price.length - 2) + '.' + String(req.session.total_price).substring(req.session.total_price.length - 2, req.session.total_price.length);
+    var final = '$' + String(req.session.total_price).substring(0, String(req.session.total_price.length) - 2) + '.' + String(req.session.total_price).substring(req.session.total_price.length - 2, req.session.total_price.length);
     res.render('checkout_all.html', {
         price: final
     })
@@ -1165,9 +1163,7 @@ router.post('/create-session-all', async (req, res) => {
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
             customer_email: req.session.email_name,
-            customer: {
-                name: req.session.order_name
-            },
+            
             line_items: [
                 {
                 price_data: {
@@ -1195,9 +1191,7 @@ router.post('/create-session-all', async (req, res) => {
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
             customer_email: req.session.email_name,
-            customer: {
-                name: req.session.order_name
-            },
+            
             line_items: [
                 {
                 price_data: {
@@ -1238,9 +1232,7 @@ router.post('/create-session-all', async (req, res) => {
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
             customer_email: req.session.email_name,
-            customer: {
-                name: req.session.order_name
-            },
+            
             line_items: [
                 {
                 price_data: {
@@ -1294,9 +1286,7 @@ router.post('/create-session-all', async (req, res) => {
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
             customer_email: req.session.email_name,
-            customer: {
-                name: req.session.order_name
-            },
+            
             line_items: [
                 {
                 price_data: {
@@ -1363,9 +1353,7 @@ router.post('/create-session-all', async (req, res) => {
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
             customer_email: req.session.email_name,
-            customer: {
-                name: req.session.order_name
-            },
+            
             line_items: [
                 {
                 price_data: {
@@ -1445,9 +1433,7 @@ router.post('/create-session-all', async (req, res) => {
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
             customer_email: req.session.email_name,
-            customer: {
-                name: req.session.order_name
-            },
+            
             line_items: [
                 {
                 price_data: {
@@ -1540,9 +1526,7 @@ router.post('/create-session-all', async (req, res) => {
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
             customer_email: req.session.email_name,
-            customer: {
-                name: req.session.order_name
-            },
+            
             line_items: [
                 {
                 price_data: {
@@ -1648,9 +1632,7 @@ router.post('/create-session-all', async (req, res) => {
             payment_method_types: ['card'],
             client_reference_id: req.session.order_id,
             customer_email: req.session.email_name,
-            customer: {
-                name: req.session.order_name
-            },
+            
             line_items: [
                 {
                 price_data: {

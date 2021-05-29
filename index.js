@@ -782,29 +782,29 @@ router.post('/process_cart_all', function(req, res){
         order_name: req.sanitize('order_name').trim(),
         order_email: req.sanitize('order_email').trim(),
         ysg: req.sanitize('ysg').trim(),
-        ysg: req.sanitize('yso').trim(),
-        ysg: req.sanitize('ysp').trim(),
-        ysg: req.sanitize('ymg').trim(),
-        ysg: req.sanitize('ymo').trim(),
-        ysg: req.sanitize('ymp').trim(),
-        ysg: req.sanitize('ylg').trim(),
-        ysg: req.sanitize('ylo').trim(),
-        ysg: req.sanitize('ylp').trim(),
-        ysg: req.sanitize('asg').trim(),
-        ysg: req.sanitize('aso').trim(),
-        ysg: req.sanitize('asp').trim(),
-        ysg: req.sanitize('amg').trim(),
-        ysg: req.sanitize('amo').trim(),
-        ysg: req.sanitize('amp').trim(),
-        ysg: req.sanitize('alg').trim(),
-        ysg: req.sanitize('alo').trim(),
-        ysg: req.sanitize('alp').trim(),
-        ysg: req.sanitize('axg').trim(),
-        ysg: req.sanitize('axo').trim(),
-        ysg: req.sanitize('axp').trim(),
-        ysg: req.sanitize('axxg').trim(),
-        ysg: req.sanitize('axxo').trim(),
-        ysg: req.sanitize('axxp').trim()
+        yso: req.sanitize('yso').trim(),
+        ysp: req.sanitize('ysp').trim(),
+        ymg: req.sanitize('ymg').trim(),
+        ymo: req.sanitize('ymo').trim(),
+        ymp: req.sanitize('ymp').trim(),
+        ylg: req.sanitize('ylg').trim(),
+        ylo: req.sanitize('ylo').trim(),
+        ylp: req.sanitize('ylp').trim(),
+        asg: req.sanitize('asg').trim(),
+        aso: req.sanitize('aso').trim(),
+        asp: req.sanitize('asp').trim(),
+        amg: req.sanitize('amg').trim(),
+        amo: req.sanitize('amo').trim(),
+        amp: req.sanitize('amp').trim(),
+        alg: req.sanitize('alg').trim(),
+        alo: req.sanitize('alo').trim(),
+        alp: req.sanitize('alp').trim(),
+        axg: req.sanitize('axg').trim(),
+        axo: req.sanitize('axo').trim(),
+        axp: req.sanitize('axp').trim(),
+        axxg: req.sanitize('axxg').trim(),
+        axxo: req.sanitize('axxo').trim(),
+        axxp: req.sanitize('axxp').trim()
     }
     req.session.order_name = item.order_name;
     req.session.order_email = item.order_email;
@@ -812,131 +812,148 @@ router.post('/process_cart_all', function(req, res){
     req.session.total_price = 0;
     req.session.order_desc = 'T-Shirt Round 2: ';
     if (Number(item.ysg) != 0){
-        req.session.order_contents.push(['Youth Small, Green', Number(item.ysg), Number(item.ysg) * 100]);
+        req.session.order_contents.push(['Youth Small, Green', Number(item.ysg), Number(item.ysg) * 2500]);
         req.session.order_desc += String(item.ysg) + 'Youth Small, Green / ';
         req.session.order_size += 1;
     }
     if (Number(item.yso) != 0){
-        req.session.order_contents.push(['Youth Small, Orange', Number(item.yso), Number(item.yso) * 100]);
+        req.session.order_contents.push(['Youth Small, Orange', Number(item.yso), Number(item.yso) * 2500]);
         req.session.order_desc += String(item.yso) + 'Youth Small, Orange / ';
         req.session.order_size += 1;
     }
     if (Number(item.ysp) != 0){
-        req.session.order_contents.push(['Youth Small, Purple', Number(item.ysp), Number(item.ysp) * 100]);
+        req.session.order_contents.push(['Youth Small, Purple', Number(item.ysp), Number(item.ysp) * 2500]);
         req.session.order_desc += String(item.ysp) + 'Youth Small, Purple / ';
         req.session.order_size += 1;
     }
     if (Number(item.ymg) != 0){
-        req.session.order_contents.push(['Youth Medium, Green', Number(item.ymg), Number(item.ymg) * 100]);
+        req.session.order_contents.push(['Youth Medium, Green', Number(item.ymg), Number(item.ymg) * 2500]);
         req.session.order_desc += String(item.ymg) + 'Youth Medium, Green / ';
         req.session.order_size += 1;
     }
     if (Number(item.ymo) != 0){
-        req.session.order_contents.push(['Youth Medium, Orange', Number(item.ymo), Number(item.ymo) * 100]);
+        req.session.order_contents.push(['Youth Medium, Orange', Number(item.ymo), Number(item.ymo) * 2500]);
         req.session.order_desc += String(item.ymo) + 'Youth Medium, Orange / ';
         req.session.order_size += 1;
     }
     if (Number(item.ymp) != 0){
-        req.session.order_contents.push(['Youth Medium, Purple', Number(item.ymp), Number(item.ymp) * 100]);
+        req.session.order_contents.push(['Youth Medium, Purple', Number(item.ymp), Number(item.ymp) * 2500]);
         req.session.order_desc += String(item.ymp) + 'Youth Medium, Purple / ';
         req.session.order_size += 1;
     }
     if (Number(item.ylg) != 0){
-        req.session.order_contents.push(['Youth Large, Green', Number(item.ylg), Number(item.ylg) * 100]);
+        req.session.order_contents.push(['Youth Large, Green', Number(item.ylg), Number(item.ylg) * 2500]);
         req.session.order_desc += String(item.ylg) + 'Youth Large, Green / ';
         req.session.order_size += 1;
     }
     if (Number(item.ylo) != 0){
-        req.session.order_contents.push(['Youth Large, Orange', Number(item.ylo), Number(item.ylo) * 100]);
+        req.session.order_contents.push(['Youth Large, Orange', Number(item.ylo), Number(item.ylo) * 2500]);
         req.session.order_desc += String(item.ylo) + 'Youth Large, Orange / ';
         req.session.order_size += 1;
     }
     if (Number(item.ylp) != 0){
-        req.session.order_contents.push(['Youth Large, Purple', Number(item.ylp), Number(item.ylp) * 100]);
+        req.session.order_contents.push(['Youth Large, Purple', Number(item.ylp), Number(item.ylp) * 2500]);
         req.session.order_desc += String(item.ylp) + 'Youth Large, Purple / ';
         req.session.order_size += 1;
     }
     //SIZE SEPERATION
     if (Number(item.asg) != 0){
-        req.session.order_contents.push(['Adult Small, Green', Number(item.asg), Number(item.asg) * 100]);
+        req.session.order_contents.push(['Adult Small, Green', Number(item.asg), Number(item.asg) * 2500]);
         req.session.order_desc += String(item.asg) + 'Adult Small, Green / ';
         req.session.order_size += 1;
     }
     if (Number(item.aso) != 0){
-        req.session.order_contents.push(['Adult Small, Orange', Number(item.aso), Number(item.aso) * 100]);
+        req.session.order_contents.push(['Adult Small, Orange', Number(item.aso), Number(item.aso) * 2500]);
         req.session.order_desc += String(item.aso) + 'Adult Small, Orange / ';
         req.session.order_size += 1;
     }
     if (Number(item.asp) != 0){
-        req.session.order_contents.push(['Adult Small, Purple', Number(item.asp), Number(item.asp) * 100]);
+        req.session.order_contents.push(['Adult Small, Purple', Number(item.asp), Number(item.asp) * 2500]);
         req.session.order_desc += String(item.asp) + 'Adult Small, Purple / ';
         req.session.order_size += 1;
     }
     if (Number(item.amg) != 0){
-        req.session.order_contents.push(['Adult Medium, Green', Number(item.amg), Number(item.amg) * 100]);
+        req.session.order_contents.push(['Adult Medium, Green', Number(item.amg), Number(item.amg) * 2500]);
         req.session.order_desc += String(item.amg) + 'Adult Medium, Green / ';
         req.session.order_size += 1;
     }
     if (Number(item.amo) != 0){
-        req.session.order_contents.push(['Adult Medium, Orange', Number(item.amo), Number(item.amo) * 100]);
+        req.session.order_contents.push(['Adult Medium, Orange', Number(item.amo), Number(item.amo) * 2500]);
         req.session.order_desc += String(item.amo) + 'Adult Medium, Orange / ';
         req.session.order_size += 1;
     }
     if (Number(item.amp) != 0){
-        req.session.order_contents.push(['Adult Medium, Purple', Number(item.amp), Number(item.amp) * 100]);
+        req.session.order_contents.push(['Adult Medium, Purple', Number(item.amp), Number(item.amp) * 2500]);
         req.session.order_desc += String(item.amp) + 'Adult Medium, Purple / ';
         req.session.order_size += 1;
     }
     if (Number(item.alg) != 0){
-        req.session.order_contents.push(['Adult Large, Green', Number(item.alg), Number(item.alg) * 100]);
+        req.session.order_contents.push(['Adult Large, Green', Number(item.alg), Number(item.alg) * 2500]);
         req.session.order_desc += String(item.alg) + 'Adult Large, Green / ';
         req.session.order_size += 1;
     }
     if (Number(item.alo) != 0){
-        req.session.order_contents.push(['Adult Large, Orange', Number(item.alo), Number(item.alo) * 100]);
+        req.session.order_contents.push(['Adult Large, Orange', Number(item.alo), Number(item.alo) * 2500]);
         req.session.order_desc += String(item.alo) + 'Adult Large, Orange / ';
         req.session.order_size += 1;
     }
     if (Number(item.alp) != 0){
-        req.session.order_contents.push(['Adult Large, Purple', Number(item.alp), Number(item.alp) * 100]);
+        req.session.order_contents.push(['Adult Large, Purple', Number(item.alp), Number(item.alp) * 2500]);
         req.session.order_desc += String(item.alp) + 'Adult Large, Purple / ';
         req.session.order_size += 1;
     }
     if (Number(item.axg) != 0){
-        req.session.order_contents.push(['Adult X-Large, Green', Number(item.axg), Number(item.axg) * 100]);
+        req.session.order_contents.push(['Adult X-Large, Green', Number(item.axg), Number(item.axg) * 2500]);
         req.session.order_desc += String(item.axg) + 'Adult X-Large, Green / ';
         req.session.order_size += 1;
     }
     if (Number(item.axo) != 0){
-        req.session.order_contents.push(['Adult X-Large, Orange', Number(item.axo), Number(item.axo) * 100]);
+        req.session.order_contents.push(['Adult X-Large, Orange', Number(item.axo), Number(item.axo) * 2500]);
         req.session.order_desc += String(item.axo) + 'Adult X-Large, Orange / ';
         req.session.order_size += 1;
     }
     if (Number(item.axp) != 0){
-        req.session.order_contents.push(['Adult X-Large, Purple', Number(item.axp), Number(item.axp) * 100]);
+        req.session.order_contents.push(['Adult X-Large, Purple', Number(item.axp), Number(item.axp) * 2500]);
         req.session.order_desc += String(item.axp) + 'Adult X-Large, Purple / ';
         req.session.order_size += 1;
     }
     if (Number(item.axxg) != 0){
-        req.session.order_contents.push(['Adult XX-Large, Green', Number(item.axxg), Number(item.axxg) * 100]);
+        req.session.order_contents.push(['Adult XX-Large, Green', Number(item.axxg), Number(item.axxg) * 2500]);
         req.session.order_desc += String(item.axxg) + 'Adult XX-Large, Green / ';
         req.session.order_size += 1;
     }
     if (Number(item.axxo) != 0){
-        req.session.order_contents.push(['Adult XX-Large, Orange', Number(item.axxo), Number(item.axxo) * 100]);
+        req.session.order_contents.push(['Adult XX-Large, Orange', Number(item.axxo), Number(item.axxo) * 2500]);
         req.session.order_desc += String(item.axxo) + 'Adult XX-Large, Orange / ';
         req.session.order_size += 1;
     }
     if (Number(item.axxp) != 0){
-        req.session.order_contents.push(['Adult XX-Large, Purple', Number(item.axxp), Number(item.axxp) * 100]);
+        req.session.order_contents.push(['Adult XX-Large, Purple', Number(item.axxp), Number(item.axxp) * 2500]);
         req.session.order_desc += String(item.axxp) + 'Adult XX-Large, Purple / ';
         req.session.order_size += 1;
     }
+
+    JSON.safeStringify = (obj, indent = 2) => {
+        let cache = [];
+        const retVal = JSON.stringify(
+            obj,
+            (key, value) =>
+                typeof value === "object" && value !== null
+                ? cache.includes(value)
+                    ? undefined // Duplicate reference found, discard key
+                    : cache.push(value) && value // Store value in our collection
+                : value,
+            indent
+        );
+        cache = null;
+        return retVal;
+    };
+    console.log('req.session', JSON.safeStringify(req.session));
+
     req.session.order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
     req.session.order_contents.forEach(shirt => {
         req.session.total_price += shirt[2]
     })
-    req.session.order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
     var final = '$' + String(req.session.total_price).substring(0, req.session.total_price.length - 2) + '.' + String(req.session.total_price).substring(req.session.total_price.length - 2, req.session.total_price.length);
     console.log('final in process is ' + final);
     const query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';

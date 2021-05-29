@@ -18,17 +18,17 @@ app.use(express.static(__dirname));
 app.use(exp_val());
 const router = express.Router();
 
-app.use(
-    session({
-        store: new RedisStore({ 
-            client: client,
-            ttl: 5 * 60
-        }),
-    secret: process.env.secret_key,
-    resave: false,
-    saveUninitialized: true
-    })
-);
+//app.use(
+//    session({
+//        store: new RedisStore({ 
+//            client: client,
+//            ttl: 5 * 60
+//        }),
+//    secret: process.env.secret_key,
+//    resave: false,
+//    saveUninitialized: true
+//    })
+//);
 
 app.use(bodyParser());
 app.use(bodyParser.json());

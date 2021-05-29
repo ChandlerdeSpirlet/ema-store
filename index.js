@@ -25,7 +25,7 @@ app.use(
             ttl: 5 * 60
         }),
     secret: process.env.secret_key,
-    resave: true,
+    resave: false,
     saveUninitialized: true
     })
 );
@@ -772,7 +772,7 @@ router.post('/process_cart_all', function(req, res){
                     ttl: 5 * 60
                 }),
             secret: process.env.secret_key,
-            resave: true,
+            resave: false,
             saveUninitialized: true
             })
         );
@@ -813,83 +813,83 @@ router.post('/process_cart_all', function(req, res){
     req.session.order_desc = 'T-Shirt Round 2: ';
     if (item.ysg != ''){
         req.session.order_contents.push(['Youth Small, Green', Number(item.ysg), Number(item.ysg) * 2500]);
-        req.session.order_desc += String(item.ysg) + 'Youth Small, Green / ';
+        req.session.order_desc += String(item.ysg) + ' Youth Small, Green / ';
         req.session.order_size += 1;
     }
     if (item.yso != ''){
         req.session.order_contents.push(['Youth Small, Orange', Number(item.yso), Number(item.yso) * 2500]);
-        req.session.order_desc += String(item.yso) + 'Youth Small, Orange / ';
+        req.session.order_desc += String(item.yso) + ' Youth Small, Orange / ';
         req.session.order_size += 1;
     }
     if (item.ysp != ''){
         req.session.order_contents.push(['Youth Small, Purple', Number(item.ysp), Number(item.ysp) * 2500]);
-        req.session.order_desc += String(item.ysp) + 'Youth Small, Purple / ';
+        req.session.order_desc += String(item.ysp) + ' Youth Small, Purple / ';
         req.session.order_size += 1;
     }
     if (item.ymg != ''){
         req.session.order_contents.push(['Youth Medium, Green', Number(item.ymg), Number(item.ymg) * 2500]);
-        req.session.order_desc += String(item.ymg) + 'Youth Medium, Green / ';
+        req.session.order_desc += String(item.ymg) + ' Youth Medium, Green / ';
         req.session.order_size += 1;
     }
     if (item.ymo != ''){
         req.session.order_contents.push(['Youth Medium, Orange', Number(item.ymo), Number(item.ymo) * 2500]);
-        req.session.order_desc += String(item.ymo) + 'Youth Medium, Orange / ';
+        req.session.order_desc += String(item.ymo) + ' Youth Medium, Orange / ';
         req.session.order_size += 1;
     }
     if (item.ymp != ''){
         req.session.order_contents.push(['Youth Medium, Purple', Number(item.ymp), Number(item.ymp) * 2500]);
-        req.session.order_desc += String(item.ymp) + 'Youth Medium, Purple / ';
+        req.session.order_desc += String(item.ymp) + ' Youth Medium, Purple / ';
         req.session.order_size += 1;
     }
     if (item.ylg != ''){
         req.session.order_contents.push(['Youth Large, Green', Number(item.ylg), Number(item.ylg) * 2500]);
-        req.session.order_desc += String(item.ylg) + 'Youth Large, Green / ';
+        req.session.order_desc += String(item.ylg) + ' Youth Large, Green / ';
         req.session.order_size += 1;
     }
     if (item.ylo != ''){
         req.session.order_contents.push(['Youth Large, Orange', Number(item.ylo), Number(item.ylo) * 2500]);
-        req.session.order_desc += String(item.ylo) + 'Youth Large, Orange / ';
+        req.session.order_desc += String(item.ylo) + ' Youth Large, Orange / ';
         req.session.order_size += 1;
     }
     if (item.ylp != ''){
         req.session.order_contents.push(['Youth Large, Purple', Number(item.ylp), Number(item.ylp) * 2500]);
-        req.session.order_desc += String(item.ylp) + 'Youth Large, Purple / ';
+        req.session.order_desc += String(item.ylp) + ' Youth Large, Purple / ';
         req.session.order_size += 1;
     }
     //SIZE SEPERATION
     if (item.asg != ''){
         req.session.order_contents.push(['Adult Small, Green', Number(item.asg), Number(item.asg) * 2500]);
-        req.session.order_desc += String(item.asg) + 'Adult Small, Green / ';
+        req.session.order_desc += String(item.asg) + ' Adult Small, Green / ';
         req.session.order_size += 1;
     }
     if (item.aso != ''){
         req.session.order_contents.push(['Adult Small, Orange', Number(item.aso), Number(item.aso) * 2500]);
-        req.session.order_desc += String(item.aso) + 'Adult Small, Orange / ';
+        req.session.order_desc += String(item.aso) + ' Adult Small, Orange / ';
         req.session.order_size += 1;
     }
     if (item.asp != ''){
         req.session.order_contents.push(['Adult Small, Purple', Number(item.asp), Number(item.asp) * 2500]);
-        req.session.order_desc += String(item.asp) + 'Adult Small, Purple / ';
+        req.session.order_desc += String(item.asp) + ' Adult Small, Purple / ';
         req.session.order_size += 1;
     }
     if (item.amg != ''){
         req.session.order_contents.push(['Adult Medium, Green', Number(item.amg), Number(item.amg) * 2500]);
-        req.session.order_desc += String(item.amg) + 'Adult Medium, Green / ';
+        req.session.order_desc += String(item.amg) + ' Adult Medium, Green / ';
         req.session.order_size += 1;
     }
     if (item.amo != ''){
         req.session.order_contents.push(['Adult Medium, Orange', Number(item.amo), Number(item.amo) * 2500]);
-        req.session.order_desc += String(item.amo) + 'Adult Medium, Orange / ';
+        req.session.order_desc += String(item.amo) + ' Adult Medium, Orange / ';
         req.session.order_size += 1;
     }
     if (item.amp != ''){
         req.session.order_contents.push(['Adult Medium, Purple', Number(item.amp), Number(item.amp) * 2500]);
-        req.session.order_desc += String(item.amp) + 'Adult Medium, Purple / ';
+        req.session.order_desc += String(item.amp) + ' Adult Medium, Purple / ';
         req.session.order_size += 1;
     }
     if (item.alg != ''){
         req.session.order_contents.push(['Adult Large, Green', Number(item.alg), Number(item.alg) * 2500]);
-        req.session.order_desc += String(item.alg) + 'Adult Large, Green / ';
+        req.session.order_desc += String(item.alg) + ' Adult Large, Green / ';
         req.session.order_size += 1;
     }
     if (item.alo != ''){
@@ -899,37 +899,37 @@ router.post('/process_cart_all', function(req, res){
     }
     if (item.alp != ''){
         req.session.order_contents.push(['Adult Large, Purple', Number(item.alp), Number(item.alp) * 2500]);
-        req.session.order_desc += String(item.alp) + 'Adult Large, Purple / ';
+        req.session.order_desc += String(item.alp) + ' Adult Large, Purple / ';
         req.session.order_size += 1;
     }
     if (item.axg != ''){
         req.session.order_contents.push(['Adult X-Large, Green', Number(item.axg), Number(item.axg) * 2500]);
-        req.session.order_desc += String(item.axg) + 'Adult X-Large, Green / ';
+        req.session.order_desc += String(item.axg) + ' Adult X-Large, Green / ';
         req.session.order_size += 1;
     }
     if (item.axo != ''){
         req.session.order_contents.push(['Adult X-Large, Orange', Number(item.axo), Number(item.axo) * 2500]);
-        req.session.order_desc += String(item.axo) + 'Adult X-Large, Orange / ';
+        req.session.order_desc += String(item.axo) + ' Adult X-Large, Orange / ';
         req.session.order_size += 1;
     }
     if (item.axp != ''){
         req.session.order_contents.push(['Adult X-Large, Purple', Number(item.axp), Number(item.axp) * 2500]);
-        req.session.order_desc += String(item.axp) + 'Adult X-Large, Purple / ';
+        req.session.order_desc += String(item.axp) + ' Adult X-Large, Purple / ';
         req.session.order_size += 1;
     }
     if (item.axxg != ''){
         req.session.order_contents.push(['Adult XX-Large, Green', Number(item.axxg), Number(item.axxg) * 2500]);
-        req.session.order_desc += String(item.axxg) + 'Adult XX-Large, Green / ';
+        req.session.order_desc += String(item.axxg) + ' Adult XX-Large, Green / ';
         req.session.order_size += 1;
     }
     if (item.axxo != ''){
         req.session.order_contents.push(['Adult XX-Large, Orange', Number(item.axxo), Number(item.axxo) * 2500]);
-        req.session.order_desc += String(item.axxo) + 'Adult XX-Large, Orange / ';
+        req.session.order_desc += String(item.axxo) + ' Adult XX-Large, Orange / ';
         req.session.order_size += 1;
     }
     if (item.axxp != ''){
         req.session.order_contents.push(['Adult XX-Large, Purple', Number(item.axxp), Number(item.axxp) * 2500]);
-        req.session.order_desc += String(item.axxp) + 'Adult XX-Large, Purple / ';
+        req.session.order_desc += String(item.axxp) + ' Adult XX-Large, Purple / ';
         req.session.order_size += 1;
     }
 

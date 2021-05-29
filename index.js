@@ -9,6 +9,7 @@ const session = require('express-session');
 var redis = require('redis');
 const { json } = require('body-parser');
 const { proc } = require('./database');
+const { read } = require('fs');
 var client = redis.createClient(process.env.HEROKU_REDIS_JADE_URL);
 var RedisStore = require('connect-redis')(session);
 const app = express();
@@ -45,15 +46,15 @@ router.get('/', function(req, res){
     req.session.order_size = 0;
     if(!req.session.key >= 0){
         req.session.destroy();
-        res.redirect('https://ema-store.herokuapp.com/views/shopping_cart.html');
+        res.redirect('https://ema-store.herokuapp.com/views/shopping_cart_updated.html');
     }
     res.render('shopping_cart.html', function(req, res){
 
     });
 });
 
-router.get('/shopping_cart_test', (req, res) => {
-    res.render('shopping_cart_test.html', (req, res) => {
+router.get('/shopping_cart_updated', (req, res) => {
+    res.render('shopping_cart_updated.html', (req, res) => {
 
     })
 })
@@ -761,6 +762,190 @@ router.post('/qty-create-session', async(req, res) => { //Hoodies
     }
 });
 */
+
+router.post('/process_cart_all', function(req, res){ 
+    if (!req.session){
+        app.use(
+            session({
+                store: new RedisStore({ 
+                    client: client,
+                    ttl: 5 * 60
+                }),
+            secret: process.env.secret_key,
+            resave: true,
+            saveUninitialized: true
+            })
+        );
+    }
+    req.session.order_size = 0;
+    var item = {
+        order_name: req.sanitize('order_name').trim(),
+        order_email: req.sanitize('order_email').trim(),
+        ysg: req.sanitize('ysg').trim(),
+        ysg: req.sanitize('yso').trim(),
+        ysg: req.sanitize('ysp').trim(),
+        ysg: req.sanitize('ymg').trim(),
+        ysg: req.sanitize('ymo').trim(),
+        ysg: req.sanitize('ymp').trim(),
+        ysg: req.sanitize('ylg').trim(),
+        ysg: req.sanitize('ylo').trim(),
+        ysg: req.sanitize('ylp').trim(),
+        ysg: req.sanitize('asg').trim(),
+        ysg: req.sanitize('aso').trim(),
+        ysg: req.sanitize('asp').trim(),
+        ysg: req.sanitize('amg').trim(),
+        ysg: req.sanitize('amo').trim(),
+        ysg: req.sanitize('amp').trim(),
+        ysg: req.sanitize('alg').trim(),
+        ysg: req.sanitize('alo').trim(),
+        ysg: req.sanitize('alp').trim(),
+        ysg: req.sanitize('axg').trim(),
+        ysg: req.sanitize('axo').trim(),
+        ysg: req.sanitize('axp').trim(),
+        ysg: req.sanitize('axxg').trim(),
+        ysg: req.sanitize('axxo').trim(),
+        ysg: req.sanitize('axxp').trim()
+    }
+    req.session.order_contents = [];
+    req.session.total_price = 0;
+    req.session.order_desc = 'T-Shirt Round 2: ';
+    if (Number(item.ysg) != 0){
+        req.session.order_contents.push(['Youth Small, Green', Number(item.ysg), Number(item.ysg) * 100]);
+        req.session.order_desc += String(item.ysg) + 'Youth Small, Green / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.yso) != 0){
+        req.session.order_contents.push(['Youth Small, Orange', Number(item.yso), Number(item.yso) * 100]);
+        req.session.order_desc += String(item.yso) + 'Youth Small, Orange / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.ysp) != 0){
+        req.session.order_contents.push(['Youth Small, Purple', Number(item.ysp), Number(item.ysp) * 100]);
+        req.session.order_desc += String(item.ysp) + 'Youth Small, Purple / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.ymg) != 0){
+        req.session.order_contents.push(['Youth Medium, Green', Number(item.ymg), Number(item.ymg) * 100]);
+        req.session.order_desc += String(item.ymg) + 'Youth Medium, Green / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.ymo) != 0){
+        req.session.order_contents.push(['Youth Medium, Orange', Number(item.ymo), Number(item.ymo) * 100]);
+        req.session.order_desc += String(item.ymo) + 'Youth Medium, Orange / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.ymp) != 0){
+        req.session.order_contents.push(['Youth Medium, Purple', Number(item.ymp), Number(item.ymp) * 100]);
+        req.session.order_desc += String(item.ymp) + 'Youth Medium, Purple / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.ylg) != 0){
+        req.session.order_contents.push(['Youth Large, Green', Number(item.ylg), Number(item.ylg) * 100]);
+        req.session.order_desc += String(item.ylg) + 'Youth Large, Green / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.ylo) != 0){
+        req.session.order_contents.push(['Youth Large, Orange', Number(item.ylo), Number(item.ylo) * 100]);
+        req.session.order_desc += String(item.ylo) + 'Youth Large, Orange / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.ylp) != 0){
+        req.session.order_contents.push(['Youth Large, Purple', Number(item.ylp), Number(item.ylp) * 100]);
+        req.session.order_desc += String(item.ylp) + 'Youth Large, Purple / ';
+        req.session.order_size += 1;
+    }
+    //SIZE SEPERATION
+    if (Number(item.asg) != 0){
+        req.session.order_contents.push(['Adult Small, Green', Number(item.asg), Number(item.asg) * 100]);
+        req.session.order_desc += String(item.asg) + 'Adult Small, Green / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.aso) != 0){
+        req.session.order_contents.push(['Adult Small, Orange', Number(item.aso), Number(item.aso) * 100]);
+        req.session.order_desc += String(item.aso) + 'Adult Small, Orange / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.asp) != 0){
+        req.session.order_contents.push(['Adult Small, Purple', Number(item.asp), Number(item.asp) * 100]);
+        req.session.order_desc += String(item.asp) + 'Adult Small, Purple / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.amg) != 0){
+        req.session.order_contents.push(['Adult Medium, Green', Number(item.amg), Number(item.amg) * 100]);
+        req.session.order_desc += String(item.amg) + 'Adult Medium, Green / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.amo) != 0){
+        req.session.order_contents.push(['Adult Medium, Orange', Number(item.amo), Number(item.amo) * 100]);
+        req.session.order_desc += String(item.amo) + 'Adult Medium, Orange / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.amp) != 0){
+        req.session.order_contents.push(['Adult Medium, Purple', Number(item.amp), Number(item.amp) * 100]);
+        req.session.order_desc += String(item.amp) + 'Adult Medium, Purple / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.alg) != 0){
+        req.session.order_contents.push(['Adult Large, Green', Number(item.alg), Number(item.alg) * 100]);
+        req.session.order_desc += String(item.alg) + 'Adult Large, Green / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.alo) != 0){
+        req.session.order_contents.push(['Adult Large, Orange', Number(item.alo), Number(item.alo) * 100]);
+        req.session.order_desc += String(item.alo) + 'Adult Large, Orange / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.alp) != 0){
+        req.session.order_contents.push(['Adult Large, Purple', Number(item.alp), Number(item.alp) * 100]);
+        req.session.order_desc += String(item.alp) + 'Adult Large, Purple / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.axg) != 0){
+        req.session.order_contents.push(['Adult X-Large, Green', Number(item.axg), Number(item.axg) * 100]);
+        req.session.order_desc += String(item.axg) + 'Adult X-Large, Green / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.axo) != 0){
+        req.session.order_contents.push(['Adult X-Large, Orange', Number(item.axo), Number(item.axo) * 100]);
+        req.session.order_desc += String(item.axo) + 'Adult X-Large, Orange / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.axp) != 0){
+        req.session.order_contents.push(['Adult X-Large, Purple', Number(item.axp), Number(item.axp) * 100]);
+        req.session.order_desc += String(item.axp) + 'Adult X-Large, Purple / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.axxg) != 0){
+        req.session.order_contents.push(['Adult XX-Large, Green', Number(item.axxg), Number(item.axxg) * 100]);
+        req.session.order_desc += String(item.axxg) + 'Adult XX-Large, Green / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.axxo) != 0){
+        req.session.order_contents.push(['Adult XX-Large, Orange', Number(item.axxo), Number(item.axxo) * 100]);
+        req.session.order_desc += String(item.axxo) + 'Adult XX-Large, Orange / ';
+        req.session.order_size += 1;
+    }
+    if (Number(item.axxp) != 0){
+        req.session.order_contents.push(['Adult XX-Large, Purple', Number(item.axxp), Number(item.axxp) * 100]);
+        req.session.order_desc += String(item.axxp) + 'Adult XX-Large, Purple / ';
+        req.session.order_size += 1;
+    }
+    req.session.order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
+    req.session.order_contents.forEach(shirt => {
+        req.session.total_price += shirt[2]
+    })
+    var final = '$' + String(req.session.total_price).substring(0, req.session.total_price.length - 2) + '.' + String(req.session.total_price).substring(req.session.total_price.length - 2, req.session.total_price.length);
+    console.log('final in process is ' + final);
+    const query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
+    db.query(query, [req.session.order_id, req.session.order_name, req.session.email_name, 'UNPAID', 0, req.session.order_desc])
+        .then(function(rows){
+            res.redirect('https://ema-store.herokuapp.com/checkout_all.html');
+        })
+        .catch(function(err){
+            console.log("Err in adding to db: " + err);
+            res.redirect('https://ema-store.herokuapp.com/');
+        })
+})
 router.post('/process_cart', function(req, res) {
     if (!req.session){
         app.use(
@@ -919,6 +1104,16 @@ router.post('/process_cart', function(req, res) {
         })
 });
 
+router.get('/checkout_all.html', (req, res) => {
+    req.session.order_contents.forEach(shirt => {
+        req.session.total_price += shirt[2]
+    })
+    var final = '$' + String(req.session.total_price).substring(0, req.session.total_price.length - 2) + '.' + String(req.session.total_price).substring(req.session.total_price.length - 2, req.session.total_price.length);
+    res.render('checkout_all.html', {
+        price: final
+    })
+});
+
 router.get('/checkout.html', function(req, res){
     console.log('final in checkout is ' + req.params.final);
     switch (req.session.order_size){
@@ -943,6 +1138,617 @@ router.get('/checkout.html', function(req, res){
         price: final
     })
 });
+
+router.post('/create-session-all', async (req, res) => {
+    if (req.session.order_size == 1){
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.order_id,
+            customer_email: req.session.email_name,
+            customer: {
+                name: req.session.order_name
+            },
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[0][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[0][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/success.html`,
+            cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+            allow_promotion_codes: true,
+            });   
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else if (req.session.order_size == 2){
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.order_id,
+            customer_email: req.session.email_name,
+            customer: {
+                name: req.session.order_name
+            },
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[0][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[0][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[1][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[1][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/success.html`,
+            cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+            allow_promotion_codes: true,
+            });   
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else if (req.session.order_size == 3){
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.order_id,
+            customer_email: req.session.email_name,
+            customer: {
+                name: req.session.order_name
+            },
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[0][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[0][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[1][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[1][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[2][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[2][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/success.html`,
+            cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+            allow_promotion_codes: true,
+            });   
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else if (req.session.order_size == 4) {
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.order_id,
+            customer_email: req.session.email_name,
+            customer: {
+                name: req.session.order_name
+            },
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[0][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[0][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[1][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[1][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[2][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[2][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[3][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[3][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/success.html`,
+            cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+            allow_promotion_codes: true,
+            });   
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else if (req.session.order_size == 5) {
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.order_id,
+            customer_email: req.session.email_name,
+            customer: {
+                name: req.session.order_name
+            },
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[0][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[0][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[1][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[1][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[2][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[2][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[3][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[3][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[4][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[4][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },   
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/success.html`,
+            cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+            allow_promotion_codes: true,
+            });   
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else if (req.session.order_size == 6) {
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.order_id,
+            customer_email: req.session.email_name,
+            customer: {
+                name: req.session.order_name
+            },
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[0][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[0][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[1][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[1][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[2][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[2][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[3][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[3][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[4][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[4][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },   
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[5][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[5][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/success.html`,
+            cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+            allow_promotion_codes: true,
+            });   
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else if (req.session.order_size == 7) {
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.order_id,
+            customer_email: req.session.email_name,
+            customer: {
+                name: req.session.order_name
+            },
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[0][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[0][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[1][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[1][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[2][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[2][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[3][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[3][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[4][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[4][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },   
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[5][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[5][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[6][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[6][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/success.html`,
+            cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+            allow_promotion_codes: true,
+            });   
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else if (req.session.order_size == 8) {
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            client_reference_id: req.session.order_id,
+            customer_email: req.session.email_name,
+            customer: {
+                name: req.session.order_name
+            },
+            line_items: [
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[0][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[0][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[1][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[1][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[2][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[2][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[3][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[3][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[4][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[4][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },   
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[5][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[5][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[6][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[6][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+                {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: req.session.order_contents[7][0],
+                        images: ["./combined.png"],
+                        description: '2021 T-Shirt'
+                    },
+                    unit_amount: 2500,
+                },
+                quantity: req.session.order_contents[7][1],
+                description: 'EMA Online Store - T-Shirt round 2',
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/success.html`,
+            cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+            allow_promotion_codes: true,
+            });   
+        res.json({ id: session.id });
+        req.session.destroy();
+    } else {
+        req.session.destroy();
+        res.redirect('https://ema-store.herokuapp.com/cancel.html');
+    }
+})
 
 router.post('/create-session', async (req, res) => {
     //var local_price = req.session.order_price;

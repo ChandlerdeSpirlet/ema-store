@@ -1,0 +1,148 @@
+<html>
+    <title>EMA T-Shirt Order Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        img {
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        html {
+            background-image: linear-gradient(#0095ff, #9ed7ff);
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        h1 {
+            text-align: center;
+        }
+        body {
+            font-size: 16px;
+        }
+        button, select {
+            width: 60%;
+            margin: 0 auto;
+        }
+        label{
+            font-weight: bold;
+        }
+        form > div {
+            margin-bottom: 20px;
+        }
+
+        button, label, input, select {
+            display: block;
+            font-size: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 5px;
+            height: 35px;
+        }
+
+        select {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .select-wrapper {
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .select-wrapper::after {
+            content: "▼";
+            font-size: 1rem;
+            top: 6px;
+            right: 10px;
+            position: absolute;
+        }
+
+        input[type="text"], select {
+            box-shadow: inset 1px 1px 3px #ccc;
+            border-radius: 5px;
+        }
+        
+        input[type="numeric"] { 
+            width: 20%;
+            float: right;
+        }
+    </style>
+    <body>
+        <h1>EMA T-Shirt Order Form</h1>
+        <img src="../ema_green_shirt.png" alt="ema_green_shirt"/>
+        <p style="text-align: center; font-weight: bold; font-size: 14px;">EMA Green Shirt</p>
+        <img src="../ema_orange_shirt.png" alt="ema_orange_shirt"/>
+        <p style="text-align: center; font-weight: bold; font-size: 14px;">EMA Orange Shirt</p>
+        <img src="../ema_purple_shirt.png" alt="ema_purple_shirt"/>
+        <p style="text-align: center; font-weight: bold; font-size: 14px;">EMA Purple Shirt</p>
+        <form name="Form" action="/process_cart_all" method="POST">
+            <div>
+                <label for="order_name">Name:</label>
+                <input type="text" id="order_name" name="order_name" required placeholder="Full Name">
+            </div>
+            <div>
+                <label for="order_email">Email:</label>
+                <input type="text" id="order_email" name="order_email" required placeholder="Email">
+            </div>
+            <div id="section">
+                <h4 style="font-size: 18px; text-align: center;">Youth Small</h4>
+                <span style="width: 100%; font-weight: bold;">Youth Small - Green <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="ysg" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Youth Small - Orange <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="yso" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Youth Small - Purple <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="ysp" value="0"></span><br>
+            </div>
+            <div id="section">
+                <h4 style="font-size: 18px; text-align: center;">Youth Medium</h4>
+                <span style="width: 100%; font-weight: bold;">Youth Medium - Green <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="ymg" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Youth Medium - Orange <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="ymo" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Youth Medium - Purple <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="ymp" value="0"></span><br>
+            </div>
+            <div id="section">
+                <h4 style="font-size: 18px; text-align: center;">Youth Large</h4>
+                <span style="width: 100%; font-weight: bold;">Youth Large - Green <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="ylg" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Youth Large - Orange <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="ylo" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Youth Large - Purple <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="ylp" value="0"></span><br>
+            </div>
+            <div id="section">
+                <h4 style="font-size: 18px; text-align: center;">Adult Small</h4>
+                <span style="width: 100%; font-weight: bold;">Adult Small - Green <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="asg" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Adult Small - Orange <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="aso" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Adult Small - Purple <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="asp" value="0"></span><br>
+            </div>
+            <div id="section">
+                <h4 style="font-size: 18px; text-align: center;">Adult Medium</h4>
+                <span style="width: 100%; font-weight: bold;">Adult Medium - Green <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="amg" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Adult Medium - Orange <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="amo" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Adult Medium - Purple <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="amp" value="0"></span><br>
+            </div>
+            <div id="section">
+                <h4 style="font-size: 18px; text-align: center;">Adult Large</h4>
+                <span style="width: 100%; font-weight: bold;">Adult Large - Green <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="all" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Adult Large - Orange <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="alo" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Adult Large - Purple <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="alp" value="0"></span><br>
+            </div>
+            <div id="section">
+                <h4 style="font-size: 18px; text-align: center;">Adult X-Large</h4>
+                <span style="width: 100%; font-weight: bold;">Adult X-Large - Green <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="axg" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Adult X-Large - Orange <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="axo" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Adult X-Large - Purple <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="axp" value="0"></span><br>
+            </div>
+            <div id="section">
+                <h4 style="font-size: 18px; text-align: center;">Adult XX-Large</h4>
+                <span style="width: 100%; font-weight: bold;">Adult XX-Large - Green <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="axxg" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Adult XX-Large - Orange <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="axxo" value="0"></span><br>
+                <span style="width: 100%; font-weight: bold;">Adult XX-Large - Purple <input style="width: 30%; display: inline;" type="number" inputmode="numeric" name="axxp" value="0"></span><br>
+            </div>
+            <div>
+                <input type="submit" name="Submit" value="Checkout"/>
+            </div>
+        </form>
+    </body>
+</html>

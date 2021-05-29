@@ -806,6 +806,8 @@ router.post('/process_cart_all', function(req, res){
         ysg: req.sanitize('axxo').trim(),
         ysg: req.sanitize('axxp').trim()
     }
+    req.session.order_name = item.order_name;
+    req.session.order_email = item.order_email;
     req.session.order_contents = [];
     req.session.total_price = 0;
     req.session.order_desc = 'T-Shirt Round 2: ';
@@ -934,10 +936,11 @@ router.post('/process_cart_all', function(req, res){
     req.session.order_contents.forEach(shirt => {
         req.session.total_price += shirt[2]
     })
+    req.session.order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
     var final = '$' + String(req.session.total_price).substring(0, req.session.total_price.length - 2) + '.' + String(req.session.total_price).substring(req.session.total_price.length - 2, req.session.total_price.length);
     console.log('final in process is ' + final);
     const query = 'insert into orders (order_id, order_name, email, pay_status, bill_total, order_contents) values ($1, $2, $3, $4, $5, $6);';
-    db.query(query, [req.session.order_id, req.session.order_name, req.session.email_name, 'UNPAID', 0, req.session.order_desc])
+    db.query(query, [req.session.order_id, req.session.order_name, req.session.order_email, 'UNPAID', 0, req.session.order_desc])
         .then(function(rows){
             res.redirect('https://ema-store.herokuapp.com/checkout_all.html');
         })

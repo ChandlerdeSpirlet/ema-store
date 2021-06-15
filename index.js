@@ -813,123 +813,123 @@ router.post('/process_cart_all', function(req, res){
     req.session.total_price = 0;
     req.session.order_desc = 'T-Shirt Round 2: ';
     if (item.ysg != ''){
-        req.session.order_contents.push(['Youth Small, Green', Number(item.ysg), Number(item.ysg) * 2500]);
+        req.session.order_contents.push(['Youth Small, Green', Number(item.ysg), Number(item.ysg) * 3000]);
         req.session.order_desc += String(item.ysg) + ' Youth Small, Green / ';
         req.session.order_size += 1;
     }
     if (item.yso != ''){
-        req.session.order_contents.push(['Youth Small, Orange', Number(item.yso), Number(item.yso) * 2500]);
+        req.session.order_contents.push(['Youth Small, Orange', Number(item.yso), Number(item.yso) * 3000]);
         req.session.order_desc += String(item.yso) + ' Youth Small, Orange / ';
         req.session.order_size += 1;
     }
     if (item.ysp != ''){
-        req.session.order_contents.push(['Youth Small, Purple', Number(item.ysp), Number(item.ysp) * 2500]);
+        req.session.order_contents.push(['Youth Small, Purple', Number(item.ysp), Number(item.ysp) * 3000]);
         req.session.order_desc += String(item.ysp) + ' Youth Small, Purple / ';
         req.session.order_size += 1;
     }
     if (item.ymg != ''){
-        req.session.order_contents.push(['Youth Medium, Green', Number(item.ymg), Number(item.ymg) * 2500]);
+        req.session.order_contents.push(['Youth Medium, Green', Number(item.ymg), Number(item.ymg) * 3000]);
         req.session.order_desc += String(item.ymg) + ' Youth Medium, Green / ';
         req.session.order_size += 1;
     }
     if (item.ymo != ''){
-        req.session.order_contents.push(['Youth Medium, Orange', Number(item.ymo), Number(item.ymo) * 2500]);
+        req.session.order_contents.push(['Youth Medium, Orange', Number(item.ymo), Number(item.ymo) * 3000]);
         req.session.order_desc += String(item.ymo) + ' Youth Medium, Orange / ';
         req.session.order_size += 1;
     }
     if (item.ymp != ''){
-        req.session.order_contents.push(['Youth Medium, Purple', Number(item.ymp), Number(item.ymp) * 2500]);
+        req.session.order_contents.push(['Youth Medium, Purple', Number(item.ymp), Number(item.ymp) * 3000]);
         req.session.order_desc += String(item.ymp) + ' Youth Medium, Purple / ';
         req.session.order_size += 1;
     }
     if (item.ylg != ''){
-        req.session.order_contents.push(['Youth Large, Green', Number(item.ylg), Number(item.ylg) * 2500]);
+        req.session.order_contents.push(['Youth Large, Green', Number(item.ylg), Number(item.ylg) * 3000]);
         req.session.order_desc += String(item.ylg) + ' Youth Large, Green / ';
         req.session.order_size += 1;
     }
     if (item.ylo != ''){
-        req.session.order_contents.push(['Youth Large, Orange', Number(item.ylo), Number(item.ylo) * 2500]);
+        req.session.order_contents.push(['Youth Large, Orange', Number(item.ylo), Number(item.ylo) * 3000]);
         req.session.order_desc += String(item.ylo) + ' Youth Large, Orange / ';
         req.session.order_size += 1;
     }
     if (item.ylp != ''){
-        req.session.order_contents.push(['Youth Large, Purple', Number(item.ylp), Number(item.ylp) * 2500]);
+        req.session.order_contents.push(['Youth Large, Purple', Number(item.ylp), Number(item.ylp) * 3000]);
         req.session.order_desc += String(item.ylp) + ' Youth Large, Purple / ';
         req.session.order_size += 1;
     }
     //SIZE SEPERATION
     if (item.asg != ''){
-        req.session.order_contents.push(['Adult Small, Green', Number(item.asg), Number(item.asg) * 2500]);
+        req.session.order_contents.push(['Adult Small, Green', Number(item.asg), Number(item.asg) * 3000]);
         req.session.order_desc += String(item.asg) + ' Adult Small, Green / ';
         req.session.order_size += 1;
     }
     if (item.aso != ''){
-        req.session.order_contents.push(['Adult Small, Orange', Number(item.aso), Number(item.aso) * 2500]);
+        req.session.order_contents.push(['Adult Small, Orange', Number(item.aso), Number(item.aso) * 3000]);
         req.session.order_desc += String(item.aso) + ' Adult Small, Orange / ';
         req.session.order_size += 1;
     }
     if (item.asp != ''){
-        req.session.order_contents.push(['Adult Small, Purple', Number(item.asp), Number(item.asp) * 2500]);
+        req.session.order_contents.push(['Adult Small, Purple', Number(item.asp), Number(item.asp) * 3000]);
         req.session.order_desc += String(item.asp) + ' Adult Small, Purple / ';
         req.session.order_size += 1;
     }
     if (item.amg != ''){
-        req.session.order_contents.push(['Adult Medium, Green', Number(item.amg), Number(item.amg) * 2500]);
+        req.session.order_contents.push(['Adult Medium, Green', Number(item.amg), Number(item.amg) * 3000]);
         req.session.order_desc += String(item.amg) + ' Adult Medium, Green / ';
         req.session.order_size += 1;
     }
     if (item.amo != ''){
-        req.session.order_contents.push(['Adult Medium, Orange', Number(item.amo), Number(item.amo) * 2500]);
+        req.session.order_contents.push(['Adult Medium, Orange', Number(item.amo), Number(item.amo) * 3000]);
         req.session.order_desc += String(item.amo) + ' Adult Medium, Orange / ';
         req.session.order_size += 1;
     }
     if (item.amp != ''){
-        req.session.order_contents.push(['Adult Medium, Purple', Number(item.amp), Number(item.amp) * 2500]);
+        req.session.order_contents.push(['Adult Medium, Purple', Number(item.amp), Number(item.amp) * 3000]);
         req.session.order_desc += String(item.amp) + ' Adult Medium, Purple / ';
         req.session.order_size += 1;
     }
     if (item.alg != ''){
-        req.session.order_contents.push(['Adult Large, Green', Number(item.alg), Number(item.alg) * 2500]);
+        req.session.order_contents.push(['Adult Large, Green', Number(item.alg), Number(item.alg) * 3000]);
         req.session.order_desc += String(item.alg) + ' Adult Large, Green / ';
         req.session.order_size += 1;
     }
     if (item.alo != ''){
-        req.session.order_contents.push(['Adult Large, Orange', Number(item.alo), Number(item.alo) * 2500]);
+        req.session.order_contents.push(['Adult Large, Orange', Number(item.alo), Number(item.alo) * 3000]);
         req.session.order_desc += String(item.alo) + ' Adult Large, Orange / ';
         req.session.order_size += 1;
     }
     if (item.alp != ''){
-        req.session.order_contents.push(['Adult Large, Purple', Number(item.alp), Number(item.alp) * 2500]);
+        req.session.order_contents.push(['Adult Large, Purple', Number(item.alp), Number(item.alp) * 3000]);
         req.session.order_desc += String(item.alp) + ' Adult Large, Purple / ';
         req.session.order_size += 1;
     }
     if (item.axg != ''){
-        req.session.order_contents.push(['Adult X-Large, Green', Number(item.axg), Number(item.axg) * 2500]);
+        req.session.order_contents.push(['Adult X-Large, Green', Number(item.axg), Number(item.axg) * 3000]);
         req.session.order_desc += String(item.axg) + ' Adult X-Large, Green / ';
         req.session.order_size += 1;
     }
     if (item.axo != ''){
-        req.session.order_contents.push(['Adult X-Large, Orange', Number(item.axo), Number(item.axo) * 2500]);
+        req.session.order_contents.push(['Adult X-Large, Orange', Number(item.axo), Number(item.axo) * 3000]);
         req.session.order_desc += String(item.axo) + ' Adult X-Large, Orange / ';
         req.session.order_size += 1;
     }
     if (item.axp != ''){
-        req.session.order_contents.push(['Adult X-Large, Purple', Number(item.axp), Number(item.axp) * 2500]);
+        req.session.order_contents.push(['Adult X-Large, Purple', Number(item.axp), Number(item.axp) * 3000]);
         req.session.order_desc += String(item.axp) + ' Adult X-Large, Purple / ';
         req.session.order_size += 1;
     }
     if (item.axxg != ''){
-        req.session.order_contents.push(['Adult XX-Large, Green', Number(item.axxg), Number(item.axxg) * 2500]);
+        req.session.order_contents.push(['Adult XX-Large, Green', Number(item.axxg), Number(item.axxg) * 3000]);
         req.session.order_desc += String(item.axxg) + ' Adult XX-Large, Green / ';
         req.session.order_size += 1;
     }
     if (item.axxo != ''){
-        req.session.order_contents.push(['Adult XX-Large, Orange', Number(item.axxo), Number(item.axxo) * 2500]);
+        req.session.order_contents.push(['Adult XX-Large, Orange', Number(item.axxo), Number(item.axxo) * 3000]);
         req.session.order_desc += String(item.axxo) + ' Adult XX-Large, Orange / ';
         req.session.order_size += 1;
     }
     if (item.axxp != ''){
-        req.session.order_contents.push(['Adult XX-Large, Purple', Number(item.axxp), Number(item.axxp) * 2500]);
+        req.session.order_contents.push(['Adult XX-Large, Purple', Number(item.axxp), Number(item.axxp) * 3000]);
         req.session.order_desc += String(item.axxp) + ' Adult XX-Large, Purple / ';
         req.session.order_size += 1;
     }
@@ -1011,9 +1011,9 @@ router.post('/process_cart', function(req, res) {
         req.session.d1 = String(temp_d1);
         console.log('order 1 data: ' + req.session.q1 + '/' + req.session.d1 + '/' + req.session.order_size);
         if ((item.size1 == 'Youth Small') || (item.size1 == 'Youth Medium') || (item.size1 == 'Youth Large')){
-            req.session.p1 = 2500;
+            req.session.p1 = 3000;
         } else {
-            req.session.p1 = 2500;
+            req.session.p1 = 3000;
         }
         console.log('price is ' + req.session.p1);
     }
@@ -1024,9 +1024,9 @@ router.post('/process_cart', function(req, res) {
         var temp_d2 = item.color2 + ' ' + item.size2;
         req.session.d2 = String(temp_d2);
         if ((item.size2 == 'Youth Small') || (item.size2 == 'Youth Medium') || (item.size2 == 'Youth Large')){
-            req.session.p2 = 2500;
+            req.session.p2 = 3000;
         } else {
-            req.session.p2 = 2500;
+            req.session.p2 = 3000;
         }
     }
     if (item.quantity3 != 0) {
@@ -1036,9 +1036,9 @@ router.post('/process_cart', function(req, res) {
         var temp_d3 = item.color3 + ' ' + item.size3;
         req.session.d3 = String(temp_d3);
         if ((item.size3 == 'Youth Small') || (item.size3 == 'Youth Medium') || (item.size3 == 'Youth Large')){
-            req.session.p3 = 2500;
+            req.session.p3 = 3000;
         } else {
-            req.session.p3 = 2500;
+            req.session.p3 = 3000;
         }
     }
     if (item.quantity4 != 0) {
@@ -1048,9 +1048,9 @@ router.post('/process_cart', function(req, res) {
         var temp_d4= item.color4 + ' ' + item.size4;
         req.session.d4 = String(temp_d4);
         if ((item.size4 == 'Youth Small') || (item.size4 == 'Youth Medium') || (item.size4 == 'Youth Large')){
-            req.session.p4 = 2500;
+            req.session.p4 = 3000;
         } else {
-            req.session.p4 = 2500;
+            req.session.p4 = 3000;
         }
     }
     req.session.order_id = item.order_name.substring(0, 3).toLowerCase() + String(Math.floor( Math.random() * ( 1 + 10000 - 1 ) ) + 1);
@@ -1174,7 +1174,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[0][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1202,7 +1202,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[0][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1215,7 +1215,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[1][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1243,7 +1243,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[0][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1256,7 +1256,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[1][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1269,7 +1269,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[2][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1297,7 +1297,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[0][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1310,7 +1310,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[1][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1323,7 +1323,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[2][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1336,7 +1336,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[3][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1363,7 +1363,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[0][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1376,7 +1376,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[1][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1389,7 +1389,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[2][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1402,7 +1402,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[3][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1415,7 +1415,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[4][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1443,7 +1443,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[0][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1456,7 +1456,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[1][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1469,7 +1469,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[2][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1482,7 +1482,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[3][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1495,7 +1495,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[4][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1508,7 +1508,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[5][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1536,7 +1536,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[0][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1549,7 +1549,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[1][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1562,7 +1562,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[2][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1575,7 +1575,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[3][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1588,7 +1588,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[4][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1601,7 +1601,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[5][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1614,7 +1614,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[6][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1642,7 +1642,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[0][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1655,7 +1655,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[1][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1668,7 +1668,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[2][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1681,7 +1681,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[3][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1694,7 +1694,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[4][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1707,7 +1707,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[5][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1720,7 +1720,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[6][1],
                 description: 'EMA Online Store - T-Shirt round 2',
@@ -1733,7 +1733,7 @@ router.post('/create-session-all', async (req, res) => {
                         images: ["./combined.png"],
                         description: '2021 T-Shirt'
                     },
-                    unit_amount: 2500,
+                    unit_amount: 3000,
                 },
                 quantity: req.session.order_contents[7][1],
                 description: 'EMA Online Store - T-Shirt round 2',

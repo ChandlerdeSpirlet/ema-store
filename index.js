@@ -57,11 +57,12 @@ router.get('/', function(req, res){
     });
 });
 
-rounter.get('/unavailable.html', (req, res) => {
-    res.render('unavailable.html', function(req, res){
-    
-    });
-});
+router.get('/unavailable.html', (req, res) => {
+    res.render('unavailable.html', (req, res) => {
+
+    })
+})
+
 
 router.get('/shopping_cart_updated', (req, res) => {
     res.render('shopping_cart_updated.html', (req, res) => {

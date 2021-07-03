@@ -46,10 +46,20 @@ router.get('/', function(req, res){
     req.session.order_size = 0;
     if(!req.session.key >= 0){
         req.session.destroy();
-        res.redirect('https://ema-store.herokuapp.com/views/shopping_cart_updated.html');
+        //res.redirect('https://ema-store.herokuapp.com/views/shopping_cart_updated.html');
+        res.redirect('https://ema-store.herokuapp.com/views/unavailable.html');
     }
-    res.render('shopping_cart.html', function(req, res){
+    //res.render('shopping_cart.html', function(req, res){
 
+    //});
+    res.render('unavailable.html', function(req, res){
+    
+    });
+});
+
+rounter.get('/unavailable.html', (req, res) => {
+    res.render('unavailable.html', function(req, res){
+    
     });
 });
 
